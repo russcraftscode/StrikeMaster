@@ -1,0 +1,258 @@
+Name,Variant,Role,Tech Base,Rules,Year,Type,Armor,Internal,TMM,Move,Jump,S,M,L,E,OV,Tons,Size,Skill,PV,divider,Special Abilities
+Adder,Adder,Sniper,Clan,Standard,3010,BM,4,2,0,12,0,3,3,3,0,1,35,1,4,30,|,"ENE,OMNI,OVL"
+Blood Asp,Blood Asp,Brawler,Clan,Standard,3060,BM,9,5,0,8,0,8,8,3,0,1,90,4,4,57,|,"CASE,OMNI"
+Annihilator,ANH-2A,Juggernaut,Inner Sphere,Standard,3048,BM,7,8,0,4,0,4,4,3,0,2,100,4,4,41,|,"CASE,FLK2/2/3"
+Annihilator,ANH-1X,Juggernaut,Inner Sphere,Standard,2779,BM,10,8,0,4,0,5,4,3,0,1,100,4,4,48,|,"CASE,FLK2/2/3"
+Annihilator,ANH-2AX,Sniper,Inner Sphere,Experimental,3074,BM,10,10,0,4,0,4,5,5,0,0,100,4,4,52,|,"ARM,CASE,RFA"
+Arctic Fox,AF1,Striker,Inner Sphere,Standard,3059,BM,3,1,0,12,0,3,3,1,0,1,30,1,4,25,|,"OMNI,SRM1/1"
+Arctic Cheetah,Arctic Cheetah,Striker,Clan,Standard,3037,BM,3,2,0,1,12,3,2,1,0,0,30,1,4,36,|,"CASE,ECM,IF1,OMNI,PRB,RCN,TAG,JMPW1"
+Archer,ARC-2R,Missile Boat,Inner Sphere,Introductory,2474,BM,7,6,0,8,0,2,3,3,0,1,70,3,4,39,|,"IF2,LRM1/2/2,REAR1/1/-"
+Archer,ARC-5CS,Missile Boat,Inner Sphere,Standard,3052,BM,6,3,0,8,0,4,6,5,0,0,70,3,4,44,|,IF4
+Archer,ARC-4M2,Missile Boat,Inner Sphere,Standard,3086,BM,7,6,0,8,0,3,5,4,0,0,70,3,4,44,|,"CASE,IF2,REAR1/1/-"
+Archer,ARC-8M,Missile Boat,Inner Sphere,Standard,3067,BM,7,6,0,8,0,3,4,4,0,1,70,3,4,43,|,"CASE,IF2"
+Archer,ARC-9M,Missile Boat,Inner Sphere,Standard,3076,BM,6,4,0,6,10,3,4,4,0,1,70,3,4,42,|,"CASE,IF2,JMPS1"
+Assassin,ASN-23,Striker,Inner Sphere,Standard,3050,BM,2,3,0,14,14,1,2,*,0,0,40,2,4,26,|,IF0*
+Assassin,ASN-21,Scout,Inner Sphere,Introductory,2676,BM,2,3,0,14,14,1,1,*,0,0,40,2,4,22,|,IF0*
+Assassin,ASN-109,Scout,Inner Sphere,Standard,3140,BM,4,2,0,14,14,1,1,1,0,0,40,2,4,33,|,"AECM,CASEII,IF0*,STL"
+Atlas,AS7-D,Juggernaut,Inner Sphere,Introductory,2755,BM,10,8,0,6,0,5,5,2,0,0,100,4,4,52,|,"AC2/2/-,IF1,LRM1/1/1,REAR1/1/-"
+Atlas II,AS7-D-H,Juggernaut,Inner Sphere,Standard,2765,BM,10,8,0,6,0,4,4,4,0,2,100,4,4,52,|,"CASE,FLK1/1/1,IF1"
+Awesome,AWS-8Q,Sniper,Inner Sphere,Introductory,2665,BM,8,6,0,6,0,3,3,3,0,0,80,4,4,39,|,ENE
+Awesome,AWS-9M,Brawler,Inner Sphere,Standard,3049,BM,8,4,0,8,0,4,4,3,0,1,80,4,4,41,|,
+Awesome,AWS-11R,Sniper,Inner Sphere,Advanced,3133,BM,7,4,0,8,0,2,3,3,0,1,80,4,4,41,|,"CASEII,ECM,IF2,STL"
+Blackjack,BJ-1,Sniper,Inner Sphere,Introductory,2757,BM,5,4,0,8,8,2,2,*,0,1,45,2,4,26,|,
+Blackjack,BJ-2,Sniper,Inner Sphere,Standard,3052,BM,5,4,0,8,8,3,3,2,0,1,45,2,4,30,|,
+Blackjack,BJ-5,Sniper,Inner Sphere,Standard,3107,BM,5,2,0,8,8,2,3,3,0,0,45,2,4,27,|,CASEII
+Blackjack,BJ2-O,Brawler,Inner Sphere,Standard,3057,BM,5,2,0,8,8,5,4,2,0,0,50,2,4,31,|,OMNI
+Black Lanner Prime,Black Lanner Prime,Skirmisher,Clan,Standard,3052,BM,5,3,0,18,0,3,3,2,0,1,55,2,4,47,|,"CASE,ECM,IF1,OMNI"
+Warlord,BLR-2XC,Brawler,Inner Sphere,Experimental,3075,BM,7,3,0,8,0,3,3,2,0,2,75,3,4,46,|,"AECM,BH,C3I,ENE,MHQ3,RCN,RSD1,TAG"
+Warlord,BLR-2D,Brawler,Inner Sphere,Standard,3070,BM,8,6,0,8,0,3,4,3,0,2,80,4,4,43,|,ENE
+BattleMaster,BLR-1G,Brawler,Inner Sphere,Introductory,2633,BM,8,7,0,8,0,3,3,1,0,1,85,4,4,40,|,REAR1/1/-
+BattleMaster,BLR-6G,Brawler,Inner Sphere,Standard,3088,BM,8,5,0,8,0,4,4,4,0,2,85,4,4,44,|,"CASEII,REAR1/1/-"
+BattleMaster,BLR-4S,Brawler,Inner Sphere,Standard,3062,BM,8,5,0,8,0,5,5,2,0,1,85,4,4,44,|,CASE
+Banshee,BNC-3S,Juggernaut,Inner Sphere,Introductory,3026,BM,8,8,0,6,0,4,4,2,0,2,95,4,4,45,|,
+Banshee,BNC-5S,Sniper,Inner Sphere,Standard,3053,BM,8,4,0,8,0,4,4,4,0,1,95,4,4,42,|,REAR1/1/-
+Cicada,CDA-2A,Scout,Inner Sphere,Introductory,2740,BM,2,3,0,16,0,2,1,0,0,0,40,2,4,22,|,ENE
+Cicada,CDA-3M,Striker,Inner Sphere,Standard,3049,BM,2,2,0,16,0,2,2,1,0,0,40,2,4,25,|,CASE
+Cicada,CDA-4A,Striker,Inner Sphere,Advanced,3150,BM,4,2,0,20,0,3,2,0,0,0,40,2,4,37,|,ENE
+Charger,CGR-1A1,Scout,Inner Sphere,Introductory,2665,BM,5,6,0,10,0,2,0,0,0,0,80,4,4,18,|,ENE
+Charger,CGR-3K,Skirmisher,Inner Sphere,Standard,3049,BM,6,4,0,10,10,4,5,2,0,0,80,4,4,45,|,"CASE,IF1"
+Charger,CGR-1X1,Scout,Inner Sphere,Experimental,3076,BM,8,4,0,16,0,1,1,1,0,1,80,4,4,59,|,"AECM,AMS,BH,C3BSS,ENE,MHQ2,RCN,TAG"
+Centurion,CN9-A,Brawler,Inner Sphere,Introductory,2801,BM,5,4,0,8,0,2,3,1,0,0,50,2,4,28,|,"AC1/1/-,IF1,REAR1/1/-"
+Centurion,CN9-D,Skirmisher,Inner Sphere,Standard,3049,BM,5,2,0,12,0,2,2,2,0,0,50,2,4,28,|,"CASE,FLK1/1/1,IF1,REAR1/1/-"
+Cougar Prime,Cougar Prime,Sniper,Clan,Standard,3058,BM,4,2,0,10,0,3,3,3,0,1,35,1,4,31,|,"CASE,IF1,LRM1/1/1,OMNI,OVL"
+Copperhead,CPR-HD-003,Striker,Inner Sphere,Experimental,3065,BM,2,1,0,16,4,4,4,0,0,0,30,1,4,32,|,"JMPW3,RFA"
+Scorpion,SCP-1N,Skirmisher,Inner Sphere,Introductory,2570,BM,4,5,0,12,0,2,2,1,0,0,55,2,4,27,|,
+Scorpion,SCP-12C,Skirmisher,Inner Sphere,Standard,3067,BM,7,3,0,12,0,2,2,1,0,0,55,2,4,37,|,"C3I,INARC,MHQ2"
+Scorpion,SCP-10M,Sniper,Inner Sphere,Standard,3080,BM,5,3,0,14,0,2,3,3,0,0,55,2,4,44,|,IF1
+Scorpion,SCP-1BR,Skirmisher,Inner Sphere,Standard,3135,BM,5,3,0,16,0,3,3,1,0,0,55,2,4,42,|,CASE
+Scorpion,SCP-2N,Skirmisher,Inner Sphere,Standard,3133,BM,6,3,0,16,0,2,2,*,0,0,55,2,4,41,|,"CASEII,IF0*,TAG"
+Catapult,CPLT-C3,Missile Boat,Inner Sphere,Advanced,3049,BM,5,5,0,8,8,2,2,0,0,0,65,3,4,38,|,ARTAIS-1
+Catapult,CPLT-C1,Missile Boat,Inner Sphere,Introductory,2561,BM,5,5,0,8,8,2,3,2,0,1,65,3,4,32,|,"IF1,LRM1/1/1"
+Catapult,CPLT-K6,Missile Boat,Inner Sphere,Advanced,3136,BM,7,3,0,6,6,2,3,2,0,1,65,3,4,34,|,IF2
+Catapult II,CPLT-L7,Missile Boat,Inner Sphere,Advanced,3135,BM,6,3,0,8,8,2,2,3,0,2,70,3,4,42,|,"IF2,LRM1/1/2,TSEMP2"
+Cyclops,CP-10-Z,Juggernaut,Inner Sphere,Introductory,2710,BM,5,7,0,8,0,3,3,1,0,2,90,4,4,34,|,"AC1/1/-,IF1"
+Catapult,CPLT-C3,Missile Boat,Inner Sphere,Advanced,3049,BM,5,5,0,8,8,2,2,0,0,0,65,3,4,38,|,ARTAIS-1
+Catapult,CPLT-C1,Missile Boat,Inner Sphere,Introductory,2561,BM,5,5,0,8,8,2,3,2,0,1,65,3,4,32,|,"IF1,LRM1/1/1"
+Catapult,CPLT-K6,Missile Boat,Inner Sphere,Advanced,3136,BM,7,3,0,6,6,2,3,2,0,1,65,3,4,34,|,IF2
+Catapult II,CPLT-L7,Missile Boat,Inner Sphere,Advanced,3135,BM,6,3,0,8,8,2,2,3,0,2,70,3,4,42,|,"IF2,LRM1/1/2,TSEMP2"
+Crab,CRB-27,Skirmisher,Inner Sphere,Standard,2719,BM,5,4,0,10,0,3,2,0,0,1,50,2,4,29,|,ENE
+Crab,CRB-54,Skirmisher,Inner Sphere,Advanced,3144,BM,5,1,0,18,0,3,3,0,0,0,50,2,4,39,|,"ENE,HT1/1/-"
+Crusader,CRD-3R,Missile Boat,Inner Sphere,Introductory,2752,BM,6,5,0,8,0,2,2,2,0,2,65,3,4,32,|,IF1
+Crusader,CRD-5K,Skirmisher,Inner Sphere,Standard,3063,BM,6,3,0,8,8,4,4,0,0,2,65,3,4,36,|,"C3S,CASE,MHQ1"
+Crusader,CRD-8R,Missile Boat,Inner Sphere,Standard,3096,BM,7,3,0,8,0,4,4,3,0,2,65,3,4,40,|,"CASEII,IF2"
+Crusader,CRD-9R,Missile Boat,Inner Sphere,Advanced,3130,BM,6,2,0,10,0,3,3,3,0,1,65,3,4,37,|,"CASEII,IF1,LRM1/1/1,SRM1/1"
+Crusader,CRD-8L,Skirmisher,Inner Sphere,Standard,3083,BM,6,3,0,10,0,3,3,1,0,2,65,3,4,38,|,"CASE,HT1/1/-,IF1"
+Cataphract,CTF-0X,Sniper,Inner Sphere,Experimental,3025,BM,6,6,0,8,0,2,3,2,0,0,70,3,4,38,|,"ECM,LPRB,RCN,RSD1"
+Cataphract,CTF-1X,Brawler,Inner Sphere,Introductory,3025,BM,6,6,0,8,0,3,3,1,0,0,70,3,4,33,|,"AC1/1/-,REAR1/1/-"
+Cataphract,CTF-3D,Sniper,Inner Sphere,Standard,3050,BM,6,3,0,8,8,3,3,2,0,0,70,3,4,31,|,"CASE,FLK1/1/1,REAR1/1/-"
+Cataphract,CTF-5L,Sniper,Inner Sphere,Advanced,3132,BM,7,6,0,8,0,4,4,3,0,0,70,3,4,40,|,"CASE,REAR1/1/-,RFA"
+Dragon,DRG-1N,Skirmisher,Inner Sphere,Introductory,2754,BM,5,5,0,10,0,2,2,2,0,0,60,3,4,32,|,"IF1,REAR1/1/-"
+Grand Dragon,DRG-5K,Skirmisher,Inner Sphere,Standard,3050,BM,5,3,0,12,0,2,3,2,0,0,60,3,4,33,|,"CASE,IF1,REAR1/1/-"
+Dragon II,DRG-11K,Missile Boat,Inner Sphere,Advanced,3099,BM,7,5,0,8,0,2,2,1,0,0,65,3,4,43,|,"ARTAIS-1,CASEII"
+Dervish,DV-6M,Missile Boat,Inner Sphere,Introductory,2570,BM,4,5,0,10,10,2,2,2,0,1,55,2,4,30,|,IF1
+Devastator,DVS-2,Juggernaut,Inner Sphere,Standard,3048,BM,10,4,0,6,0,6,7,5,0,0,100,4,4,54,|,REAR1/1/-
+Ebony,MEB-9,Scout,Inner Sphere,Standard,3081,BM,3,1,0,20,0,1,1,0,0,0,25,1,4,28,|,"ECM,ENE,STL,TSM"
+Ebon Jaguar,Ebon Jaguar,Skirmisher,Clan,Standard,3049,BM,6,4,0,10,0,3,4,3,0,0,65,3,4,41,|,"CASE,FLK0*/0*/0*,IF1,OMNI"
+Eisenfaust,EFT-7X,Brawler,Inner Sphere,Standard,3076,BM,5,2,0,8,0,4,4,1,0,0,45,2,4,28,|,ENE
+Enforcer,ENF-4R,Skirmisher,Inner Sphere,Introductory,2777,BM,5,4,0,8,8,3,2,0,0,0,50,2,4,25,|,AC1/1/-
+Enforcer,ENF-5R,Brawler,Inner Sphere,Advanced,3142,BM,5,3,0,8,8,2,2,1,0,0,50,2,4,24,|,"CASEII,FLK1/1/1,REL"
+Enfield,END-6Q,Skirmisher,Inner Sphere,Standard,3055,BM,6,2,0,10,0,3,3,1,0,0,50,2,4,32,|,"CASE,FLK1/1/1"
+Enforcer,ENF-5D,Skirmisher,Inner Sphere,Standard,3050,BM,5,2,0,10,10,2,2,2,0,0,50,2,4,27,|,"CASE,FLK1/1/1"
+Enforcer III,ENF-6M,Sniper,Inner Sphere,Standard,3059,BM,5,2,0,10,10,3,3,3,0,0,50,2,4,32,|,
+Enforcer III,ENF-7D,Sniper,Inner Sphere,Standard,3104,BM,5,2,0,10,10,2,2,2,0,0,50,2,4,27,|,"CASEII,FLK1/1/1"
+Exterminator,EXT-4D,Skirmisher,Inner Sphere,Standard,2630,BM,6,3,0,12,12,3,3,1,0,0,65,3,4,37,|,"AMS,IF1"
+Exterminator,EXT-6CS,Skirmisher,Inner Sphere,Experimental,3079,BM,7,3,0,12,0,2,2,1,0,1,65,3,4,44,|,"CASEII,IF0*,OVL,STL"
+Exterminator,EXT-7X,Skirmisher,Inner Sphere,Advanced,3148,BM,7,1,0,12,10,3,2,0,0,2,65,3,4,44,|,"AMS,ECM,STL"
+Exterminator,EXT-4DX,Skirmisher,Inner Sphere,Experimental,2754,BM,7,3,0,16,10,4,4,0,0,0,65,3,4,55,|,"AMS,JMPW1"
+Grasshopper,GHR-5J,Skirmisher,Inner Sphere,Standard,3049,BM,7,6,0,8,8,3,3,1,0,0,70,3,4,36,|,AMS
+Grasshopper,GHR-5H,Skirmisher,Inner Sphere,Introductory,2780,BM,7,6,0,8,8,3,4,*,0,0,70,3,4,37,|,IF0*
+Grasshopper,GHR-7X,Skirmisher,Inner Sphere,Experimental,3075,BM,7,4,0,8,12,3,3,0,0,0,70,3,4,39,|,"BH,ENE,JMPS1,RCN"
+Grasshopper,GHR-8K,Skirmisher,Inner Sphere,Standard,3091,BM,7,6,0,8,8,3,3,3,0,1,70,3,4,39,|,"CASEII,IF0*,OVL"
+Grasshopper,GHR-7P,Skirmisher,Inner Sphere,Advanced,3081,BM,7,4,0,8,12,3,3,0,0,1,70,3,4,40,|,"BH,ENE,JMPS1,RCN"
+Gladiator,GLD-4R,Skirmisher,Inner Sphere,Introductory,2495,BM,5,5,0,10,10,2,2,1,0,1,55,2,4,31,|,
+Gladiator,GLD-7R,Skirmisher,Inner Sphere,Advanced,3117,BM,9,3,0,6,12,3,3,0,0,1,55,2,4,40,|,"CASEII,CR,JMPS1,TSM"
+Griffin,GRF-1N,Sniper,Inner Sphere,Introductory,2492,BM,5,5,0,10,10,1,2,2,0,0,55,2,4,31,|,IF1
+Griffin,GRF-4R,Striker,Inner Sphere,Standard,3076,BM,6,3,0,12,18,3,2,*,0,0,55,2,4,39,|,"IF0*,JMPS1"
+Griffin,GRF-3N,Sniper,Inner Sphere,Standard,3093,BM,6,5,0,10,10,2,2,2,0,0,55,2,4,34,|,"CASEII,IF1"
+Griffin,GRF-6S,Sniper,Inner Sphere,Standard,3066,BM,6,3,0,10,10,2,3,3,0,1,55,2,4,37,|,"CASE,IF1"
+Super-Griffin,GRF-2N-X,Missile Boat,Inner Sphere,Experimental,3020,BM,5,5,0,8,12,2,3,2,0,0,60,3,4,34,|,"IF1,JMPS1"
+Night Gyr Prime,Night Gyr Prime,Skirmisher,Clan,Standard,3052,BM,7,4,0,8,8,6,6,5,0,1,75,3,4,47,|,"CASE,OMNI"
+Hunchback,HBK-4G,Juggernaut,Inner Sphere,Introductory,2572,BM,5,4,0,8,0,4,3,0,0,0,50,2,4,28,|,AC2/2/-
+Hunchback,HBK-7X-4,Sniper,Inner Sphere,Experimental,3065,BM,5,4,0,8,0,3,3,2,0,0,50,2,4,29,|,"ARM,CASEII"
+Hunchback,HBK-7R,Brawler,Inner Sphere,Advanced,3085,BM,6,4,0,8,0,3,3,2,0,0,50,2,4,33,|,"CASEII,ECM,TAG"
+Hunchback,HBK-7S,Striker,Inner Sphere,Advanced,3134,BM,5,2,0,16,0,4,4,0,0,0,50,2,4,52,|,"AECM,BH,RCN,SRM2/2,TAG"
+Ion Sparrow,Ion Sparrow,Scout,Clan,Advanced,3147,BM,2,1,0,1,20,3,3,0,0,0,20,1,4,30,|,"CASE,JMPS1,OMNI"
+Fire Moth,Fire Moth,Striker,Clan,Standard,2874,BM,1,1,0,26,0,3,3,0,0,0,20,1,4,28,|,"CASE,OMNI,SRM1/1"
+Hermit Crab,HMC-13,Scout,Inner Sphere,Standard,3104,BM,3,2,0,14,14,1,1,0,0,0,25,1,4,22,|,ENE
+Hermes,HER-1A,Scout,Inner Sphere,Introductory,2856,BM,2,3,0,18,0,2,1,0,0,0,30,1,4,21,|,ENE
+Hermes,HER-3S,Scout,Inner Sphere,Standard,3047,BM,1,3,0,22,0,1,1,0,0,0,30,1,4,22,|,"ENE,PRB,RCN"
+Panther,PNT-CM,Sniper,Inner Sphere,Standard,3051,BM,3,3,0,8,8,1,1,1,0,0,35,1,4,23,|,"C3M,CASE,MHQ5,TAG"
+Panther,PNT-9R,Brawler,Inner Sphere,Introductory,2759,BM,3,3,0,8,8,2,2,1,0,0,35,1,4,19,|,
+Panther,PNT-10K,Brawler,Inner Sphere,Standard,3051,BM,3,3,0,8,8,2,2,1,0,0,35,1,4,19,|,CASE
+Panther,PNT-13K,Striker,Inner Sphere,Standard,3076,BM,3,2,0,10,16,2,2,0,0,0,35,1,4,25,|,JMPS1
+Hermes II,HER-2S,Scout,Inner Sphere,Introductory,2798,BM,4,3,0,12,0,2,1,1,0,0,40,2,4,22,|,
+Hermes II,HER-5S,Striker,Inner Sphere,Standard,3050,BM,4,3,0,12,0,2,2,1,0,0,40,2,4,25,|,
+Archer,ARC-2R,Missile Boat,Inner Sphere,Introductory,2474,BM,7,6,0,8,0,2,3,3,0,1,70,3,4,39,|,"IF2,LRM1/2/2,REAR1/1/-"
+Hercules,HRC-LS-9000,Skirmisher,Inner Sphere,Standard,3054,BM,7,3,0,10,0,3,3,2,0,0,70,3,4,38,|,"AMS,FLK1/1/1,REAR1/-/-"
+Archer,ARC-5CS,Missile Boat,Inner Sphere,Standard,3052,BM,6,3,0,8,0,4,6,5,0,0,70,3,4,44,|,IF4
+Archer,ARC-4M2,Missile Boat,Inner Sphere,Standard,3086,BM,7,6,0,8,0,3,5,4,0,0,70,3,4,44,|,"CASE,IF2,REAR1/1/-"
+Archer,ARC-8M,Missile Boat,Inner Sphere,Standard,3067,BM,7,6,0,8,0,3,4,4,0,1,70,3,4,43,|,"CASE,IF2"
+Archer,ARC-9M,Missile Boat,Inner Sphere,Standard,3076,BM,6,4,0,6,10,3,4,4,0,1,70,3,4,42,|,"CASE,IF2,JMPS1"
+Kingfisher Prime,Kingfisher Prime,Brawler,Clan,Standard,2887,BM,9,7,0,8,0,6,6,3,0,1,90,4,4,54,|,"CASE,IF1,OMNI"
+Vanquisher,VQR-2A,Sniper,Inner Sphere,Standard,3063,BM,10,8,0,6,0,4,4,4,0,1,100,4,4,55,|,"C3I,CASE,MHQ2"
+JagerMech,JM6-S,Sniper,Inner Sphere,Introductory,2774,BM,3,5,0,8,0,3,3,2,0,0,65,3,4,26,|,AC1/1/1
+JagerMech,JM6-DD,Sniper,Inner Sphere,Standard,3049,BM,4,3,0,8,0,3,3,2,0,1,65,3,4,27,|,CASE
+JagerMech III,JM6-D3,Sniper,Inner Sphere,Standard,3058,BM,6,3,0,10,0,3,4,3,0,0,65,3,4,39,|,
+Jenner,JR7-D,Striker,Inner Sphere,Introductory,2785,BM,2,3,0,14,10,2,2,0,0,1,35,1,4,26,|,JMPW1
+Jenner,JR7-N,Striker,Inner Sphere,Standard,3120,BM,4,2,0,14,14,3,3,0,0,0,35,1,4,38,|,"CASEII,PRB,RCN"
+Jenner,JR10-X,Striker,Inner Sphere,Experimental,3072,BM,4,1,0,14,14,2,2,0,0,1,35,1,4,35,|,"AECM,ENE,STL"
+King Crab,KGC-0000,Juggernaut,Inner Sphere,Introductory,2815,BM,9,8,0,6,0,3,3,1,0,2,100,4,4,44,|,"AC2/2/-,IF1"
+King Crab,KGC-001,Juggernaut,Inner Sphere,Standard,3052,BM,10,4,0,6,0,4,4,4,0,2,100,4,4,48,|,"CASE,IF1"
+King Crab,KGC-009,Juggernaut,Inner Sphere,Standard,3104,BM,10,8,0,6,0,5,5,1,0,1,100,4,4,55,|,"CASE,ECM,HT1/1/-,IF1"
+King Crab,KGC-011,Juggernaut,Inner Sphere,Advanced,3143,BM,10,2,0,10,0,4,4,0,0,0,100,4,4,46,|,FLK3/3/-
+Locust,LCT-1V,Scout,Inner Sphere,Introductory,2499,BM,2,2,0,16,0,1,1,0,0,0,20,1,4,18,|,
+Locust,LCT-7V,Scout,Inner Sphere,Standard,3102,BM,2,1,0,20,0,2,2,0,0,0,20,1,4,25,|,
+Locust,LCT-5M,Striker,Inner Sphere,Standard,3066,BM,2,1,0,24,0,2,2,0,0,0,20,1,4,26,|,ENE
+Locust,LCT-5W2,Scout,Inner Sphere,Standard,3079,BM,2,1,0,22,0,1,1,0,0,0,20,1,4,24,|,"C3S,ECM,ENE,MHQ1,TAG"
+Mad Dog Mk IV,Mad Dog Mk IV,Brawler,Clan,Advanced,3136,BM,8,3,0,10,0,4,4,2,0,2,60,3,4,46,|,"CASE,CR,FLK0*/0*/0*,OMNI,SRM2/2"
+Mad Dog,Mad Dog,Missile Boat,Clan,Standard,2963,BM,5,3,0,10,0,4,4,4,0,2,60,3,4,42,|,"CASE,IF2,LRM1/1/2,OMNI"
+Mad Dog Mk III,Mad Dog Mk III,Missile Boat,Clan,Standard,3109,BM,6,3,0,10,0,4,4,4,0,4,60,3,4,47,|,"CASE,IF4,LRM2/2/4,OMNI"
+Marauder,MAD-3R,Sniper,Inner Sphere,Introductory,2819,BM,6,6,0,8,0,2,3,3,0,1,75,3,4,35,|,
+Marauder,MAD-4X,Brawler,Inner Sphere,Experimental,3039,BM,6,6,0,8,0,3,3,0,0,1,75,3,4,33,|,SRM1/1
+Marauder,MAD-5CS,Sniper,Inner Sphere,Standard,3052,BM,7,3,0,8,0,4,4,3,0,0,75,3,4,36,|,FLK1/1/1
+Marauder,MAD-7R,Sniper,Inner Sphere,Standard,3103,BM,7,3,0,8,0,3,4,3,0,1,75,3,4,38,|,"CASEII,ECM"
+Marauder,MAD-5L,Sniper,Inner Sphere,Standard,3067,BM,7,6,0,8,0,3,3,2,0,1,75,3,4,42,|,"ECM,ENE,OVL,STL,TSM"
+Timber Wolf,Timber Wolf,Brawler,Clan,Standard,2945,BM,8,4,0,10,0,5,5,4,0,1,75,3,4,54,|,"CASE,IF2,LRM1/1/2,OMNI"
+Savage Wolf,Savage Wolf,Skirmisher,Clan,Advanced,3136,BM,9,3,0,10,0,5,5,3,0,0,75,3,4,52,|,"ARM,CASE,CR,OMNI,REAR2/2/-"
+Marauder II,MAD-4A,Juggernaut,Inner Sphere,Introductory,3012,BM,10,8,0,6,6,3,4,2,0,0,100,4,4,47,|,ENE
+Marauder II,MAD-6D,Skirmisher,Inner Sphere,Standard,3083,BM,10,4,0,6,10,4,4,1,0,1,100,4,4,47,|,"CASE,JMPS1"
+Marauder II,MAD-4S,Juggernaut,Inner Sphere,Standard,3064,BM,10,5,0,6,6,4,4,3,0,1,100,4,4,47,|,
+Marauder II,MAD-8K,Sniper,Inner Sphere,Advanced,3138,BM,10,4,0,6,6,4,5,5,0,0,100,4,4,51,|,"BRA,CASEII"
+Atlas,AS7-D,Juggernaut,Inner Sphere,Introductory,2755,BM,10,8,0,6,0,5,5,2,0,0,100,4,4,52,|,"AC2/2/-,IF1,LRM1/1/1,REAR1/1/-"
+Atlas,AS7-K2,Sniper,Inner Sphere,Standard,3082,BM,10,4,0,8,0,4,4,2,0,2,100,4,4,48,|,"CASE,ECM,OVL"
+Atlas II,AS7-D-H,Juggernaut,Inner Sphere,Standard,2765,BM,10,8,0,6,0,4,4,4,0,2,100,4,4,52,|,"CASE,FLK1/1/1,IF1"
+Atlas,AS7-K,Sniper,Inner Sphere,Standard,3049,BM,10,4,0,6,0,3,3,3,0,2,100,4,4,45,|,"AMS,CASE,IF1,OVL,REAR1/1/-"
+Nova,Nova,Skirmisher,Clan,Standard,2870,BM,5,3,0,10,10,5,5,0,0,4,50,2,4,41,|,"ENE,OMNI"
+Nova Cat Prime,Nova Cat Prime,Sniper,Clan,Standard,3059,BM,7,4,0,8,0,5,5,5,0,1,70,3,4,44,|,"ENE,OMNI,OVL"
+Orion,ON1-M,Brawler,Inner Sphere,Standard,3049,BM,7,3,0,8,0,3,4,2,0,0,75,3,4,36,|,"CASE,FLK1/1/1,IF1,LRM1/1/1,SNARC"
+Orion,ON1-K,Brawler,Inner Sphere,Introductory,2525,BM,8,6,0,8,0,3,3,1,0,1,75,3,4,39,|,IF1
+Panther,PNT-CM,Sniper,Inner Sphere,Standard,3051,BM,3,3,0,8,8,1,1,1,0,0,35,1,4,23,|,"C3M,CASE,MHQ5,TAG"
+Panther,PNT-9R,Brawler,Inner Sphere,Introductory,2759,BM,3,3,0,8,8,2,2,1,0,0,35,1,4,19,|,
+Panther,PNT-10K,Brawler,Inner Sphere,Standard,3051,BM,3,3,0,8,8,2,2,1,0,0,35,1,4,19,|,CASE
+Panther,PNT-13K,Striker,Inner Sphere,Standard,3076,BM,3,2,0,10,16,2,2,0,0,0,35,1,4,25,|,JMPS1
+"Phoenix Hawk L ""Fenikkusu Taka""",PXH-11K,Scout,Inner Sphere,Standard,3116,BM,3,2,0,12,12,2,1,*,0,0,35,1,4,23,|,"CASE,IF0*,TSEMP1"
+Phoenix Hawk,PXH-1,Skirmisher,Inner Sphere,Introductory,2568,BM,4,4,0,12,12,2,2,0,0,0,45,2,4,26,|,
+Phoenix Hawk,PXH-1bC,Skirmisher,Inner Sphere,Standard,3052,BM,4,2,0,12,12,2,2,1,0,0,45,2,4,27,|,"CASE,ECM,SNARC"
+Phoenix Hawk,PXH-9,Striker,Inner Sphere,Standard,3140,BM,5,2,0,12,16,3,3,0,0,0,45,2,4,37,|,"CASEII,JMPS1"
+Phoenix Hawk,PXH-4L,Striker,Inner Sphere,Standard,3066,BM,4,4,0,12,12,2,2,1,0,0,45,2,4,35,|,"ECM,STL"
+Phoenix Hawk,PXH-99,Juggernaut,Inner Sphere,Advanced,3134,BM,11,4,0,0,2,2,2,0,0,1,45,2,4,26,|,"CR,ENE"
+Quickdraw,QKD-4G,Skirmisher,Inner Sphere,Introductory,2779,BM,4,5,0,10,10,2,3,1,0,0,60,3,4,32,|,"IF1,REAR1/1/-"
+Quickdraw,QKD-5M,Skirmisher,Inner Sphere,Standard,3049,BM,5,5,0,10,10,2,2,1,0,0,60,3,4,31,|,"CASE,IF1,REAR1/1/-"
+Quickdraw,QKD-8P,Skirmisher,Inner Sphere,Advanced,3084,BM,6,5,0,10,0,2,2,1,0,1,60,3,4,37,|,"ECM,TAG,TSM"
+Quickdraw,QKD-8X,Sniper,Inner Sphere,Experimental,3073,BM,6,5,0,10,0,1,1,1,0,0,60,3,4,41,|,"ECM,ENE,REAR1/1/-,STL,TAG,TSM,TUR(1/1/1)"
+Rifleman,RFL-3N,Sniper,Inner Sphere,Introductory,2770,BM,4,5,0,8,0,2,2,1,0,2,60,3,4,26,|,
+Rifleman,RFL-5CS,Sniper,Inner Sphere,Standard,3052,BM,5,3,0,10,0,3,4,2,0,0,60,3,4,35,|,
+Rifleman,RFL-7N2,Sniper,Inner Sphere,Standard,3133,BM,6,3,0,8,0,3,3,3,0,1,60,3,4,32,|,"CASEII,FLK1/1/1"
+Rifleman,RFL-7X,Skirmisher,Inner Sphere,Standard,3081,BM,5,3,0,12,12,3,2,1,0,1,60,3,4,30,|,ENE
+Rifleman,RFL-8D,Skirmisher,Inner Sphere,Standard,3064,BM,6,3,0,8,8,5,5,0,0,0,60,3,4,35,|,
+Shadow Cat III Prime,Shadow Cat III Prime,Striker,Clan,Standard,3111,BM,5,2,0,16,0,3,4,2,0,0,45,2,4,45,|,"CASE,OMNI"
+Shadow Cat Prime,Shadow Cat Prime,Striker,Clan,Standard,3003,BM,4,2,0,1,12,3,3,2,0,0,45,2,4,41,|,"CASE,OMNI,PRB,RCN,JMPW1"
+Shadow Hawk,SHD-2H,Skirmisher,Inner Sphere,Introductory,2550,BM,5,5,0,10,6,2,2,1,0,0,55,2,4,30,|,"IF0*,JMPW1"
+Shadow Hawk,SHD-6D,Skirmisher,Inner Sphere,Advanced,3141,BM,6,5,0,10,10,3,3,*,0,0,55,2,4,36,|,"CASEII,IF0*,REL"
+Shadow Hawk,SHD-7H,Skirmisher,Inner Sphere,Standard,3101,BM,6,3,0,10,10,2,2,1,0,0,55,2,4,30,|,"CASEII,FLK1/1/1,IF0*"
+Shadow Hawk,SHD-2Ht,Skirmisher,Inner Sphere,Standard,3052,BM,5,5,0,10,10,4,4,0,0,0,55,2,4,37,|,CASE
+Shadow Hawk,SHD-12C,Sniper,Inner Sphere,Standard,3079,BM,6,3,0,12,8,3,3,2,0,0,55,2,4,36,|,"CASE,IF0*,JMPW1"
+Shadow Hawk,SHD-5D,Skirmisher,Inner Sphere,Standard,3066,BM,6,5,0,10,10,4,4,0,0,0,55,2,4,39,|,CASE
+Stinger,STG-3R,Scout,Inner Sphere,Introductory,2479,BM,2,2,0,12,12,1,1,0,0,0,20,1,4,14,|,
+Stinger,STG-6R,Scout,Inner Sphere,Standard,3120,BM,2,1,0,16,16,2,1,0,0,0,20,1,4,18,|,
+Stinger,STG-3P,Scout,Inner Sphere,Standard,3068,BM,2,2,0,12,12,*,1,1,0,0,20,1,4,14,|,ENE
+Stinger,STG-5R,Scout,Inner Sphere,Standard,3067,BM,2,2,0,12,12,1,1,0,0,0,20,1,4,14,|,ENE
+Stinger,STG-6G,Scout,Inner Sphere,Standard,3103,BM,2,1,0,14,14,2,1,0,0,0,20,1,4,18,|,
+Stalker,STK-3F,Juggernaut,Inner Sphere,Introductory,2594,BM,7,7,0,6,0,3,4,2,0,3,85,4,4,42,|,IF1
+Stalker,STK-5M,Juggernaut,Inner Sphere,Standard,3050,BM,8,7,0,6,0,5,6,2,0,0,85,4,4,49,|,"IF1,LRM1/1/1,SNARC,SRM2/2"
+Stalker II,STK-9A,Juggernaut,Inner Sphere,Advanced,3137,BM,14,7,0,4,0,3,4,2,0,2,85,4,4,53,|,"CASEII,CR,IF1"
+Stormcrow,Stormcrow,Striker,Clan,Standard,2930,BM,6,3,0,12,0,5,5,2,0,0,55,2,4,43,|,"ENE,OMNI"
+Trebuchet,TBT-5N,Missile Boat,Inner Sphere,Introductory,2799,BM,4,4,0,10,0,2,2,2,0,1,50,2,4,29,|,IF1
+Trebuchet,TBT-7M,Missile Boat,Inner Sphere,Standard,3048,BM,4,2,0,10,10,3,3,2,0,0,50,2,4,31,|,"CASE,IF1,LRM1/1/1,SNARC"
+Trebuchet,TBT-K7R,Skirmisher,Inner Sphere,Advanced,3088,BM,6,3,0,10,10,2,2,0,0,1,50,2,4,31,|,"CASE,MEL,MTAS,TSM"
+Trebuchet,TBT-XK7,Skirmisher,Inner Sphere,Experimental,3081,BM,7,2,0,8,8,4,4,0,0,0,50,2,4,34,|,"MEL,SHLD,TSM"
+Thunderbolt,TDR-5L,Brawler,Inner Sphere,Standard,2823,BM,7,5,0,8,0,4,4,2,0,0,65,3,4,39,|,"CASE,IF1"
+Thunderbolt,TDR-5LS,Brawler,Inner Sphere,Standard,2850,BM,7,5,0,8,0,2,2,2,0,2,65,3,4,34,|,IF1
+Thunderbolt,TDR-5S,Brawler,Inner Sphere,Introductory,2505,BM,7,5,0,8,0,3,3,1,0,1,65,3,4,36,|,IF1
+Thunderbolt,TDR-7S,Brawler,Inner Sphere,Standard,3091,BM,7,5,0,8,0,3,3,2,0,2,65,3,4,37,|,"CASEII,IF1"
+Thunderbolt,TDR-9M,Skirmisher,Inner Sphere,Standard,3067,BM,7,5,0,8,8,3,4,2,0,0,65,3,4,38,|,"CASE,IF1"
+Thunderbolt,TDR-10M,Sniper,Inner Sphere,Standard,3082,BM,7,4,0,8,8,3,3,3,0,1,65,3,4,37,|,IF0*
+Timber Wolf,Timber Wolf,Brawler,Clan,Standard,2945,BM,8,4,0,10,0,5,5,4,0,1,75,3,4,54,|,"CASE,IF2,LRM1/1/2,OMNI"
+Turkina Prime,Turkina Prime,Sniper,Clan,Standard,3052,BM,10,5,0,6,6,5,6,6,0,0,95,4,4,56,|,"CASE,FLK1/1/1,IF2,LRM2/2/2,OMNI"
+UrbanMech,UM-R60,Ambusher,Inner Sphere,Introductory,2675,BM,3,3,0,4,4,2,1,0,0,0,30,1,4,11,|,AC1/1/-
+UrbanMech,UM-R63,Sniper,Inner Sphere,Standard,3050,BM,3,3,0,4,4,2,1,1,0,0,30,1,4,16,|,FLK1/1/1
+SuburbanMech,UM-R90,Ambusher,Inner Sphere,Introductory,3018,BM,3,3,0,6,6,2,2,1,0,0,30,1,4,19,|,ENE
+UrbanMech,UM-R96,Ambusher,Inner Sphere,Advanced,3149,BM,6,3,0,2,6,2,1,0,0,0,30,1,4,22,|,"CR,ENE,JMPS1"
+UrbanMech,UM-R93,Ambusher,Inner Sphere,Advanced,3130,BM,6,3,0,2,4,2,2,0,0,0,30,1,4,17,|,"CR,ENE"
+SuburbanMech,UM-R100,Sniper,Inner Sphere,Standard,3045,BM,3,3,0,8,8,3,2,1,0,0,30,1,4,20,|,ENE
+Adder,Adder,Sniper,Clan,Standard,3010,BM,4,2,0,12,0,3,3,3,0,1,35,1,4,30,|,"ENE,OMNI,OVL"
+Exhumer,EXR-2X,Sniper,Inner Sphere,Standard,3129,BM,6,3,0,12,0,2,3,3,0,0,55,2,4,36,|,"CASEII,IF1"
+Hitotsume Kozo,HKZ-1F,Brawler,Inner Sphere,Advanced,3136,BM,8,3,0,10,8,3,3,2,0,0,55,2,4,42,|,"CR,ENE,MEL,TSM,JMPW1"
+Summoner,Summoner,Sniper,Clan,Standard,2872,BM,6,4,0,10,10,4,4,4,0,0,70,3,4,43,|,"CASE,FLK1/1/1,IF1,OMNI"
+Grand Summoner,Grand Summoner,Skirmisher,Clan,Standard,3093,BM,6,4,0,10,10,5,5,3,0,1,70,3,4,47,|,"CASE,IF1,OMNI"
+Akuma,AKU-1X,Juggernaut,Inner Sphere,Standard,3058,BM,9,7,0,6,0,5,5,2,0,2,90,4,4,49,|,FLK1/1/1
+Viper,Viper,Scout,Clan,Standard,2940,BM,4,2,0,16,16,3,3,0,0,0,40,2,4,37,|,"AMS,CASE,OMNI"
+Viper,VP-1,Brawler,Inner Sphere,Standard,2832,BM,7,3,0,8,8,4,4,0,0,0,70,3,4,34,|,"ENE,REAR1/1/-"
+Valkyrie,VLK-QA,Missile Boat,Inner Sphere,Introductory,2787,BM,3,3,0,10,10,1,2,1,0,0,30,1,4,22,|,IF1
+Valkyrie,VLK-QDD,Missile Boat,Inner Sphere,Standard,3106,BM,4,2,0,12,12,1,2,1,0,0,30,1,4,24,|,"CASE,IF1"
+Valkyrie,VLK-QT2,Striker,Inner Sphere,Standard,3081,BM,3,1,0,14,14,2,2,1,0,0,30,1,4,26,|,CASE
+Valkyrie,VLK-QD1,Missile Boat,Inner Sphere,Standard,3067,BM,3,1,0,10,10,2,2,2,0,0,30,1,4,22,|,IF1
+Valiant,V4-LNT-K7,Striker,Inner Sphere,Standard,3068,BM,3,3,0,18,0,2,2,0,0,0,30,1,4,29,|,"ENE,MEL"
+Valiant,VLT-3E,Striker,Inner Sphere,Advanced,3098,BM,4,1,0,14,0,3,3,0,0,0,30,1,4,33,|,
+Vulcan,VL-2T,Scout,Inner Sphere,Introductory,2777,BM,3,3,0,12,12,2,1,*,0,0,40,2,4,20,|,
+Avalanche,AVL-1O,Missile Boat,Inner Sphere,Standard,3133,BM,5,4,0,10,10,2,3,2,0,1,50,2,4,35,|,"CASE,IF1,OMNI"
+Valkyrie,VLK-QA,Missile Boat,Inner Sphere,Introductory,2787,BM,3,3,0,10,10,1,2,1,0,0,30,1,4,22,|,IF1
+Valkyrie,VLK-QDD,Missile Boat,Inner Sphere,Standard,3106,BM,4,2,0,12,12,1,2,1,0,0,30,1,4,24,|,"CASE,IF1"
+Valkyrie,VLK-QT2,Striker,Inner Sphere,Standard,3081,BM,3,1,0,14,14,2,2,1,0,0,30,1,4,26,|,CASE
+Valkyrie,VLK-QD1,Missile Boat,Inner Sphere,Standard,3067,BM,3,1,0,10,10,2,2,2,0,0,30,1,4,22,|,IF1
+Vindicator,VND-1R,Brawler,Inner Sphere,Introductory,2826,BM,5,4,0,8,8,2,2,2,0,0,45,2,4,27,|,IF0*
+Vindicator,VND-3L,Brawler,Inner Sphere,Standard,3051,BM,5,4,0,8,8,2,2,2,0,0,45,2,4,27,|,"CASE,IF0*"
+Victor,VTR-9B,Skirmisher,Inner Sphere,Introductory,2510,BM,6,6,0,8,8,4,4,0,0,0,80,4,4,36,|,AC2/2/-
+Victor,VTR-9K,Skirmisher,Inner Sphere,Standard,3049,BM,7,6,0,8,8,4,4,2,0,0,80,4,4,40,|,CASE
+Victor,VTR-12D,Skirmisher,Inner Sphere,Advanced,3132,BM,7,4,0,8,8,4,4,2,0,0,80,4,4,38,|,"CASEII,REL"
+Warhawk,Warhawk,Sniper,Clan,Standard,2999,BM,9,5,0,8,0,5,5,5,0,3,85,4,4,52,|,"CASE,IF0*,OMNI,OVL"
+Warhammer,WHM-6R,Brawler,Inner Sphere,Introductory,2515,BM,5,6,0,8,0,3,3,2,0,1,70,3,4,32,|,
+Warhammer,WHM-8R,Brawler,Inner Sphere,Advanced,3090,BM,7,6,0,8,0,4,4,2,0,1,70,3,4,40,|,CASEII
+Warhammer,WHM-11T,Skirmisher,Inner Sphere,Standard,3084,BM,6,3,0,8,10,3,3,2,0,1,70,3,4,35,|,"CASE,IF0*,JMPS1"
+Warhammer,WHM-8D,Brawler,Inner Sphere,Standard,3066,BM,7,6,0,8,0,4,4,2,0,1,70,3,4,43,|,"C3S,CASE,MHQ1"
+Warhammer,WHM-7CS,Brawler,Inner Sphere,Standard,3052,BM,7,3,0,8,8,4,4,2,0,2,70,3,4,37,|,CASE
+Wasp,WSP-1A,Scout,Inner Sphere,Introductory,2471,BM,2,2,0,12,12,1,1,0,0,0,20,1,4,14,|,
+Wasp,WSP-8T,Scout,Inner Sphere,Standard,3075,BM,2,1,0,12,12,1,1,1,0,0,20,1,4,14,|,IF0*
+Wasp,WSP-5A,Scout,Inner Sphere,Standard,3114,BM,2,1,0,16,16,1,1,0,0,0,20,1,4,17,|,CASEII
+Wasp,WSP-3X,Missile Boat,Inner Sphere,Experimental,3088,BM,1,1,0,12,12,1,2,1,0,0,20,1,4,15,|,IF1
+Wasp,WSP-3L,Scout,Inner Sphere,Standard,3067,BM,2,2,0,12,12,*,*,*,0,0,20,1,4,18,|,"ECM,ENE,STL"
+Super-Wasp,WSP-2A-X,Striker,Inner Sphere,Experimental,3020,BM,2,2,0,16,12,2,2,0,0,0,25,1,4,24,|,JMPW1
+Wolverine,WVR-6R,Skirmisher,Inner Sphere,Introductory,2575,BM,5,5,0,10,10,2,2,1,0,0,55,2,4,30,|,
+Wolverine II,WVR-7H,Skirmisher,Inner Sphere,Standard,2770,BM,5,5,0,10,10,3,3,1,0,0,55,2,4,34,|,CASE
+Wolverine,WVR-9W2,Striker,Inner Sphere,Standard,3077,BM,6,3,0,10,14,3,3,2,0,0,55,2,4,49,|,"C3S,CASE,ECM,IF0*,JMPS1,MHQ1"
+Wolverine,WVR-9R,Skirmisher,Inner Sphere,Standard,3089,BM,6,3,0,10,10,4,4,2,0,0,55,2,4,39,|,CASE
+Wolverine,WVR-8K,Skirmisher,Inner Sphere,Standard,3064,BM,6,3,0,10,10,4,4,1,0,0,55,2,4,38,|,CASE
+Wolverine,WVR-10R,Skirmisher,Inner Sphere,Standard,3115,BM,6,3,0,16,12,3,3,0,0,0,55,2,4,45,|,"CASEII,JMPW1"
+Zeus,ZEU-6Y,Sniper,Inner Sphere,Experimental,2922,BM,6,6,0,8,0,2,3,2,0,0,80,4,4,34,|,IF1
+Zeus,ZEU-6S,Sniper,Inner Sphere,Introductory,2898,BM,6,6,0,8,0,3,3,2,0,0,80,4,4,35,|,"IF1,REAR1/1/-"
+Zeus-X,ZEU-X4,Sniper,Inner Sphere,Advanced,3119,BM,8,2,0,10,0,3,3,3,0,1,80,4,4,45,|,"CASEII,IF1,LRM1/1/1,RCA,MHQ1"

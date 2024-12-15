@@ -9,7 +9,6 @@ import java.io.IOException;
 
 public class AppWindow extends JFrame {
     HeaderPanel headerPanel = new HeaderPanel();
-    private double scalingFactor;
     private BufferedImage appIcon;
 
     public AppWindow( boolean hiRezMode) {

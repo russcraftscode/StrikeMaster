@@ -26,6 +26,10 @@ public class UnitData {
 
      }
 
+    public char getType(){
+        return 'x';
+    }
+
     /*
     //identity
     private String variant;

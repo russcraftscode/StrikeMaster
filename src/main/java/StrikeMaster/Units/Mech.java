@@ -1,4 +1,6 @@
-package StrikeMaster;
+package StrikeMaster.Units;
+
+import StrikeMaster.UnitData;
 
 public class Mech extends Unit {
     //public Mech (MechData data, int ID){
@@ -34,6 +36,11 @@ public class Mech extends Unit {
 
     }
 
+    @Override
+    public char getType(){
+        return 'm';
+    }
+
     public String toString() {
         String myString = new String();
         myString = "***** "+  this.faction + " " + this.name + " " + this.variant + "  ID: " + String.valueOf(this.ID) +
@@ -49,10 +56,10 @@ public class Mech extends Unit {
                 "  Internal Structure: " + String.valueOf(this.structureCur) + "/" + String.valueOf(this.structureMax) +
                 "  Heat: " + String.valueOf(this.heatCur) + "\n";
         myString = myString + " Critical Hits:\n";
-        myString = myString + "  Engine Hits: " + String.valueOf(this.engHit) + "  Fire Control: " +
-                String.valueOf(this.FCHit) + "\n";
-        myString = myString + "  MP Hits: " + String.valueOf(this.MPHit) + "  Weapon Hits: " +
-                String.valueOf(this.wepHit) + "\n ";
+        myString = myString + "  Engine Hits: " + String.valueOf(this.engHits) + "  Fire Control: " +
+                String.valueOf(this.FCHits) + "\n";
+        myString = myString + "  MP Hits: " + String.valueOf(this.MPHits) + "  Weapon Hits: " +
+                String.valueOf(this.wepHits) + "\n ";
         for (String a : this.specialAbilities) {
             myString = myString + a + ", ";
         }
@@ -83,10 +90,10 @@ public class Mech extends Unit {
         }
         // asterisks means minimum damage.
         if(dmg == '*') {
-            if(this.wepHit > 0) return '0';
+            if(this.wepHits > 0) return '0';
         }
         else{// if damage is represented by a number
-            int dmgVal = Character.getNumericValue(dmg) - this.wepHit;
+            int dmgVal = Character.getNumericValue(dmg) - this.wepHits;
             // if damage has been reduced to nothing
             if(dmgVal <= 0) return '0';
             // convert int damage back to char the stupidest way possible by converting it to a string first
@@ -94,4 +101,6 @@ public class Mech extends Unit {
         }
         return dmg;
     }
+
+
 }

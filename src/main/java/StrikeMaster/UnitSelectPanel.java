@@ -1,10 +1,11 @@
 package StrikeMaster;
 
+import StrikeMaster.Units.Unit;
+
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -26,12 +27,39 @@ public class UnitSelectPanel extends JPanel {
     private BufferedImage vtolIcon;
     private BufferedImage fullIcon;
     private BufferedImage emptyIcon;
+    private BufferedImage four0Icon;
+    private BufferedImage four1Icon;
+    private BufferedImage four2Icon;
+    private BufferedImage four3Icon;
+    private BufferedImage four4Icon;
+
 
     private final JPanel unitDataPanel = new JPanel();
     private final JButton editUnitButton = new JButton("Edit Unit");
     private JLabel panelLabel;
 
+    private Unit rowUnit; // TODO remove this
+
     public UnitSelectPanel(int panelType) {
+
+        UnitLibrary protoLib = null;
+        // TODO delete this next part. This is only to provide data for prototyping the panel.
+
+        try {
+            protoLib = new UnitLibrary("src/main/resources/mech_data.csv");
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+        for (String a : protoLib.getVariants()) {
+            System.out.println(a);
+        }
+
+        rowUnit = UnitFactory.buidUnit(protoLib.getUnitData("AS7-D"));
+
+        System.out.println(rowUnit);// DEBUG
+
+        // end prototyping
         this.setLayout(new BorderLayout());
 
         this.panelType = panelType;
@@ -55,27 +83,6 @@ public class UnitSelectPanel extends JPanel {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        /*try {
-            // TODO fix the file structure
-
-            mechIcon = ImageIO.read(new File(
-                    "./src/main/resources/simpleMechV3.png"));
-            infIcon = ImageIO.read(new File(
-                    "./src/main/resources/simpleInf.png"));
-            armorIcon = ImageIO.read(new File(
-                    "./src/main/resources/simpleArmorInf.png"));
-            artyIcon = ImageIO.read(new File(
-                    "./src/main/resources/simpleArty.png"));
-            vtolIcon = ImageIO.read(new File(
-                    "./src/main/resources/simpleVtol.png"));
-            fullIcon = ImageIO.read(new File(
-                    "./src/main/resources/4of4.png"));
-            emptyIcon = ImageIO.read(new File(
-                    "./src/main/resources/2of3.png"));
-
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }*/
 
         this.update();
     }
@@ -92,7 +99,99 @@ public class UnitSelectPanel extends JPanel {
         // create a button group for all unit select radio buttons
         ButtonGroup unitSelectGroup = new ButtonGroup();
 
-        // create rows of unit data
+        ArrayList<JComponent> rowElements = new ArrayList<>();
+
+        int i = 0;
+        gloc.gridy = i;
+        gloc.gridx = 0;
+        gloc.fill = 1;
+        JRadioButton unitSelectButton = new JRadioButton();
+        unitSelectGroup.add(unitSelectButton);
+        unitDataPanel.add(unitSelectButton, gloc);
+
+        // Create the icon for the unit
+        gloc.gridx++; // move to the next col
+        JLabel iconLabel;
+        switch (rowUnit.getType()) {
+            default:
+                iconLabel = new JLabel(new ImageIcon(infIcon));
+                break;
+            case 'm':
+                iconLabel = new JLabel(new ImageIcon(mechIcon));
+                break;
+        }
+        unitDataPanel.add(iconLabel, gloc);
+        rowElements.add(iconLabel);
+
+
+        // Create the name label for the unit
+        gloc.gridx++; // move to the next col
+        JLabel nameLabel = new JLabel(rowUnit.getName() + " " + rowUnit.getVariant());
+        unitDataPanel.add(nameLabel, gloc);
+        rowElements.add(nameLabel);
+
+        // if attack panel show damage values
+        if (this.panelType == UnitSelectPanel.ATTACK) {
+            gloc.gridx++; // move to the next col
+            JLabel damageLabel = new JLabel("  Attack Strength "
+                    + rowUnit.getShortDmg() + "/"
+                    + rowUnit.getMedDmg() + "/"
+                    + rowUnit.getLongDmg() );
+            unitDataPanel.add(damageLabel, gloc);
+            rowElements.add(damageLabel);
+
+            gloc.gridx++; // move to the next col
+            JLabel tarSysHitsLabel = new JLabel("  Wep System hits ");
+            unitDataPanel.add(tarSysHitsLabel, gloc);
+            rowElements.add(tarSysHitsLabel);
+
+            gloc.gridx++; // move to the next col
+            JLabel tarSysHitsImage;
+            switch (rowUnit.getWepHits()){
+                case 1:
+                    tarSysHitsImage = new JLabel(new ImageIcon(four1Icon));
+                    break;
+                case 2:
+                    tarSysHitsImage = new JLabel(new ImageIcon(four2Icon));
+                    break;
+                case 3:
+                    tarSysHitsImage = new JLabel(new ImageIcon(four3Icon));
+                    break;
+                case 4:
+                    tarSysHitsImage = new JLabel(new ImageIcon(four4Icon));
+                    break;
+                default:
+                    tarSysHitsImage = new JLabel(new ImageIcon(four0Icon));
+                    break;
+            }
+            unitDataPanel.add(tarSysHitsImage, gloc);
+            rowElements.add(tarSysHitsImage);
+
+        }
+
+        // if target panel show armor / structure values
+        if (this.panelType == UnitSelectPanel.TARGET) {
+            gloc.gridx++; // move to the next col
+            JLabel armorLabel = new JLabel("Armor:");
+            unitDataPanel.add(armorLabel, gloc);
+            rowElements.add(armorLabel);
+            // Display a graphic for prototyping purposes
+            gloc.gridx++; // move to the next col
+            JLabel h1Label = new JLabel(new ImageIcon(fullIcon));
+            unitDataPanel.add(h1Label, gloc);
+            rowElements.add(h1Label);
+            gloc.gridx++; // move to the next col
+            JLabel structureLabel = new JLabel("Internal:");
+            unitDataPanel.add(armorLabel, gloc);
+            rowElements.add(structureLabel);
+            // Display a graphic for prototyping purposes
+            gloc.gridx++; // move to the next col
+            JLabel h2Label = new JLabel(new ImageIcon(emptyIcon));
+            unitDataPanel.add(h2Label, gloc);
+            rowElements.add(h2Label);
+        }
+
+        /*// create rows of unit data
         for (int i = 1; i < 30; i++) {
             ArrayList<JComponent> rowElements = new ArrayList<>();
             // Create the unit select radio button
@@ -194,7 +293,7 @@ public class UnitSelectPanel extends JPanel {
                     component.setOpaque(true);
                 }
             }
-        }
+        }*/
 
 
         // Add unit data panel to scroll pane and add that to AttackPanel
@@ -235,7 +334,11 @@ public class UnitSelectPanel extends JPanel {
         vtolIcon = ImageIO.read(classLoader.getResourceAsStream("simpleVtol.png"));
         fullIcon = ImageIO.read(classLoader.getResourceAsStream("4of4.png"));
         emptyIcon = ImageIO.read(classLoader.getResourceAsStream("2of3.png"));
-
+        four0Icon = ImageIO.read(classLoader.getResourceAsStream("1of4.png"));
+        four1Icon = ImageIO.read(classLoader.getResourceAsStream("1of4.png"));
+        four2Icon = ImageIO.read(classLoader.getResourceAsStream("2of4.png"));
+        four3Icon = ImageIO.read(classLoader.getResourceAsStream("3of4.png"));
+        four4Icon = ImageIO.read(classLoader.getResourceAsStream("4of4.png"));
     }
 
 }
