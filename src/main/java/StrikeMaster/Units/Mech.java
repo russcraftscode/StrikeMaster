@@ -2,6 +2,8 @@ package StrikeMaster.Units;
 
 import StrikeMaster.UnitData;
 
+import java.util.ArrayList;
+
 public class Mech extends Unit {
     //public Mech (MechData data, int ID){
     public Mech(UnitData data, int ID, String side) {
@@ -39,6 +41,33 @@ public class Mech extends Unit {
     @Override
     public char getType(){
         return 'm';
+    }
+
+    /**
+     * @return the value of the current TMM
+     */
+    @Override
+    public int getTMM(){
+        // TODO replace literals with constants
+        // if the unit moved it recieves its current TMM
+        if(this.movedThisRound) return this.TMMCur;
+        // if the unit is shutdown or immobilized it is easier to hit
+        if( this.shutdown || this.immobile) return -4;
+        // if the unit did not move, but is not immobilized, then it gets no TMM
+        return 0;
+    }
+
+    /**
+     * @return the value of the current attacking move mod
+     */
+    @Override
+    public int getAttackMoveMod(){
+        // TODO replace literals with constants
+        // if the unit jumped it gets a +2 to shot difficulty
+        if(this.jumpedThisRound) return 2;
+        // normal movement does not mod attack rolls. Not moving give attack difficulty a -1
+        if(this.movedThisRound) return 0;
+        else return -1;
     }
 
     public String toString() {

@@ -9,6 +9,8 @@ public class Unit {
     protected  String name;
     protected  int PV;
     protected String faction;
+    // pilot attributes
+    protected int skill = 4; // default skill level
     //attributes
     protected int armorMax;
     protected int structureMax;
@@ -42,6 +44,7 @@ public class Unit {
     protected boolean inWoods;
     protected boolean destroyed;
     protected boolean shutdown;
+    protected boolean immobile;
     protected boolean hullDown;
     protected boolean jumpedThisRound;
     protected boolean attackedThisRound;
@@ -58,6 +61,7 @@ public class Unit {
         this.inWoods = false;
         this.destroyed = false;
         this.shutdown = false;
+        this.immobile = false;
         this.hullDown = false;
         this.jumpedThisRound = false;
         this.attackedThisRound = false;
@@ -85,6 +89,10 @@ public class Unit {
 
     public String getFaction() {
         return faction;
+    }
+
+    public int getSkill(){
+        return this.skill;
     }
 
     public int getArmorMax() {
@@ -155,6 +163,14 @@ public class Unit {
         return TMMCur;
     }
 
+    public int getTMM(){
+        return 0;
+    }
+
+    public int getAttackMoveMod() {
+        return 0;
+    }
+
     public int getHeatCur() {
         return heatCur;
     }
@@ -197,6 +213,10 @@ public class Unit {
 
     public boolean isShutdown() {
         return shutdown;
+    }
+
+    public boolean isImmobile() {
+        return immobile;
     }
 
     public boolean isHullDown() {
