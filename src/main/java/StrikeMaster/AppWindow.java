@@ -12,9 +12,7 @@ public class AppWindow extends JFrame {
     private BufferedImage appIcon;
 
     public AppWindow( boolean hiRezMode) {
-
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
 
         // load the graphics
         try {
@@ -25,32 +23,32 @@ public class AppWindow extends JFrame {
             throw new RuntimeException(e);
         }
 
-
-
-        this.setLayout(new BorderLayout());
+        this.setLayout(new GridBagLayout());
+        GridBagConstraints mainLoc = new GridBagConstraints();
 
         // combatPanel holds all elements needed only in the combat phase
         // TODO move combatPanel into its own class
         JPanel combatPanel = new JPanel();
-       combatPanel.setLayout(new BoxLayout(combatPanel,BoxLayout.X_AXIS));
+       combatPanel.setLayout(new GridBagLayout());
+       GridBagConstraints combatLoc = new GridBagConstraints();
 
         UnitSelectPanel attackerSelectPanel = new UnitSelectPanel(UnitSelectPanel.ATTACK);
-
-        // TODO create attack options panel
-        AttackOptionsPanel attackOptionsPanel = new AttackOptionsPanel();
         UnitSelectPanel targetSelectPanel = new UnitSelectPanel(UnitSelectPanel.TARGET);
+        AttackOptionsPanel attackOptionsPanel = new AttackOptionsPanel();
 
-        combatPanel.add(attackerSelectPanel);
-        combatPanel.add(targetSelectPanel);
-        combatPanel.add(attackOptionsPanel);
-        combatPanel.setPreferredSize(combatPanel.getPreferredSize());
-
+        combatLoc.fill = GridBagConstraints.VERTICAL;
+        combatLoc.gridx = 0;
+        combatLoc.gridy = 0;
+        combatPanel.add(attackerSelectPanel, combatLoc);
+        combatLoc.gridx++;
+        combatPanel.add(targetSelectPanel, combatLoc);
+        combatLoc.gridx++;
+        combatLoc.fill = GridBagConstraints.BOTH;
+        combatPanel.add(attackOptionsPanel, combatLoc);
 
         // phase select panel holds all the elements to switch phases and end the turn
-        // TODO move phasePanel to its own class
+        // TODO move phasePanel to its own class or method
         JPanel phasePanel = new JPanel();
-        //phasePanel.setBorder(BorderFactory.createLineBorder(Color.BLUE)); // DEBUG
-        phasePanel.setPreferredSize(new Dimension(150,0));
         phasePanel.setLayout(new GridLayout(4,1,2,2));
         JButton movePhaseButton = new JButton("Move Phase");
         movePhaseButton.setMinimumSize(new Dimension(150,50));
@@ -65,24 +63,23 @@ public class AppWindow extends JFrame {
         endRoundButton.setPreferredSize(new Dimension(150,50));
         phasePanel.add(endRoundButton);
 
-        //this.headerPanel.setBorder(BorderFactory.createLineBorder(Color.GREEN)); // DEBUG
+        mainLoc.gridx = 0;
+        mainLoc.gridy = 0;
+        mainLoc.gridwidth = 2;
+        mainLoc.weightx = 1;
+        mainLoc.weighty = 0;
+        mainLoc.fill = GridBagConstraints.HORIZONTAL;
+        this.add(headerPanel, mainLoc);
+        mainLoc.gridy++;
+        mainLoc.gridwidth = 1;
+        mainLoc.weighty = 1;
+        mainLoc.fill = GridBagConstraints.VERTICAL;
+        this.add(phasePanel, mainLoc);
+        mainLoc.gridx++;
+        mainLoc.fill = GridBagConstraints.BOTH;
+        this.add(combatPanel, mainLoc);
 
-
-        this.add(headerPanel, BorderLayout.NORTH);
-        this.add(combatPanel, BorderLayout.CENTER);
-        this.add(phasePanel, BorderLayout.WEST);
-
-        //System.setProperty("sun.java2d.uiScale", "1.0");
-        if(hiRezMode){
-            //setMinimumSize(new Dimension(1000, 1200)); // Minimum size
-            setSize(new Dimension(1100, 600));       // Default size
-        }else{
-            setMinimumSize(new Dimension(1000, 600)); // Minimum size
-            //setSize(new Dimension(1000, 700));       // Default size
-        }
-        //System.setProperty("sun.java2d.uiScale", "2.0");
-
-
+        this.pack();
         this.setVisible(true);
     }
 

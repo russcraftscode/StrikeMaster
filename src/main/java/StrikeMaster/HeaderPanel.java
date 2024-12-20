@@ -1,16 +1,12 @@
 package StrikeMaster;
 
-import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
+
 
 public class HeaderPanel extends JPanel {
     private JLabel titleLabel;
     private JLabel modeLabel;
-    private JFrame iconPanel;
     private JSeparator bar;
 
     public HeaderPanel() {
@@ -39,15 +35,15 @@ public class HeaderPanel extends JPanel {
         bar = new JSeparator();
         this.add(bar, BorderLayout.SOUTH);
 
-this.setPreferredSize(new Dimension(100,50));
-
+        this.setPreferredSize(new Dimension(800, 50));
     }
 
 
     public void setModeText(String mode) {
-        mode = mode + "  ";
-        this.modeLabel.setText(mode );
+        this.modeLabel.setText(mode);
         this.modeLabel.setPreferredSize(labelSizer.dimension(this.modeLabel));
+        this.revalidate();
+        this.repaint();
     }
 
 

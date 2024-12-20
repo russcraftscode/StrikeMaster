@@ -61,9 +61,9 @@ public class AttackOptionsPanel extends JPanel {
         this.attackingUnit = UnitFactory.buidUnit(protoLib.getUnitData("AWS-9M"));
         // end prototyping
 
-        this.setPreferredSize(this.getPreferredSize());
-        //this.setPreferredSize(new Dimension(600,500));
+
         buildPanel();
+        this.setPreferredSize(this.getPreferredSize());
         update();
     }
 
@@ -110,16 +110,6 @@ public class AttackOptionsPanel extends JPanel {
         toHitFinal = attackerSkill + situationalMod + attackMoveMod
                 + targetMoveMod + rangeMod + heatMod + attackerDamMod;
 
-        // DEBUG
-        /*System.out.println("attackerSkill " + attackerSkill);
-        System.out.println("situationalMod " + situationalMod);
-        System.out.println("attackMoveMod " + attackMoveMod);
-        System.out.println("targetMoveMod " + targetMoveMod);
-        System.out.println("rangeMod " + rangeMod);
-        System.out.println("heatMod " + heatMod);
-        System.out.println("attackerDamMod " + attackerDamMod);
-        System.out.println("toHitFinal " + toHitFinal);*/
-
         // update labels
         updateModNumber(attackerSkillNumber, attackerSkill, false);
         updateModNumber(situationalModNumber, situationalMod, true);
@@ -144,8 +134,6 @@ public class AttackOptionsPanel extends JPanel {
     }
 
     public void buildPanel() {
-
-
         this.setLayout(new GridBagLayout());
         this.setBorder(BorderFactory.createBevelBorder(BevelBorder.LOWERED));
 
@@ -207,13 +195,11 @@ public class AttackOptionsPanel extends JPanel {
         this.createModLabel("Roll Needed to Hit:", gloc);
         this.createModNumber(this.toHitNumber, this.toHitFinal, gloc, false);
 
-        // have everything from here down stick to the bottom of the page
         // Fire Button
         JButton fireButton = new JButton("FIRE");
         Font fireFont = new Font("Impact", Font.BOLD, 30);
         fireButton.setFont(fireFont);
         fireButton.setForeground(Color.RED);
-        //fireButton.setPreferredSize(new Dimension(150,70));
         fireButton.setMinimumSize(new Dimension(200, 50));
         gloc.weighty = 0.0; // have everything from here down stick to the bottom of the page
         this.locationMid(gloc);
@@ -226,7 +212,6 @@ public class AttackOptionsPanel extends JPanel {
         gloc.gridheight = gloc.gridy - 2;
         gloc.gridy = 2;
         this.add(numSep, gloc);
-
     }
 
 
@@ -246,8 +231,8 @@ public class AttackOptionsPanel extends JPanel {
         loc.anchor = GridBagConstraints.EAST;
         // put a +/- sign in front of the number if sign is true
         if (sign) {
-            if (value < 0) { // if number is negative add a minus sign
-                label.setText("-" + value);
+            if (value < 0) { // minus sign automatically comes with negative numbers
+                label.setText(String.valueOf( value) );
             } else {
                 label.setText("+" + value);
             }
@@ -259,7 +244,6 @@ public class AttackOptionsPanel extends JPanel {
     }
 
     private void updateModNumber(JLabel label, int value, boolean sign) {
-
         // put a +/- sign in front of the number if sign is true
         if (sign) {
             if (value < 0) { // minus sign automatically comes with negative numbers
@@ -270,13 +254,6 @@ public class AttackOptionsPanel extends JPanel {
         } else {
             label.setText(String.valueOf(value));
         }
-    }
-
-    private void locationBar(GridBagConstraints loc) {
-        loc.gridx = 2;
-        loc.gridwidth = 1;
-        loc.anchor = GridBagConstraints.CENTER;
-
     }
 
     private void locationMid(GridBagConstraints loc) {
@@ -329,7 +306,6 @@ public class AttackOptionsPanel extends JPanel {
             this.update();
         });
         situationalPanel.add(aftArcCheckBox);
-
     }
 
     private void createRangePanel() {
@@ -417,9 +393,7 @@ public class AttackOptionsPanel extends JPanel {
     }
 
     private void createOverheatPanel() {
-       GridBagConstraints heatLoc = new GridBagConstraints();
-
-        overHeatPanel.setBorder(BorderFactory.createBevelBorder(BevelBorder.RAISED));
+       overHeatPanel.setBorder(BorderFactory.createBevelBorder(BevelBorder.RAISED));
         overHeatPanel.setLayout(new FlowLayout());
 
         JLabel heatLabel = new JLabel("OverHeat for this Attack");
@@ -427,9 +401,6 @@ public class AttackOptionsPanel extends JPanel {
         overHeatPanel.add(heatLabel);
 
         overHeatPanel.add(overHeatBox);
-
         overHeatBox.addItem(0);
-
     }
-
 }
