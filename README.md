@@ -74,5 +74,3 @@ Early Prototypes of Combat Phase view and Movement Phase view.
 ## Contact
 
 For questions or feedback, please open an issue on [GitHub](https://github.com/russcraftscode/strikemaster/issues).
-
-![image](https://github.com/user-attachments/assets/1d2078d6-6709-42b2-89e5-528505589ec9)
