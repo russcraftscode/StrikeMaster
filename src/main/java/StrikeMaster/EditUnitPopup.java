@@ -14,6 +14,7 @@ public class EditUnitPopup extends JDialog {
     final int secondSepCol = 4;
     final int boxCol = 5;
     final int statTextW = 30;
+    final int okButtonRow = 20;
 
     //public EditUnitPopup(Unit selectedUnit) {
     public EditUnitPopup(Unit selectedUnit) {
@@ -103,15 +104,99 @@ public class EditUnitPopup extends JDialog {
         JTextField wepHitsText = new JTextField(String.valueOf(selectedUnit.getWepHits()));
         addStatText(wepHitsText);
 
+        // create and place status checkboxes
+        gbc.gridy = 0;
+        JCheckBox sprintedBox = new JCheckBox("Sprinted");
+        sprintedBox.setSelected(selectedUnit.didSprintThisRound());
+        addBox(sprintedBox);
+
+        JCheckBox jumpedBox = new JCheckBox("Jumped");
+        jumpedBox.setSelected(selectedUnit.didSprintThisRound());
+        addBox(jumpedBox);
+
+        JCheckBox movedBox = new JCheckBox("Moved this Round");
+        movedBox.setSelected(selectedUnit.didSprintThisRound());
+        addBox(movedBox);
+
+        JCheckBox firedBox = new JCheckBox("Fired Weapons this Round");
+        firedBox.setSelected(selectedUnit.didSprintThisRound());
+        addBox(firedBox);
+
+        JCheckBox shutdownBox = new JCheckBox("Shutdown");
+        shutdownBox.setSelected(selectedUnit.didSprintThisRound());
+        addBox(shutdownBox);
+
+        JCheckBox immobileBox = new JCheckBox("Immobile");
+        immobileBox.setSelected(selectedUnit.didSprintThisRound());
+        addBox(immobileBox);
+
+        JCheckBox waterBox = new JCheckBox("In Water");
+        waterBox.setSelected(selectedUnit.didSprintThisRound());
+        addBox(waterBox);
+
+        gbc.gridy = 1;
+        gbc.gridheight = okButtonRow-2;
+        gbc.fill = GridBagConstraints.VERTICAL;
+        gbc.gridx = firstSepCol;
+        JSeparator firstSep = new JSeparator(SwingConstants.VERTICAL);
+        this.add(firstSep, gbc);
+
+        gbc.gridx = secondSepCol;
+        JSeparator secondSep = new JSeparator(SwingConstants.VERTICAL);
+        this.add(secondSep, gbc);
+
+        // create an add OK and Cancel buttons
+        JPanel okButtonPanel = new JPanel(new FlowLayout());
+        gbc.gridy = okButtonRow;
+        gbc.gridx = 0;
+        gbc.gridwidth = boxCol;
+        gbc.fill = GridBagConstraints.NONE;
+        gbc.anchor = GridBagConstraints.WEST;
+
+        JButton saveButton = new JButton("Save Edits");
+        saveButton.addActionListener(e -> {
+            saveChanges();
+        });
+
+        okButtonPanel.add(saveButton);
+
+        JButton closeButton = new JButton("Close Without Saving");
+        closeButton.addActionListener(e -> this.dispose());
+        okButtonPanel.add(closeButton);
+
+        this.add(okButtonPanel, gbc);
+
 
         //this.setMinimumSize(new Dimension(300,300));
         this.pack();
         this.setVisible(true);
     }
 
+    private void saveChanges(){
+        // TODO make a better icon
+        // DEBUG
+        JDialog savedDialog = new JDialog(this, "TODO", true);
+
+        JLabel msg = new JLabel("DEBUG - Save button pushed");
+
+        JButton closeButton = new JButton("OK");
+        closeButton.setPreferredSize(new Dimension(50, 20));
+        closeButton.addActionListener(e -> savedDialog.dispose());
+
+        savedDialog.setLayout(new BorderLayout());
+        savedDialog.add(msg, BorderLayout.NORTH);
+        savedDialog.add(closeButton, BorderLayout.SOUTH);
+
+        savedDialog.pack();
+        savedDialog.setLocationRelativeTo(this);
+        savedDialog.setVisible(true);
+        // DEBUG
+    }
+
     private void addIDLabel(JLabel label){
         gbc.gridx = idCol;
         gbc.gridy ++;
+        gbc.anchor = GridBagConstraints.WEST;
         label.setHorizontalAlignment(SwingConstants.LEFT);
         this.add(label, gbc);
     }
@@ -119,6 +204,7 @@ public class EditUnitPopup extends JDialog {
     private void addStatLabel(JLabel label){
         gbc.gridx = statLabelCol;
         gbc.gridy ++;
+        gbc.anchor = GridBagConstraints.EAST;
         label.setHorizontalAlignment(SwingConstants.RIGHT);
         this.add(label, gbc);
     }
@@ -131,6 +217,13 @@ public class EditUnitPopup extends JDialog {
         textField.setPreferredSize(new Dimension(statTextW,
                 textField.getPreferredSize().height));
         this.add(textField, gbc);
+    }
+
+    private void addBox(JCheckBox box){
+        gbc.gridx = boxCol;
+        gbc.gridy ++;
+        box.setHorizontalAlignment(SwingConstants.LEFT);
+        this.add(box, gbc);
     }
 
 
