@@ -238,4 +238,68 @@ public class Unit {
     public boolean isMoveComplete() {
         return moveComplete;
     }
+
+    public void setSkill(int skill) {
+        this.skill = skill;
+    }
+
+    public void setWepHits(int wepHits) {
+        this.wepHits = wepHits;
+    }
+
+    public void setMPHits(int MPHits) {
+        this.MPHits = MPHits;
+    }
+
+    public void setFCHits(int FCHits) {
+        this.FCHits = FCHits;
+    }
+
+    public void setEngHits(int engHits) {
+        this.engHits = engHits;
+    }
+
+    public void setHeatCur(int heatCur) {
+        this.heatCur = heatCur;
+    }
+
+    public void setStructureCur(int structureCur) {
+        this.structureCur = structureCur;
+    }
+
+    public void setArmorCur(int armorCur) {
+        this.armorCur = armorCur;
+    }
+
+    public void setSprinted(boolean sprinted) {
+        this.sprinted = sprinted;
+    }
+
+    public void setJumped(boolean jumpped) {
+        this.jumpedThisRound = jumpped;
+    }
+
+    public void setMovedThisRound(boolean movedThisRound) {
+        this.movedThisRound = movedThisRound;
+    }
+
+    public void setAttackedThisRound(boolean attackedThisRound) {
+        this.attackedThisRound = attackedThisRound;
+    }
+
+    public void setImmobile(boolean immobile) {
+        this.immobile = immobile;
+    }
+
+    public void setShutdown(boolean shutdown) {
+        this.shutdown = shutdown;
+    }
+
+    public void setDestroyed(boolean destroyed) {
+        this.destroyed = destroyed;
+    }
+
+    public void setInWater(boolean inWater) {
+        this.inWater = inWater;
+    }
 }
