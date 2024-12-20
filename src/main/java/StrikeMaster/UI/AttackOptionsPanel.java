@@ -1,5 +1,7 @@
-package StrikeMaster;
+package StrikeMaster.UI;
 
+import StrikeMaster.UnitFactory;
+import StrikeMaster.UnitLibrary;
 import StrikeMaster.Units.Unit;
 
 import javax.swing.*;
@@ -7,7 +9,6 @@ import javax.swing.border.BevelBorder;
 import java.awt.*;
 import java.awt.event.ItemEvent;
 import java.io.IOException;
-import java.util.stream.IntStream;
 
 public class AttackOptionsPanel extends JPanel {
     private JPanel overHeatPanel;

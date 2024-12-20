@@ -4,23 +4,6 @@ import java.util.ArrayList;
 
 public class MechData extends UnitData {
 
-    MechData(){
-       /*this.variant = "TST-01";
-        this.name = "TestMech";
-        //this.pv = 42;
-        //attributes
-        this.armorMax = 10;
-        this.structureMax = 10;
-        this.moveMax = 5;
-        this.size = 4;
-        this.overheat = 1;
-        //this.tmmMax = 2;
-        this.shortDmg = 3;
-        this.medDmg = 2;
-        this.longDmg = 1;
-        this.extDmg = 0;*/
-    }
-
     @Override
     public char getType(){
         return 'm';
