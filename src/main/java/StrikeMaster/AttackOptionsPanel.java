@@ -61,7 +61,8 @@ public class AttackOptionsPanel extends JPanel {
         this.attackingUnit = UnitFactory.buidUnit(protoLib.getUnitData("AWS-9M"));
         // end prototyping
 
-        this.setPreferredSize(new Dimension(600,500));
+        this.setPreferredSize(this.getPreferredSize());
+        //this.setPreferredSize(new Dimension(600,500));
         buildPanel();
         update();
     }

@@ -17,7 +17,7 @@ public class EditUnitPopup extends JDialog {
     final int okButtonRow = 20;
 
     //public EditUnitPopup(Unit selectedUnit) {
-    public EditUnitPopup(Unit selectedUnit) {
+    public EditUnitPopup(Unit selectedUnit, JPanel ownerPanel) {
         this.setTitle("Manually Edit Unit");
 
         this.setLayout(new GridBagLayout());
@@ -122,6 +122,10 @@ public class EditUnitPopup extends JDialog {
         firedBox.setSelected(selectedUnit.didSprintThisRound());
         addBox(firedBox);
 
+        JCheckBox waterBox = new JCheckBox("In Water");
+        waterBox.setSelected(selectedUnit.didSprintThisRound());
+        addBox(waterBox);
+
         JCheckBox shutdownBox = new JCheckBox("Shutdown");
         shutdownBox.setSelected(selectedUnit.didSprintThisRound());
         addBox(shutdownBox);
@@ -130,9 +134,9 @@ public class EditUnitPopup extends JDialog {
         immobileBox.setSelected(selectedUnit.didSprintThisRound());
         addBox(immobileBox);
 
-        JCheckBox waterBox = new JCheckBox("In Water");
-        waterBox.setSelected(selectedUnit.didSprintThisRound());
-        addBox(waterBox);
+        JCheckBox destroyedBox = new JCheckBox("Destroyed");
+        destroyedBox.setSelected(selectedUnit.isDestroyed());
+        addBox(destroyedBox);
 
         gbc.gridy = 1;
         gbc.gridheight = okButtonRow-2;
@@ -167,7 +171,7 @@ public class EditUnitPopup extends JDialog {
         this.add(okButtonPanel, gbc);
 
 
-        //this.setMinimumSize(new Dimension(300,300));
+        this.setLocationRelativeTo(ownerPanel);
         this.pack();
         this.setVisible(true);
     }

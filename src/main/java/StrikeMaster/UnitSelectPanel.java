@@ -19,7 +19,7 @@ public class UnitSelectPanel extends JPanel {
     public static final int TARGET = 2;
     public static final int MOVE = 3;
 
-    private int panelType = 0;
+    private final int panelType;
 
     private BufferedImage mechIcon;
     private BufferedImage armorIcon;
@@ -67,7 +67,7 @@ public class UnitSelectPanel extends JPanel {
         switch (this.panelType) {
             case UnitSelectPanel.ATTACK:
                 this.panelLabel = new JLabel("Select Unit to make attack");
-                this.setPreferredSize(new Dimension(600, 500));
+                //this.setPreferredSize(new Dimension(600, 500));
                 break;
             case UnitSelectPanel.TARGET:
                 this.panelLabel = new JLabel("Select Unit to target");
@@ -203,6 +203,8 @@ public class UnitSelectPanel extends JPanel {
             }
         }
 
+        //unitDataPanel.pack();
+        unitDataPanel.setPreferredSize(unitDataPanel.getPreferredSize());
 
         // Add unit data panel to scroll pane and add that to AttackPanel
         JScrollPane unitScroll = new JScrollPane();
@@ -213,7 +215,7 @@ public class UnitSelectPanel extends JPanel {
         // TODO calculate how much width is needed when all components are complete
         switch (this.panelType) {
             case UnitSelectPanel.ATTACK:
-                unitScroll.setPreferredSize(new Dimension(250, 200));
+                //unitScroll.setPreferredSize(new Dimension(250, 200));
 
                 break;
             case UnitSelectPanel.TARGET:
@@ -232,7 +234,7 @@ public class UnitSelectPanel extends JPanel {
         this.add(editUnitButton, BorderLayout.SOUTH);
         editUnitButton.addActionListener(e -> {
             // TODO pass the selected unit instead of a random unit
-            EditUnitPopup editUnitPopup = new EditUnitPopup( this.units.get(0));
+            EditUnitPopup editUnitPopup = new EditUnitPopup( this.units.get(0), this);
         });
     }
 

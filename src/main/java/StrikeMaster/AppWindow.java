@@ -43,6 +43,8 @@ public class AppWindow extends JFrame {
         combatPanel.add(attackerSelectPanel);
         combatPanel.add(targetSelectPanel);
         combatPanel.add(attackOptionsPanel);
+        combatPanel.setPreferredSize(combatPanel.getPreferredSize());
+
 
         // phase select panel holds all the elements to switch phases and end the turn
         // TODO move phasePanel to its own class
