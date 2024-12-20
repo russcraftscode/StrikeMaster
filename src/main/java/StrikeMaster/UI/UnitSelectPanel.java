@@ -3,6 +3,7 @@ package StrikeMaster.UI;
 import StrikeMaster.UnitFactory;
 import StrikeMaster.UnitLibrary;
 import StrikeMaster.Units.Unit;
+import StrikeMaster.LabelSizer;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -144,38 +145,64 @@ public class UnitSelectPanel extends JPanel {
                 rowElements.add(damageLabel);
 
                 gloc.gridx++; // move to the next col
-                JLabel tarSysHitsLabel = new JLabel("  Wep System hits ");
+                JLabel wepSysHitsLabel = new JLabel("  Wep Damage");
+                unitDataPanel.add(wepSysHitsLabel, gloc);
+                rowElements.add(wepSysHitsLabel);
+
+                gloc.gridx++; // move to the next col
+                JLabel wepSysHitsImage;
+                switch (rowUnit.getWepHits()) {
+                    case 1:
+                        wepSysHitsImage = new JLabel(new ImageIcon(four3Icon));
+                        break;
+                    case 2:
+                        wepSysHitsImage = new JLabel(new ImageIcon(four2Icon));
+                        break;
+                    case 3:
+                        wepSysHitsImage = new JLabel(new ImageIcon(four1Icon));
+                        break;
+                    case 4:
+                        wepSysHitsImage = new JLabel(new ImageIcon(four0Icon));
+                        break;
+                    default:
+                        wepSysHitsImage = new JLabel(new ImageIcon(four4Icon));
+                        break;
+                }
+                unitDataPanel.add(wepSysHitsImage, gloc);
+                rowElements.add(wepSysHitsImage);
+
+                gloc.gridx++; // move to the next col
+                JLabel tarSysHitsLabel = new JLabel("  FC Damage");
                 unitDataPanel.add(tarSysHitsLabel, gloc);
                 rowElements.add(tarSysHitsLabel);
 
                 gloc.gridx++; // move to the next col
                 JLabel tarSysHitsImage;
-                switch (rowUnit.getWepHits()) {
+                switch (rowUnit.getFCHits()) {
                     case 1:
-                        tarSysHitsImage = new JLabel(new ImageIcon(four1Icon));
+                        tarSysHitsImage = new JLabel(new ImageIcon(four3Icon));
                         break;
                     case 2:
                         tarSysHitsImage = new JLabel(new ImageIcon(four2Icon));
                         break;
                     case 3:
-                        tarSysHitsImage = new JLabel(new ImageIcon(four3Icon));
+                        tarSysHitsImage = new JLabel(new ImageIcon(four1Icon));
                         break;
                     case 4:
-                        tarSysHitsImage = new JLabel(new ImageIcon(four4Icon));
+                        tarSysHitsImage = new JLabel(new ImageIcon(four0Icon));
                         break;
                     default:
-                        tarSysHitsImage = new JLabel(new ImageIcon(four0Icon));
+                        tarSysHitsImage = new JLabel(new ImageIcon(four4Icon));
                         break;
                 }
                 unitDataPanel.add(tarSysHitsImage, gloc);
                 rowElements.add(tarSysHitsImage);
-
             }
 
             // if target panel show armor / structure values
             if (this.panelType == UnitSelectPanel.TARGET) {
                 gloc.gridx++; // move to the next col
-                JLabel armorLabel = new JLabel("Armor:");
+                JLabel armorLabel = new JLabel(" Armor:");
                 unitDataPanel.add(armorLabel, gloc);
                 rowElements.add(armorLabel);
                 // Display a graphic for prototyping purposes
@@ -185,13 +212,22 @@ public class UnitSelectPanel extends JPanel {
                 rowElements.add(h1Label);
                 gloc.gridx++; // move to the next col
                 JLabel structureLabel = new JLabel("Internal:");
-                unitDataPanel.add(armorLabel, gloc);
+                unitDataPanel.add(structureLabel, gloc);
                 rowElements.add(structureLabel);
                 // Display a graphic for prototyping purposes
                 gloc.gridx++; // move to the next col
                 JLabel h2Label = new JLabel(new ImageIcon(emptyIcon));
                 unitDataPanel.add(h2Label, gloc);
                 rowElements.add(h2Label);
+                gloc.gridx++; // move to the next col
+                JLabel tmmLabel = new JLabel("TMM: ");
+                unitDataPanel.add(tmmLabel, gloc);
+                rowElements.add(tmmLabel);
+                gloc.gridx++; // move to the next col
+                JLabel tmmValue = new JLabel(rowUnit.getTMM() + " ");
+                tmmValue.setPreferredSize(LabelSizer.dimension(tmmValue));
+                unitDataPanel.add(tmmValue, gloc);
+                rowElements.add(tmmValue);
             }
 
 
@@ -204,8 +240,8 @@ public class UnitSelectPanel extends JPanel {
             }
         }
 
-        //unitDataPanel.pack();
         unitDataPanel.setPreferredSize(unitDataPanel.getPreferredSize());
+        //unitDataPanel.setPreferredSize(new Dimension(unitDataPanel.getPreferredSize().width+10, unitDataPanel.getPreferredSize().height));
 
         // Add unit data panel to scroll pane and add that to AttackPanel
         JScrollPane unitScroll = new JScrollPane();
@@ -220,7 +256,7 @@ public class UnitSelectPanel extends JPanel {
 
                 break;
             case UnitSelectPanel.TARGET:
-                unitScroll.setPreferredSize(new Dimension(300, 200));
+                //unitScroll.setPreferredSize(new Dimension(300, 200));
                 break;
             case UnitSelectPanel.MOVE:
                 unitScroll.setPreferredSize(new Dimension(300, 200));
@@ -249,7 +285,7 @@ public class UnitSelectPanel extends JPanel {
         vtolIcon = ImageIO.read(classLoader.getResourceAsStream("simpleVtol.png"));
         fullIcon = ImageIO.read(classLoader.getResourceAsStream("4of4.png"));
         emptyIcon = ImageIO.read(classLoader.getResourceAsStream("2of3.png"));
-        four0Icon = ImageIO.read(classLoader.getResourceAsStream("1of4.png"));
+        four0Icon = ImageIO.read(classLoader.getResourceAsStream("0of4.png"));
         four1Icon = ImageIO.read(classLoader.getResourceAsStream("1of4.png"));
         four2Icon = ImageIO.read(classLoader.getResourceAsStream("2of4.png"));
         four3Icon = ImageIO.read(classLoader.getResourceAsStream("3of4.png"));

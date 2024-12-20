@@ -3,7 +3,7 @@ package StrikeMaster;
 import javax.swing.*;
 import java.awt.*;
 
-public class labelSizer {
+public class LabelSizer {
     private static final int HORIZONTAL_BUFFER = 10;
     private static final int VERTICAL_BUFFER = 3;
 

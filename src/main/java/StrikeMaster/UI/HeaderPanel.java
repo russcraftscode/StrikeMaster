@@ -1,6 +1,6 @@
 package StrikeMaster.UI;
 
-import StrikeMaster.labelSizer;
+import StrikeMaster.LabelSizer;
 
 import javax.swing.*;
 import java.awt.*;
@@ -23,7 +23,7 @@ public class HeaderPanel extends JPanel {
         // set the size to accommodate all text
         titleLabel.setFont(titleFont);
         FontMetrics titleMetrics = titleLabel.getFontMetrics(titleLabel.getFont());
-        titleLabel.setPreferredSize(labelSizer.dimension(titleLabel));
+        titleLabel.setPreferredSize(LabelSizer.dimension(titleLabel));
 
         System.out.println(titleMetrics.stringWidth(titleLabel.getText()));
         this.add(titleLabel, BorderLayout.WEST);
@@ -31,7 +31,7 @@ public class HeaderPanel extends JPanel {
         modeLabel = new JLabel();
         modeLabel.setFont(modeFont);
         modeLabel.setHorizontalAlignment(SwingConstants.RIGHT);
-        modeLabel.setPreferredSize(labelSizer.dimension(modeLabel));
+        modeLabel.setPreferredSize(LabelSizer.dimension(modeLabel));
         this.add(modeLabel, BorderLayout.EAST);
 
         bar = new JSeparator();
@@ -43,7 +43,7 @@ public class HeaderPanel extends JPanel {
 
     public void setModeText(String mode) {
         this.modeLabel.setText(mode);
-        this.modeLabel.setPreferredSize(labelSizer.dimension(this.modeLabel));
+        this.modeLabel.setPreferredSize(LabelSizer.dimension(this.modeLabel));
         this.revalidate();
         this.repaint();
     }
