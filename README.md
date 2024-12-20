@@ -11,7 +11,8 @@ A companion for games of Alpha Strike.
 
 ### What it isn't:
 - A replacement for Rulebooks or any other Catalyst Game Labs products.
-- A Computer version of Alpha Strike.  
+- A Computer version of Alpha Strike similar to MegaMek.
+   
 You will still need to have all of your game materials and know how to play. This software will just help you play faster.
 
 ---
@@ -32,6 +33,12 @@ You will still need to have all of your game materials and know how to play. Thi
 ---
 
 ## Roadmap
+Early Prototypes of Combat Phase view and Movement Phase view.
+
+![image](https://github.com/user-attachments/assets/a44b7436-d7dc-40c7-93f6-513357b757d5)
+
+![image](https://github.com/user-attachments/assets/11187b40-1108-4958-ac6f-10690ade19e2)
+
 
 #### Planned Initial Release Features
 - Basic *Alpha Strike* ranged combat rules
