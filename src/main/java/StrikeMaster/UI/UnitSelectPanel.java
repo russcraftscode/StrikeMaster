@@ -1,7 +1,8 @@
-package StrikeMaster;
+package StrikeMaster.UI;
 
+import StrikeMaster.UnitFactory;
+import StrikeMaster.UnitLibrary;
 import StrikeMaster.Units.Unit;
-import com.sun.source.doctree.UnknownInlineTagTree;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;

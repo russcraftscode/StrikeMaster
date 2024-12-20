@@ -1,4 +1,4 @@
-package StrikeMaster;
+package StrikeMaster.UI;
 
 import StrikeMaster.Units.Unit;
 

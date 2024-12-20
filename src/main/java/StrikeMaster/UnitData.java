@@ -3,6 +3,8 @@ package StrikeMaster;
 import java.util.ArrayList;
 
 public class UnitData {
+    // TODO make this data not directly accessable.
+    // TODO consider moving all UnitData classes to their own package.
     //identity
      String variant;
      String name;
@@ -29,24 +31,6 @@ public class UnitData {
     public char getType(){
         return 'x';
     }
-
-    /*
-    //identity
-    private String variant;
-    private String name;
-    private int pv;
-    //attributes
-    private int armorMax;
-    private int structureMax;
-    private int maxMove;
-    private ArrayList<String> specialAbilities;
-    private int size;
-    private int overheat;
-    private int tmmMax;
-    private int shortDmg;
-    private int medDmg;
-    private int longDmg;
-    private int extDmg;*/
 
     public String getVariant() {
         return variant;

@@ -1,4 +1,6 @@
-package StrikeMaster;
+package StrikeMaster.UI;
+
+import StrikeMaster.labelSizer;
 
 import javax.swing.*;
 import java.awt.*;
