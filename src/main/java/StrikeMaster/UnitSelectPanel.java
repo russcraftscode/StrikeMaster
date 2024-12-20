@@ -230,6 +230,10 @@ public class UnitSelectPanel extends JPanel {
 
         // add unit button
         this.add(editUnitButton, BorderLayout.SOUTH);
+        editUnitButton.addActionListener(e -> {
+            // TODO pass the selected unit instead of a random unit
+            EditUnitPopup editUnitPopup = new EditUnitPopup( this.units.get(0));
+        });
     }
 
     private void loadImages() throws IOException {
@@ -248,5 +252,6 @@ public class UnitSelectPanel extends JPanel {
         four3Icon = ImageIO.read(classLoader.getResourceAsStream("3of4.png"));
         four4Icon = ImageIO.read(classLoader.getResourceAsStream("4of4.png"));
     }
+
 
 }

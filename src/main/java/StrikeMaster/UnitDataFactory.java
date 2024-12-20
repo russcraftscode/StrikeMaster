@@ -10,6 +10,7 @@ public class UnitDataFactory {
      * @return a UnitData child class object that is loaded with the data from unitInfo
      */
     public static UnitData buildUnitData (String unitInfo){
+        // TODO make an enum for info string data
         // Format of info string: 0Name,1Variant,2Role,3Tech Base,4Rules,5Year,6Type,
         // 7Armor,8Internal,9TMM,10Move,11Jump,12S,13M,14L,15E,16OV,17Tons,18Size,19Skill,20PV,Special Abilities
         UnitData builtUnitData = null;
