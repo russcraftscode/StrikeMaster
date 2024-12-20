@@ -13,7 +13,7 @@ public class EditUnitPopup extends JDialog {
     final int statTextCol = 3;
     final int secondSepCol = 4;
     final int boxCol = 5;
-    final int statTextW = 30;
+    final int statTextW = 50;
     final int okButtonRow = 20;
 
     //public EditUnitPopup(Unit selectedUnit) {
@@ -80,29 +80,30 @@ public class EditUnitPopup extends JDialog {
 
         // create and place unit stat entry texts
         gbc.gridy = 0;
-        JTextField skillText = new JTextField(String.valueOf(selectedUnit.getSkill()));
-        addStatText(skillText);
 
-        JTextField armorText = new JTextField(String.valueOf(selectedUnit.getArmorCur()));
-        addStatText(armorText);
+        JComboBox<Integer> skillBox = new JComboBox<>();
+        addStatCombobox(skillBox, 2,6,selectedUnit.getSkill());
 
-        JTextField structureText = new JTextField(String.valueOf(selectedUnit.getStructureCur()));
-        addStatText(structureText);
+        JComboBox<Integer> armorBox = new JComboBox<>();
+        addStatCombobox(armorBox, 0,selectedUnit.getArmorMax(),selectedUnit.getArmorCur());
 
-        JTextField heatText = new JTextField(String.valueOf(selectedUnit.getHeatCur()));
-        addStatText(heatText);
+        JComboBox<Integer> structureBox = new JComboBox<>();
+        addStatCombobox(structureBox, 0,selectedUnit.getStructureMax(),selectedUnit.getStructureCur());
 
-        JTextField engineHitsText = new JTextField(String.valueOf(selectedUnit.getEngHits()));
-        addStatText(engineHitsText);
+        JComboBox<Integer> heatBox = new JComboBox<>();
+        addStatCombobox(heatBox, 0,4,selectedUnit.getHeatCur());
 
-        JTextField fcHitsText = new JTextField(String.valueOf(selectedUnit.getFCHits()));
-        addStatText(fcHitsText);
+        JComboBox<Integer> engineHitsBox = new JComboBox<>();
+        addStatCombobox(engineHitsBox, 0,1,selectedUnit.getEngHits());
 
-        JTextField mpHitsText = new JTextField(String.valueOf(selectedUnit.getMPHits()));
-        addStatText(mpHitsText);
+        JComboBox<Integer> fcHitsBox = new JComboBox<>();
+        addStatCombobox(fcHitsBox, 0,4,selectedUnit.getFCHits());
 
-        JTextField wepHitsText = new JTextField(String.valueOf(selectedUnit.getWepHits()));
-        addStatText(wepHitsText);
+        JComboBox<Integer> mpHitsBox = new JComboBox<>();
+        addStatCombobox(mpHitsBox, 0,4,selectedUnit.getMPHits());
+
+        JComboBox<Integer> wepHitsBox = new JComboBox<>();
+        addStatCombobox(wepHitsBox, 0,4,selectedUnit.getWepHits());
 
         // create and place status checkboxes
         gbc.gridy = 0;
@@ -153,13 +154,19 @@ public class EditUnitPopup extends JDialog {
         JPanel okButtonPanel = new JPanel(new FlowLayout());
         gbc.gridy = okButtonRow;
         gbc.gridx = 0;
-        gbc.gridwidth = boxCol;
+        gbc.gridwidth = 10;
         gbc.fill = GridBagConstraints.NONE;
-        gbc.anchor = GridBagConstraints.WEST;
+        gbc.anchor = GridBagConstraints.SOUTH;
 
         JButton saveButton = new JButton("Save Edits");
         saveButton.addActionListener(e -> {
-            saveChanges();
+            // update values
+            //selectedUnit.setSkill()
+            // update status
+
+
+
+            //saveChanges();
         });
 
         okButtonPanel.add(saveButton);
@@ -178,6 +185,9 @@ public class EditUnitPopup extends JDialog {
 
     private void saveChanges(){
         // TODO make a better icon
+
+
+
         // DEBUG
         JDialog savedDialog = new JDialog(this, "TODO", true);
 
@@ -221,6 +231,21 @@ public class EditUnitPopup extends JDialog {
         textField.setPreferredSize(new Dimension(statTextW,
                 textField.getPreferredSize().height));
         this.add(textField, gbc);
+    }
+
+    private void addStatCombobox(JComboBox<Integer> box, int min, int max, int currentValue){
+        gbc.anchor = GridBagConstraints.WEST;
+        gbc.gridx = statTextCol;
+        gbc.gridy++;
+        box.removeAllItems();
+        for(int i = min; i <= max; i++){
+            box.addItem(i);
+            // if the item being added is the current value then select the currently last item
+            if(i == currentValue) box.setSelectedIndex(box.getItemCount() - 1);
+        }
+        box.setPreferredSize(new Dimension(statTextW,
+                box.getPreferredSize().height));
+        this.add(box, gbc);
     }
 
     private void addBox(JCheckBox box){
