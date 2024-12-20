@@ -9,7 +9,6 @@ import java.io.IOException;
 
 public class AppWindow extends JFrame {
     HeaderPanel headerPanel = new HeaderPanel();
-    private double scalingFactor;
     private BufferedImage appIcon;
 
     public AppWindow( boolean hiRezMode) {
@@ -38,7 +37,7 @@ public class AppWindow extends JFrame {
         UnitSelectPanel attackerSelectPanel = new UnitSelectPanel(UnitSelectPanel.ATTACK);
 
         // TODO create attack options panel
-        SatorPanel attackOptionsPanel = new SatorPanel();
+        AttackOptionsPanel attackOptionsPanel = new AttackOptionsPanel();
         UnitSelectPanel targetSelectPanel = new UnitSelectPanel(UnitSelectPanel.TARGET);
 
         combatPanel.add(attackerSelectPanel);
