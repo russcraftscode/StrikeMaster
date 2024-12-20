@@ -39,6 +39,8 @@ Early Prototypes of Combat Phase view and Movement Phase view.
 
 ![image](https://github.com/user-attachments/assets/11187b40-1108-4958-ac6f-10690ade19e2)
 
+![image](https://github.com/user-attachments/assets/0b0cc14a-9d05-44c1-b1f4-c07874c41474)
+
 
 #### Planned Initial Release Features
 - Basic *Alpha Strike* ranged combat rules
