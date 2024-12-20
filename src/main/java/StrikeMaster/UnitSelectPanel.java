@@ -1,6 +1,7 @@
 package StrikeMaster;
 
 import StrikeMaster.Units.Unit;
+import com.sun.source.doctree.UnknownInlineTagTree;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -38,7 +39,9 @@ public class UnitSelectPanel extends JPanel {
     private final JButton editUnitButton = new JButton("Edit Unit");
     private JLabel panelLabel;
 
-    private Unit rowUnit; // TODO remove this
+    //private Unit rowUnit; // TODO remove this
+
+    private ArrayList<Unit> units = new ArrayList<>();
 
     public UnitSelectPanel(int panelType) {
 
@@ -51,13 +54,10 @@ public class UnitSelectPanel extends JPanel {
             throw new RuntimeException(e);
         }
 
-        for (String a : protoLib.getVariants()) {
-            System.out.println(a);
-        }
+        units.add(UnitFactory.buidUnit(protoLib.getUnitData("AWS-9M")));
+        units.add(UnitFactory.buidUnit(protoLib.getUnitData("AS7-D")));
+        units.add(UnitFactory.buidUnit(protoLib.getUnitData("DRG-1N")));
 
-        rowUnit = UnitFactory.buidUnit(protoLib.getUnitData("AS7-D"));
-
-        System.out.println(rowUnit);// DEBUG
 
         // end prototyping
         this.setLayout(new BorderLayout());
@@ -67,7 +67,7 @@ public class UnitSelectPanel extends JPanel {
         switch (this.panelType) {
             case UnitSelectPanel.ATTACK:
                 this.panelLabel = new JLabel("Select Unit to make attack");
-
+                this.setPreferredSize(new Dimension(600, 500));
                 break;
             case UnitSelectPanel.TARGET:
                 this.panelLabel = new JLabel("Select Unit to target");
@@ -99,102 +99,11 @@ public class UnitSelectPanel extends JPanel {
         // create a button group for all unit select radio buttons
         ButtonGroup unitSelectGroup = new ButtonGroup();
 
-        ArrayList<JComponent> rowElements = new ArrayList<>();
+        for (int i = 0; i < units.size(); i++) {
+            Unit rowUnit = units.get(i);
 
-        int i = 0;
-        gloc.gridy = i;
-        gloc.gridx = 0;
-        gloc.fill = 1;
-        JRadioButton unitSelectButton = new JRadioButton();
-        unitSelectGroup.add(unitSelectButton);
-        unitDataPanel.add(unitSelectButton, gloc);
-
-        // Create the icon for the unit
-        gloc.gridx++; // move to the next col
-        JLabel iconLabel;
-        switch (rowUnit.getType()) {
-            default:
-                iconLabel = new JLabel(new ImageIcon(infIcon));
-                break;
-            case 'm':
-                iconLabel = new JLabel(new ImageIcon(mechIcon));
-                break;
-        }
-        unitDataPanel.add(iconLabel, gloc);
-        rowElements.add(iconLabel);
-
-
-        // Create the name label for the unit
-        gloc.gridx++; // move to the next col
-        JLabel nameLabel = new JLabel(rowUnit.getName() + " " + rowUnit.getVariant());
-        unitDataPanel.add(nameLabel, gloc);
-        rowElements.add(nameLabel);
-
-        // if attack panel show damage values
-        if (this.panelType == UnitSelectPanel.ATTACK) {
-            gloc.gridx++; // move to the next col
-            JLabel damageLabel = new JLabel("  Attack Strength "
-                    + rowUnit.getShortDmg() + "/"
-                    + rowUnit.getMedDmg() + "/"
-                    + rowUnit.getLongDmg() );
-            unitDataPanel.add(damageLabel, gloc);
-            rowElements.add(damageLabel);
-
-            gloc.gridx++; // move to the next col
-            JLabel tarSysHitsLabel = new JLabel("  Wep System hits ");
-            unitDataPanel.add(tarSysHitsLabel, gloc);
-            rowElements.add(tarSysHitsLabel);
-
-            gloc.gridx++; // move to the next col
-            JLabel tarSysHitsImage;
-            switch (rowUnit.getWepHits()){
-                case 1:
-                    tarSysHitsImage = new JLabel(new ImageIcon(four1Icon));
-                    break;
-                case 2:
-                    tarSysHitsImage = new JLabel(new ImageIcon(four2Icon));
-                    break;
-                case 3:
-                    tarSysHitsImage = new JLabel(new ImageIcon(four3Icon));
-                    break;
-                case 4:
-                    tarSysHitsImage = new JLabel(new ImageIcon(four4Icon));
-                    break;
-                default:
-                    tarSysHitsImage = new JLabel(new ImageIcon(four0Icon));
-                    break;
-            }
-            unitDataPanel.add(tarSysHitsImage, gloc);
-            rowElements.add(tarSysHitsImage);
-
-        }
-
-        // if target panel show armor / structure values
-        if (this.panelType == UnitSelectPanel.TARGET) {
-            gloc.gridx++; // move to the next col
-            JLabel armorLabel = new JLabel("Armor:");
-            unitDataPanel.add(armorLabel, gloc);
-            rowElements.add(armorLabel);
-            // Display a graphic for prototyping purposes
-            gloc.gridx++; // move to the next col
-            JLabel h1Label = new JLabel(new ImageIcon(fullIcon));
-            unitDataPanel.add(h1Label, gloc);
-            rowElements.add(h1Label);
-            gloc.gridx++; // move to the next col
-            JLabel structureLabel = new JLabel("Internal:");
-            unitDataPanel.add(armorLabel, gloc);
-            rowElements.add(structureLabel);
-            // Display a graphic for prototyping purposes
-            gloc.gridx++; // move to the next col
-            JLabel h2Label = new JLabel(new ImageIcon(emptyIcon));
-            unitDataPanel.add(h2Label, gloc);
-            rowElements.add(h2Label);
-        }
-
-        /*// create rows of unit data
-        for (int i = 1; i < 30; i++) {
             ArrayList<JComponent> rowElements = new ArrayList<>();
-            // Create the unit select radio button
+
             gloc.gridy = i;
             gloc.gridx = 0;
             gloc.fill = 1;
@@ -205,62 +114,61 @@ public class UnitSelectPanel extends JPanel {
             // Create the icon for the unit
             gloc.gridx++; // move to the next col
             JLabel iconLabel;
-            switch (i % 5) {
+            switch (rowUnit.getType()) {
                 default:
-                    iconLabel = new JLabel(new ImageIcon(mechIcon));
-                    break;
-                case 1:
-                    iconLabel = new JLabel(new ImageIcon(vtolIcon));
-                    break;
-                case 2:
                     iconLabel = new JLabel(new ImageIcon(infIcon));
                     break;
-                case 3:
-                    iconLabel = new JLabel(new ImageIcon(armorIcon));
-                    break;
-                case 4:
-                    iconLabel = new JLabel(new ImageIcon(artyIcon));
+                case 'm':
+                    iconLabel = new JLabel(new ImageIcon(mechIcon));
                     break;
             }
             unitDataPanel.add(iconLabel, gloc);
             rowElements.add(iconLabel);
 
-            // Create the type label for the unit
-            gloc.gridx++; // move to the next col
-            JLabel typeLabel = new JLabel();
-            switch (i % 5) {
-                default:
-                    typeLabel.setText(" BM ");
-                    break;
-                case 1:
-                    typeLabel.setText(" VTOL ");
-                    break;
-                case 2:
-                    typeLabel.setText(" Infantry ");
-                    break;
-                case 3:
-                    typeLabel.setText(" BattleArmor ");
-                    break;
-                case 4:
-                    typeLabel.setText(" Artillery ");
-                    break;
-            }
-
-            unitDataPanel.add(typeLabel, gloc);
-            rowElements.add(typeLabel);
 
             // Create the name label for the unit
             gloc.gridx++; // move to the next col
-            JLabel nameLabel = new JLabel(" Unit " + i + " ");
+            JLabel nameLabel = new JLabel(rowUnit.getName() + " " + rowUnit.getVariant());
             unitDataPanel.add(nameLabel, gloc);
             rowElements.add(nameLabel);
 
             // if attack panel show damage values
             if (this.panelType == UnitSelectPanel.ATTACK) {
                 gloc.gridx++; // move to the next col
-                JLabel damageLabel = new JLabel("  Wep Damage 3/2/2");
+                JLabel damageLabel = new JLabel("  Attack Strength "
+                        + rowUnit.getShortDmg() + "/"
+                        + rowUnit.getMedDmg() + "/"
+                        + rowUnit.getLongDmg());
                 unitDataPanel.add(damageLabel, gloc);
                 rowElements.add(damageLabel);
+
+                gloc.gridx++; // move to the next col
+                JLabel tarSysHitsLabel = new JLabel("  Wep System hits ");
+                unitDataPanel.add(tarSysHitsLabel, gloc);
+                rowElements.add(tarSysHitsLabel);
+
+                gloc.gridx++; // move to the next col
+                JLabel tarSysHitsImage;
+                switch (rowUnit.getWepHits()) {
+                    case 1:
+                        tarSysHitsImage = new JLabel(new ImageIcon(four1Icon));
+                        break;
+                    case 2:
+                        tarSysHitsImage = new JLabel(new ImageIcon(four2Icon));
+                        break;
+                    case 3:
+                        tarSysHitsImage = new JLabel(new ImageIcon(four3Icon));
+                        break;
+                    case 4:
+                        tarSysHitsImage = new JLabel(new ImageIcon(four4Icon));
+                        break;
+                    default:
+                        tarSysHitsImage = new JLabel(new ImageIcon(four0Icon));
+                        break;
+                }
+                unitDataPanel.add(tarSysHitsImage, gloc);
+                rowElements.add(tarSysHitsImage);
+
             }
 
             // if target panel show armor / structure values
@@ -293,7 +201,7 @@ public class UnitSelectPanel extends JPanel {
                     component.setOpaque(true);
                 }
             }
-        }*/
+        }
 
 
         // Add unit data panel to scroll pane and add that to AttackPanel

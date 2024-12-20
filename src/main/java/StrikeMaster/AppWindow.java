@@ -37,7 +37,7 @@ public class AppWindow extends JFrame {
         UnitSelectPanel attackerSelectPanel = new UnitSelectPanel(UnitSelectPanel.ATTACK);
 
         // TODO create attack options panel
-        SatorPanel attackOptionsPanel = new SatorPanel();
+        AttackOptionsPanel attackOptionsPanel = new AttackOptionsPanel();
         UnitSelectPanel targetSelectPanel = new UnitSelectPanel(UnitSelectPanel.TARGET);
 
         combatPanel.add(attackerSelectPanel);

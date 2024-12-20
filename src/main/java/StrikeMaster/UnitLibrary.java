@@ -29,7 +29,7 @@ public class UnitLibrary {
     }
     public UnitData getUnitData(String variant){
         for(UnitData entry : this.library){
-            System.out.println(entry.getVariant() + "  " + variant);// DEBUG
+            // System.out.println(entry.getVariant() + "  " + variant);// DEBUG
             if(entry.getVariant().equals(variant)){
                 return entry;
             }

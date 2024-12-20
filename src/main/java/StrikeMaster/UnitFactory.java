@@ -10,7 +10,7 @@ public class UnitFactory {
 
     public static Unit buidUnit(UnitData data){
         Unit builtUnit = null;
-        System.out.println(data.getClass()); // DEBUG
+        //System.out.println(data.getClass()); // DEBUG
         switch (data.getType() ){
             case 'm':
                 // TODO ID will have to be unique
