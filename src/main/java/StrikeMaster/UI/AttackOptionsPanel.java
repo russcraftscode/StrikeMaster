@@ -54,7 +54,8 @@ public class AttackOptionsPanel extends JPanel {
         // TODO delete this next part. This is only to provide data for prototyping the panel.
         UnitLibrary protoLib = null;
         try {
-            protoLib = new UnitLibrary("src/main/resources/mech_data.csv");
+            protoLib = new UnitLibrary();
+            //protoLib = new UnitLibrary("src/main/resources/mech_data.csv");
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

@@ -108,7 +108,8 @@ public class UnitSelectPanel extends JPanel {
         // TODO delete this next part. This is only to provide data for prototyping the panel.
 
         try {
-            protoLib = new UnitLibrary("src/main/resources/mech_data.csv");
+            //protoLib = new UnitLibrary("src/main/resources/mech_data.csv");
+            protoLib = new UnitLibrary();
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
