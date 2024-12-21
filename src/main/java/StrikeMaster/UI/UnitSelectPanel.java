@@ -116,6 +116,79 @@ public class UnitSelectPanel extends JPanel {
 
     public UnitSelectPanel(int panelType) {
 
+        class attackUnitEntryPanel extends JPanel{
+            private JRadioButton unitSelectButton = new JRadioButton();
+            private JLabel iconLabel = new JLabel();
+            private JLabel nameLabel = new JLabel();
+            private JLabel damageLabel = new JLabel();
+            private JLabel wepSysHitsLabel = new JLabel("  Wep Damage");
+            private JLabel wepSysHitsImage = new JLabel();
+            private JLabel tarSysHitsLabel = new JLabel("  FC Damage");
+            private JLabel tarSysHitsImage = new JLabel();
+
+            private Unit unit;
+
+            public attackUnitEntryPanel(Unit unit){
+                this.unit = unit;
+
+                this.setLayout(new GridBagLayout());
+                GridBagConstraints aLoc = new GridBagConstraints();
+
+                aLoc.gridx = 0;
+                aLoc.gridy = 0;
+                this.add(unitSelectButton, aLoc);
+                unitSelectGroup.add(unitSelectButton); // add button to parent panel's group
+
+                aLoc.gridx = 1;
+                this.add(nameLabel, aLoc);
+
+                aLoc.gridx = 2;
+                this.add(nameLabel, aLoc);
+
+                aLoc.gridx = 3;
+                this.add(damageLabel, aLoc);
+
+                aLoc.gridx = 4;
+                this.add(wepSysHitsLabel, aLoc);
+
+                aLoc.gridx = 5;
+                this.add(wepSysHitsImage, aLoc);
+
+                aLoc.gridx = 6;
+                this.add(tarSysHitsLabel, aLoc);
+
+                aLoc.gridx = 7;
+                this.add(tarSysHitsImage, aLoc);
+            }
+
+            public void update(){
+                switch (unit.getType()) {
+                    default:
+                        iconLabel = new JLabel(new ImageIcon(infIcon));
+                        break;
+                    case 'm':
+                        iconLabel = new JLabel(new ImageIcon(mechIcon));
+                        break;
+                }
+
+                nameLabel.setText(unit.getName() + " " + unit.getVariant());
+
+                damageLabel.setText("  Attack Strength "
+                        + unit.getShortDmg() + "/"
+                        + unit.getMedDmg() + "/"
+                        + unit.getLongDmg());
+
+                wepSysHitsImage.setIcon(new ImageIcon(
+                        getCounterImage(4, 4- unit.getWepHits())));
+
+                tarSysHitsImage.setIcon(new ImageIcon(
+                        getCounterImage(4, 4- unit.getFCHits())));
+
+            }
+
+
+        }
+
         // TODO delete this prototyping
         unitManager = new UnitManager();
 
@@ -183,6 +256,17 @@ public class UnitSelectPanel extends JPanel {
     }
 
     private void buildUnitPanel(){
+        unitDataPanel.setLayout(new GridBagLayout());
+        GridBagConstraints gloc = new GridBagConstraints();
+        gloc.insets = new Insets(2, 0, 1, 0);
+
+
+        for (int idNum = 0; idNum < unitManager.getUnitCount(); idNum++) {
+
+        }
+    }
+
+    private void buildUnitPanelOld(){
         // Define the layout of the sub panel that will hold all units
         unitDataPanel.setLayout(new GridBagLayout());
         GridBagConstraints gloc = new GridBagConstraints();
