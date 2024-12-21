@@ -1,6 +1,6 @@
 
 Example of prototype layout.
-<img width="1359" alt="image" src="https://github.com/user-attachments/assets/8bfd5a12-d1a0-43fe-bac5-e4b94197c584" />
+![image](https://github.com/user-attachments/assets/d75af728-8a18-4ed3-94d3-20b7b09c39ae)
 
 # StrikeMaster
 
