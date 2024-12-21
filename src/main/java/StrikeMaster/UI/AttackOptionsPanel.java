@@ -60,7 +60,7 @@ public class AttackOptionsPanel extends JPanel {
             throw new RuntimeException(e);
         }
 
-        this.attackingUnit = UnitFactory.buidUnit(protoLib.getUnitData("AWS-9M"));
+        this.attackingUnit = UnitFactory.buidUnit(protoLib.getUnitData("AWS-9M"),99);
         // end prototyping
 
 
