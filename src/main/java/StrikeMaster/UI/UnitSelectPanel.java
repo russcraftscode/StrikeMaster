@@ -100,8 +100,6 @@ public class UnitSelectPanel extends JPanel {
     private final JButton editUnitButton = new JButton("Edit Unit");
     private JLabel panelLabel;
 
-    //private Unit rowUnit; // TODO remove this
-
     private ArrayList<Unit> units = new ArrayList<>();
 
     public UnitSelectPanel(int panelType) {
