@@ -150,18 +150,19 @@ public class UnitSelectPanel extends JPanel {
         editUnitButton.addActionListener(e -> {
             // TODO pass the selected unit instead of a random unit
             EditUnitPopup editUnitPopup = new EditUnitPopup(this.getSeletedUnit(), this);
-
         });
 
         // add components to unit select panel
         GridBagConstraints selectLoc = new GridBagConstraints();
         selectLoc.gridy=0;
-        //this.add(panelLabel, BorderLayout.NORTH);
         this.add(panelLabel, selectLoc);
+
         selectLoc.gridy++;
-        //this.add(unitScroll, BorderLayout.CENTER);
+        selectLoc.fill = GridBagConstraints.VERTICAL;
         this.add(unitScroll, selectLoc);
-        //this.add(editUnitButton, BorderLayout.SOUTH);
+
+        selectLoc.anchor = GridBagConstraints.SOUTH;
+        selectLoc.fill = GridBagConstraints.NONE;
         selectLoc.gridy++;
         selectLoc.weighty = 1;
         this.add(editUnitButton, selectLoc);
@@ -169,8 +170,10 @@ public class UnitSelectPanel extends JPanel {
 
     public Unit getSeletedUnit(){
         // TODO make better exception handling than just nulls
+
         for(SingleUnitPanel panel : singleUnitPanels){
-            if(panel.unitSelectButton.isSelected()){
+            System.out.println(panel.isSelected()); // DEBUG
+            if(panel.isSelected()){
                 return panel.unit;
             }
         }
@@ -201,10 +204,12 @@ public class UnitSelectPanel extends JPanel {
                     break;
             }
             unitDataPanel.add(singleUnitPanel, gloc);
-            singleUnitPanel.setBorder(BorderFactory.createLineBorder(Color.RED)); // DEBUG
             gloc.gridy++;
             singleUnitPanels.add(singleUnitPanel);
         }
+
+        // set the default selection to the first  sub panel  to prevent no-unit selected errors
+        singleUnitPanels.get(0).setSelected(true);
     }
 
     /**
@@ -460,7 +465,7 @@ public class UnitSelectPanel extends JPanel {
     }
 
     class SingleUnitPanel extends JPanel{
-        protected JRadioButton unitSelectButton = new JRadioButton();
+        //protected JRadioButton unitSelectButton = new JRadioButton();
         protected Unit unit;
 
         public SingleUnitPanel(){}
@@ -474,10 +479,17 @@ public class UnitSelectPanel extends JPanel {
             this.revalidate();
             this.repaint();
         }
+
+        public void setSelected(boolean sel){
+        }
+
+        public boolean isSelected(){
+            return true;
+        }
     }
 
     class AttackSingleUnitPanel extends SingleUnitPanel {
-        //private JRadioButton unitSelectButton = new JRadioButton();
+        private JRadioButton unitSelectButton = new JRadioButton();
         private JLabel iconLabel = new JLabel();
         private JLabel idLabel = new JLabel();
         private JLabel sideLabel = new JLabel();
@@ -487,8 +499,6 @@ public class UnitSelectPanel extends JPanel {
         private JLabel wepSysHitsImage = new JLabel();
         private JLabel tarSysHitsLabel = new JLabel("FC Damage");
         private JLabel tarSysHitsImage = new JLabel();
-
-
 
         public Unit getUnit() {
             return unit;
@@ -576,12 +586,28 @@ public class UnitSelectPanel extends JPanel {
             tarSysHitsImage.setIcon(new ImageIcon(
                     getCounterImage(4, 4- unit.getFCHits())));
 
+            // shade every other line
+            if(unit.getID()%2 == 0){
+                this.setBackground(Color.LIGHT_GRAY);
+                unitSelectButton.setBackground(Color.LIGHT_GRAY);
+                this.setOpaque(true);
+            }
+
             this.revalidate();
             this.repaint();
+        }
+
+        public void setSelected(boolean sel){
+            unitSelectButton.setSelected(sel);
+        }
+
+        public boolean isSelected(){
+            return unitSelectButton.isSelected();
         }
     }
 
     class TargetSingleUnitPanel extends SingleUnitPanel {
+        private JRadioButton unitSelectButton = new JRadioButton();
         private JLabel iconLabel = new JLabel();
         private JLabel idLabel = new JLabel();
         private JLabel nameLabel = new JLabel();
@@ -688,8 +714,23 @@ public class UnitSelectPanel extends JPanel {
             structureImage.setIcon(new ImageIcon(
                     getCounterImage(unit.getStructureMax(), unit.getStructureCur())));
 
+            // shade every other line
+            if(unit.getID()%2 == 0){
+                this.setBackground(Color.LIGHT_GRAY);
+                unitSelectButton.setBackground(Color.LIGHT_GRAY);
+                this.setOpaque(true);
+            }
+
             this.revalidate();
             this.repaint();
+        }
+
+        public void setSelected(boolean sel){
+            unitSelectButton.setSelected(sel);
+        }
+
+        public boolean isSelected(){
+            return unitSelectButton.isSelected();
         }
     }
 

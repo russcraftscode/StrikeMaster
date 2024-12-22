@@ -35,11 +35,6 @@ public class AppWindow extends JFrame {
         UnitSelectPanel attackerSelectPanel = new UnitSelectPanel(UnitSelectPanel.ATTACK);
         UnitSelectPanel targetSelectPanel = new UnitSelectPanel(UnitSelectPanel.TARGET);
         AttackOptionsPanel attackOptionsPanel = new AttackOptionsPanel();
-        //attackerSelectPanel.setPreferredSize(new Dimension(attackerSelectPanel.getPreferredSize().width, attackOptionsPanel.getPreferredSize().height));
-        //targetSelectPanel.setPreferredSize(new Dimension(targetSelectPanel.getPreferredSize().width, attackOptionsPanel.getPreferredSize().height));
-
-        attackerSelectPanel.setBorder(BorderFactory.createLineBorder(Color.yellow)); // debug
-        targetSelectPanel.setBorder(BorderFactory.createLineBorder(Color.blue)); // debug
 
         combatLoc.fill = GridBagConstraints.VERTICAL;
         combatLoc.gridx = 0;
