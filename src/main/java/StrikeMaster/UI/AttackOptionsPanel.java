@@ -29,7 +29,6 @@ public class AttackOptionsPanel extends JPanel {
     private int attackerDamMod = 0; // modifier caused by damage to the attacker's targeting system
     private int toHitFinal = 0; // roll needed to hit the target
 
-
     private boolean indirectFire = false;
     private boolean partialCover = false;
     private boolean woods = false;
@@ -49,6 +48,9 @@ public class AttackOptionsPanel extends JPanel {
 
     private final JComboBox overHeatBox = new JComboBox();
 
+    /**
+     * Panel that lets users input all variables that will affect an attack roll.
+     */
     public AttackOptionsPanel() {
 
         // TODO delete this next part. This is only to provide data for prototyping the panel.

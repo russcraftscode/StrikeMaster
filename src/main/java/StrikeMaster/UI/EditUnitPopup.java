@@ -5,21 +5,31 @@ import StrikeMaster.Units.Unit;
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * A popup window that lets users directly edit a unit's stats.
+ */
 public class EditUnitPopup extends JDialog {
-    GridBagConstraints gbc = new GridBagConstraints();
-    final int idCol = 0;
-    final int firstSepCol = 1;
-    final int statLabelCol = 2;
-    final int statTextCol = 3;
-    final int secondSepCol = 4;
-    final int boxCol = 5;
-    final int statTextW = 60;
-    final int okButtonRow = 20;
+    private GridBagConstraints gbc = new GridBagConstraints();
+    private final int idCol = 0;
+    private final int firstSepCol = 1;
+    private final int statLabelCol = 2;
+    private final int statTextCol = 3;
+    private final int secondSepCol = 4;
+    private final int boxCol = 5;
+    private final int statTextW = 60;
+    private final int okButtonRow = 20;
 
-    //public EditUnitPopup(Unit selectedUnit) {
+    // TODO this popup should call on other panels to update by
+    // a better means than being passed its parent panel.
+
+    /**
+     * Constructs the popup that lets a user directly edit a unit outside
+     * of normal game interactions.
+     * @param selectedUnit the unit to be edited.
+     * @param ownerPanel the panel that called this popup
+     */
     public EditUnitPopup(Unit selectedUnit, UnitSelectPanel ownerPanel) {
         this.setTitle("Manually Edit Unit");
-
         this.setLayout(new GridBagLayout());
 
         gbc.insets = new Insets(1,1,1,1);
@@ -138,6 +148,7 @@ public class EditUnitPopup extends JDialog {
         destroyedBox.setSelected(selectedUnit.isDestroyed());
         addBox(destroyedBox);
 
+        // place a separator between the 1st and 2nd column
         gbc.gridy = 1;
         gbc.gridheight = okButtonRow-2;
         gbc.fill = GridBagConstraints.VERTICAL;
@@ -145,19 +156,28 @@ public class EditUnitPopup extends JDialog {
         JSeparator firstSep = new JSeparator(SwingConstants.VERTICAL);
         this.add(firstSep, gbc);
 
+        // place a separator between the 2nd and 3rd column
         gbc.gridx = secondSepCol;
         JSeparator secondSep = new JSeparator(SwingConstants.VERTICAL);
         this.add(secondSep, gbc);
 
-        // create an add OK and Cancel buttons
+        // create sub-panel to hold OK and Cancel buttons
         JPanel okButtonPanel = new JPanel(new FlowLayout());
         gbc.gridy = okButtonRow;
         gbc.gridx = 0;
         gbc.gridwidth = 10;
         gbc.fill = GridBagConstraints.NONE;
         gbc.anchor = GridBagConstraints.SOUTH;
+        this.add(okButtonPanel, gbc);
 
+
+        // create and add Save and Cancel buttons to sub-panel
         JButton saveButton = new JButton("Save Edits");
+        okButtonPanel.add(saveButton);
+        JButton closeButton = new JButton("Close Without Saving");
+        okButtonPanel.add(closeButton);
+
+        // add logic to buttons
         saveButton.addActionListener(e -> {
             // update values
             selectedUnit.setSkill((Integer) skillBox.getSelectedItem());
@@ -183,20 +203,17 @@ public class EditUnitPopup extends JDialog {
             ownerPanel.updateUnits();
             this.dispose();
         });
-
-        okButtonPanel.add(saveButton);
-
-        JButton closeButton = new JButton("Close Without Saving");
         closeButton.addActionListener(e -> this.dispose());
-        okButtonPanel.add(closeButton);
 
-        this.add(okButtonPanel, gbc);
-
-        this.setLocationRelativeTo(ownerPanel);
+        this.setLocationRelativeTo(ownerPanel); // make popup appear centered
         this.pack();
         this.setVisible(true);
     }
 
+    /**
+     * Place a non-editable text table that describes the unit's identity.
+     * @param label the label to be placed
+     */
     private void addIDLabel(JLabel label){
         gbc.gridx = idCol;
         gbc.gridy ++;
@@ -205,6 +222,11 @@ public class EditUnitPopup extends JDialog {
         this.add(label, gbc);
     }
 
+    /**
+     * Place a non-editable text label that names a category
+     * that describes the unit's current condition.
+     * @param label the label to be placed
+     */
     private void addStatLabel(JLabel label){
         gbc.gridx = statLabelCol;
         gbc.gridy ++;
@@ -213,6 +235,15 @@ public class EditUnitPopup extends JDialog {
         this.add(label, gbc);
     }
 
+
+    /**
+     * Place a combobox that lets the user select a valid value
+     * for a variable that describes the unit's current condition.
+     * @param box the JComboBox to be placed
+     * @param min the minimum value that can be selected
+     * @param max the maximum value that can be selected
+     * @param currentValue the current value of that variable
+     */
     private void addStatCombobox(JComboBox<Integer> box, int min, int max, int currentValue){
         gbc.anchor = GridBagConstraints.WEST;
         gbc.gridx = statTextCol;
@@ -228,6 +259,11 @@ public class EditUnitPopup extends JDialog {
         this.add(box, gbc);
     }
 
+    /**
+     * Place a checkbox that lets the user select describe a unit's
+     * current status.
+     * @param box the checkbox to be placed
+     */
     private void addBox(JCheckBox box){
         gbc.gridx = boxCol;
         gbc.gridy ++;
