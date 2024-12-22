@@ -17,7 +17,7 @@ public class EditUnitPopup extends JDialog {
     final int okButtonRow = 20;
 
     //public EditUnitPopup(Unit selectedUnit) {
-    public EditUnitPopup(Unit selectedUnit, JPanel ownerPanel) {
+    public EditUnitPopup(Unit selectedUnit, UnitSelectPanel ownerPanel) {
         this.setTitle("Manually Edit Unit");
 
         this.setLayout(new GridBagLayout());
@@ -180,7 +180,11 @@ public class EditUnitPopup extends JDialog {
             selectedUnit.setImmobile(immobileBox.isSelected());
             selectedUnit.setDestroyed(destroyedBox.isSelected());
 
+            System.out.println("Edit Popup"); // DEBUG
+            System.out.println(selectedUnit);// DEBUG
+
             // close the popup
+            ownerPanel.updateUnits();
             this.dispose();
         });
 

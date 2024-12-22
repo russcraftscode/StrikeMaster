@@ -196,6 +196,8 @@ public class AttackOptionsPanel extends JPanel {
 
         this.createModLabel("Roll Needed to Hit:", gloc);
         this.createModNumber(this.toHitNumber, this.toHitFinal, gloc, false);
+        // highlight the needed to-hit number with a boarder
+        this.toHitNumber.setBorder(BorderFactory.createBevelBorder(BevelBorder.RAISED));
 
         // Fire Button
         JButton fireButton = new JButton("FIRE");
