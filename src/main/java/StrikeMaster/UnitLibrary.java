@@ -26,7 +26,6 @@ public class UnitLibrary {
 
         try (BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream))) {
             List<String> lst = reader.lines().collect(Collectors.toList());
-
             for (String entry : lst) {
                 // disregard the 1st line that does not have a |
                 if (entry.contains("|")) {
@@ -40,7 +39,6 @@ public class UnitLibrary {
         List<String> lst = Files.readAllLines(Paths.get(libraryFileName));
         // for( String e: lst) System.out.println(e); // DEBUG
         for( String entry : lst ) {
-            // System.out.println(entry); // DEBUG
             //disregard the 1st line that does not have a |
             if(entry.contains("|")) library.add(UnitDataFactory.buildUnitData(entry));
         }

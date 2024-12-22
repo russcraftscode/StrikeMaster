@@ -49,7 +49,6 @@ public class EditUnitPopup extends JDialog {
         JLabel pvLabel = new JLabel("Point Value: " + selectedUnit.getPV() );
         addIDLabel(pvLabel);
 
-
         // create and place unit stat labels
         gbc.gridy = 0;
         JLabel skillLabel = new JLabel("Skill:" );
@@ -180,9 +179,6 @@ public class EditUnitPopup extends JDialog {
             selectedUnit.setImmobile(immobileBox.isSelected());
             selectedUnit.setDestroyed(destroyedBox.isSelected());
 
-            System.out.println("Edit Popup"); // DEBUG
-            System.out.println(selectedUnit);// DEBUG
-
             // close the popup
             ownerPanel.updateUnits();
             this.dispose();
@@ -195,7 +191,6 @@ public class EditUnitPopup extends JDialog {
         okButtonPanel.add(closeButton);
 
         this.add(okButtonPanel, gbc);
-
 
         this.setLocationRelativeTo(ownerPanel);
         this.pack();

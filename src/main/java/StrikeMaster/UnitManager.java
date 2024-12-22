@@ -20,11 +20,10 @@ public class UnitManager {
             throw new RuntimeException(e);
         }
 
-        
         units.add(UnitFactory.buidUnit(unitLibrary.getUnitData("AWS-9M"), idNum++));
         units.add(UnitFactory.buidUnit(unitLibrary.getUnitData("AS7-D"), idNum++));
         units.add(UnitFactory.buidUnit(unitLibrary.getUnitData("DRG-1N"), idNum++));
-        /*units.add(UnitFactory.buidUnit(unitLibrary.getUnitData("KGC-0000"), idNum++));
+        units.add(UnitFactory.buidUnit(unitLibrary.getUnitData("KGC-0000"), idNum++));
         units.add(UnitFactory.buidUnit(unitLibrary.getUnitData("MAD-3R"), idNum++));
         units.add(UnitFactory.buidUnit(unitLibrary.getUnitData("RFL-3N"), idNum++));
         units.add(UnitFactory.buidUnit(unitLibrary.getUnitData("SHD-2H"), idNum++));
@@ -38,7 +37,7 @@ public class UnitManager {
         units.add(UnitFactory.buidUnit(unitLibrary.getUnitData("WSP-1A"), idNum++));
         units.add(UnitFactory.buidUnit(unitLibrary.getUnitData("WVR-6R"), idNum++));
         units.add(UnitFactory.buidUnit(unitLibrary.getUnitData("ZEU-6S"), idNum++));
-        units.add(UnitFactory.buidUnit(unitLibrary.getUnitData("ARC-2R"), idNum++));
+        /*units.add(UnitFactory.buidUnit(unitLibrary.getUnitData("ARC-2R"), idNum++));
         units.add(UnitFactory.buidUnit(unitLibrary.getUnitData("BLR-1G"), idNum++));
         units.add(UnitFactory.buidUnit(unitLibrary.getUnitData("CPLT-C1"), idNum++));
         units.add(UnitFactory.buidUnit(unitLibrary.getUnitData("HBK-4G"), idNum++));
@@ -48,8 +47,6 @@ public class UnitManager {
         units.add(UnitFactory.buidUnit(unitLibrary.getUnitData("CN9-A"), idNum++));
         units.add(UnitFactory.buidUnit(unitLibrary.getUnitData("JM6-S"), idNum++));
         units.add(UnitFactory.buidUnit(unitLibrary.getUnitData("JR7-D"), idNum++));*/
-
-        
         // end prototyping
     }
     

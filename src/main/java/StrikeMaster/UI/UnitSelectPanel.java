@@ -2,7 +2,6 @@ package StrikeMaster.UI;
 
 import StrikeMaster.UnitManager;
 import StrikeMaster.Units.Unit;
-import StrikeMaster.LabelSizer;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -104,26 +103,17 @@ public class UnitSelectPanel extends JPanel {
     // create a button group for all unit select radio buttons
     private final ButtonGroup unitSelectGroup = new ButtonGroup();
 
-    private ArrayList<Unit> units = new ArrayList<>();
+    private final ArrayList<SingleUnitPanel> singleUnitPanels = new ArrayList<>();
 
-    private int selectedUnitId = 0;
-
-    //private ArrayList<ArrayList<JComponent>> unitRows = new ArrayList<>();
-    private ArrayList<UnitEntryPanel> unitEntryPanels = new ArrayList<UnitEntryPanel>();
-    //private ArrayList<TargetUnitEntryPanel> unitSubPanels = new ArrayList<AttackUnitEntryPanel>();
-//TODO make a move unit sub panel
+    //TODO make a move unit sub panel
     public UnitSelectPanel(int panelType) {
-
 
         // TODO delete this prototyping
         unitManager = new UnitManager();
-        unitManager.getUnit(0).setFCHits(1);
 
         // end prototyping
 
-        //this.setLayout(new BorderLayout());
         this.setLayout(new GridBagLayout());
-
 
         // define the type of unit select panel
         this.panelType = panelType;
@@ -150,9 +140,6 @@ public class UnitSelectPanel extends JPanel {
         //this.update();
         this.buildUnitPanel();
 
-
-        //unitDataPanel.setPreferredSize(unitDataPanel.getPreferredSize());
-
         // Add unit data panel to scroll pane and add that to AttackPanel
         JScrollPane unitScroll = new JScrollPane();
         // anchor the unitDataPanel to the top of the scroll pane if it isn't big enough to scroll
@@ -162,7 +149,7 @@ public class UnitSelectPanel extends JPanel {
         editUnitButton.setPreferredSize(new Dimension(editUnitButton.getPreferredSize().width, 20));
         editUnitButton.addActionListener(e -> {
             // TODO pass the selected unit instead of a random unit
-            EditUnitPopup editUnitPopup = new EditUnitPopup(this.unitManager.getUnit(0), this);
+            EditUnitPopup editUnitPopup = new EditUnitPopup(this.getSeletedUnit(), this);
 
         });
 
@@ -178,6 +165,16 @@ public class UnitSelectPanel extends JPanel {
         selectLoc.gridy++;
         selectLoc.weighty = 1;
         this.add(editUnitButton, selectLoc);
+    }
+
+    public Unit getSeletedUnit(){
+        // TODO make better exception handling than just nulls
+        for(SingleUnitPanel panel : singleUnitPanels){
+            if(panel.unitSelectButton.isSelected()){
+                return panel.unit;
+            }
+        }
+        return null;
     }
 
     private void buildUnitPanel(){
@@ -190,183 +187,33 @@ public class UnitSelectPanel extends JPanel {
         gloc.weightx = 1;
 
         for (int idNum = 0; idNum < unitManager.getUnitCount(); idNum++) {
-            UnitEntryPanel unitEntryPanel;
+            SingleUnitPanel singleUnitPanel;
             switch (this.panelType){
                 // TODO add move panel
                 case UnitSelectPanel.ATTACK:
-                    unitEntryPanel = new AttackUnitEntryPanel(unitManager.getUnit(idNum));
+                    singleUnitPanel = new AttackSingleUnitPanel(unitManager.getUnit(idNum));
                     break;
                 case UnitSelectPanel.TARGET:
-                    unitEntryPanel = new TargetUnitEntryPanel(unitManager.getUnit(idNum));
+                    singleUnitPanel = new TargetSingleUnitPanel(unitManager.getUnit(idNum));
                     break;
                 default:
-                    unitEntryPanel = new AttackUnitEntryPanel(unitManager.getUnit(idNum));
+                    singleUnitPanel = new AttackSingleUnitPanel(unitManager.getUnit(idNum));
                     break;
             }
-            unitDataPanel.add(unitEntryPanel, gloc);
-            unitEntryPanel.setBorder(BorderFactory.createLineBorder(Color.RED)); // DEBUG
+            unitDataPanel.add(singleUnitPanel, gloc);
+            singleUnitPanel.setBorder(BorderFactory.createLineBorder(Color.RED)); // DEBUG
             gloc.gridy++;
-            unitEntryPanels.add(unitEntryPanel);
+            singleUnitPanels.add(singleUnitPanel);
         }
     }
-
 
     /**
      * This builds swing elements to go in the scroll pane
      */
     public void updateUnits() {
-        for(UnitEntryPanel entryPanel : unitEntryPanels){
+        for(SingleUnitPanel entryPanel : singleUnitPanels){
             entryPanel.updateGraphics();
         }
-
-    }
-    public void updateUnitsOld() {
-        // Define the layout of the sub panel that will hold all units
-        unitDataPanel.setLayout(new GridBagLayout());
-        GridBagConstraints gloc = new GridBagConstraints();
-        gloc.insets = new Insets(2, 0, 1, 0);
-
-        // create a button group for all unit select radio buttons
-        ButtonGroup unitSelectGroup = new ButtonGroup();
-
-        for (int i = 0; i < units.size(); i++) {
-            Unit rowUnit = units.get(i);
-
-            ArrayList<JComponent> rowElements = new ArrayList<>();
-
-            gloc.gridy = i;
-            gloc.gridx = 0;
-            gloc.fill = 1;
-            JRadioButton unitSelectButton = new JRadioButton();
-            unitSelectGroup.add(unitSelectButton);
-            unitDataPanel.add(unitSelectButton, gloc);
-
-            // Create the icon for the unit
-            gloc.gridx++; // move to the next col
-            JLabel iconLabel;
-            switch (rowUnit.getType()) {
-                default:
-                    iconLabel = new JLabel(new ImageIcon(infIcon));
-                    break;
-                case 'm':
-                    iconLabel = new JLabel(new ImageIcon(mechIcon));
-                    break;
-            }
-            unitDataPanel.add(iconLabel, gloc);
-            rowElements.add(iconLabel);
-
-
-            // Create the name label for the unit
-            gloc.gridx++; // move to the next col
-            JLabel nameLabel = new JLabel(rowUnit.getName() + " " + rowUnit.getVariant());
-            unitDataPanel.add(nameLabel, gloc);
-            rowElements.add(nameLabel);
-
-            // if attack panel show damage values
-            if (this.panelType == UnitSelectPanel.ATTACK) {
-                gloc.gridx++; // move to the next col
-                JLabel damageLabel = new JLabel("  Attack Strength "
-                        + rowUnit.getShortDmg() + "/"
-                        + rowUnit.getMedDmg() + "/"
-                        + rowUnit.getLongDmg());
-                unitDataPanel.add(damageLabel, gloc);
-                rowElements.add(damageLabel);
-
-                gloc.gridx++; // move to the next col
-                JLabel wepSysHitsLabel = new JLabel("  Wep Damage");
-                unitDataPanel.add(wepSysHitsLabel, gloc);
-                rowElements.add(wepSysHitsLabel);
-
-                gloc.gridx++; // move to the next col
-                JLabel wepSysHitsImage = new JLabel(new ImageIcon(
-                        this.getCounterImage(4, 4- rowUnit.getWepHits())));
-                unitDataPanel.add(wepSysHitsImage, gloc);
-                rowElements.add(wepSysHitsImage);
-
-                gloc.gridx++; // move to the next col
-                JLabel tarSysHitsLabel = new JLabel("  FC Damage");
-                unitDataPanel.add(tarSysHitsLabel, gloc);
-                rowElements.add(tarSysHitsLabel);
-
-                gloc.gridx++; // move to the next col
-                JLabel tarSysHitsImage = new JLabel(new ImageIcon(
-                        this.getCounterImage(4, 4- rowUnit.getFCHits())));
-                unitDataPanel.add(tarSysHitsImage, gloc);
-                rowElements.add(tarSysHitsImage);
-            }
-
-            // if target panel show armor / structure values
-            if (this.panelType == UnitSelectPanel.TARGET) {
-                gloc.gridx++; // move to the next col
-                JLabel armorLabel = new JLabel(" Armor:");
-                unitDataPanel.add(armorLabel, gloc);
-                rowElements.add(armorLabel);
-                // Display a graphic for prototyping purposes
-                gloc.gridx++; // move to the next col
-                JLabel armorImage = new JLabel(new ImageIcon(
-                        getCounterImage( rowUnit.getArmorMax(), rowUnit.getArmorCur())));
-                unitDataPanel.add(armorImage, gloc);
-                rowElements.add(armorImage);
-                gloc.gridx++; // move to the next col
-                JLabel structureLabel = new JLabel(" Internal:");
-                unitDataPanel.add(structureLabel, gloc);
-                rowElements.add(structureLabel);
-                // Display a graphic for prototyping purposes
-                gloc.gridx++; // move to the next col
-                JLabel structureImage = new JLabel(new ImageIcon(
-                        getCounterImage( rowUnit.getArmorMax(), rowUnit.getArmorCur())));
-                unitDataPanel.add(structureImage, gloc);
-                rowElements.add(structureImage);
-                gloc.gridx++; // move to the next col
-                JLabel tmmLabel = new JLabel(" TMM: ");
-                unitDataPanel.add(tmmLabel, gloc);
-                rowElements.add(tmmLabel);
-                gloc.gridx++; // move to the next col
-                JLabel tmmValue = new JLabel(rowUnit.getTMM() + " ");
-                tmmValue.setPreferredSize(LabelSizer.dimension(tmmValue));
-                unitDataPanel.add(tmmValue, gloc);
-                rowElements.add(tmmValue);
-            }
-
-
-            // Darken every other line
-            if (i % 2 == 0) {
-                for (JComponent component : rowElements) {
-                    component.setBackground(Color.LIGHT_GRAY);
-                    component.setOpaque(true);
-                }
-            }
-        }
-
-        //unitDataPanel.setPreferredSize(unitDataPanel.getPreferredSize());
-
-        // Add unit data panel to scroll pane and add that to AttackPanel
-        JScrollPane unitScroll = new JScrollPane();
-        // anchor the unitDataPanel to the top of the scroll pane if it isn't big enough to scroll
-        unitScroll.getViewport().setLayout(new FlowLayout(FlowLayout.LEADING));
-        unitScroll.getViewport().add(unitDataPanel);
-
-        editUnitButton.setPreferredSize(new Dimension(editUnitButton.getPreferredSize().width, 20));
-        editUnitButton.addActionListener(e -> {
-            // TODO pass the selected unit instead of a random unit
-            EditUnitPopup editUnitPopup = new EditUnitPopup(this.units.get(0), this);
-
-        });
-
-        // add components to unit select panel
-        GridBagConstraints selectLoc = new GridBagConstraints();
-        selectLoc.gridy=0;
-        //this.add(panelLabel, BorderLayout.NORTH);
-        this.add(panelLabel, selectLoc);
-        selectLoc.gridy++;
-        //this.add(unitScroll, BorderLayout.CENTER);
-        this.add(unitScroll, selectLoc);
-        //this.add(editUnitButton, BorderLayout.SOUTH);
-        selectLoc.gridy++;
-        selectLoc.weighty = 1;
-        this.add(editUnitButton, selectLoc);
-
-
     }
 
     private void loadImages() throws IOException {
@@ -612,28 +459,25 @@ public class UnitSelectPanel extends JPanel {
         }
     }
 
-    class UnitEntryPanel extends JPanel{
+    class SingleUnitPanel extends JPanel{
+        protected JRadioButton unitSelectButton = new JRadioButton();
+        protected Unit unit;
 
-        public UnitEntryPanel(){
+        public SingleUnitPanel(){}
 
-        }
-
-        public UnitEntryPanel(Unit unit){
-
+        public SingleUnitPanel(Unit unit){
+            this.unit = unit;
             this.updateGraphics();
         }
 
         public void updateGraphics(){
-
             this.revalidate();
             this.repaint();
         }
-
-
     }
 
-    class AttackUnitEntryPanel extends UnitEntryPanel{
-        private JRadioButton unitSelectButton = new JRadioButton();
+    class AttackSingleUnitPanel extends SingleUnitPanel {
+        //private JRadioButton unitSelectButton = new JRadioButton();
         private JLabel iconLabel = new JLabel();
         private JLabel idLabel = new JLabel();
         private JLabel sideLabel = new JLabel();
@@ -644,9 +488,13 @@ public class UnitSelectPanel extends JPanel {
         private JLabel tarSysHitsLabel = new JLabel("FC Damage");
         private JLabel tarSysHitsImage = new JLabel();
 
-        private Unit unit;
 
-        public AttackUnitEntryPanel(Unit unit){
+
+        public Unit getUnit() {
+            return unit;
+        }
+
+        public AttackSingleUnitPanel(Unit unit){
             this.unit = unit;
 
             this.setLayout(new GridBagLayout());
@@ -708,16 +556,12 @@ public class UnitSelectPanel extends JPanel {
 
         public void updateGraphics(){
             nameLabel.setText(unit.getName() + " " + unit.getVariant());
-
             sideLabel.setText("Red");
-
             idLabel.setText(String.valueOf(unit.getID()));
-
             damageLabel.setText("  Attack Strength "
                     + unit.getShortDmg() + "/"
                     + unit.getMedDmg() + "/"
                     + unit.getLongDmg());
-
             switch (unit.getType()) {
                 // TODO add other unit types
                 default:
@@ -727,21 +571,17 @@ public class UnitSelectPanel extends JPanel {
                     iconLabel.setIcon(new ImageIcon(mechIcon));
                     break;
             }
-
             wepSysHitsImage.setIcon(new ImageIcon(
                     getCounterImage(4, 4- unit.getWepHits())));
-
             tarSysHitsImage.setIcon(new ImageIcon(
                     getCounterImage(4, 4- unit.getFCHits())));
 
             this.revalidate();
             this.repaint();
         }
-
-
     }
-    class TargetUnitEntryPanel extends UnitEntryPanel{
-        private JRadioButton unitSelectButton = new JRadioButton();
+
+    class TargetSingleUnitPanel extends SingleUnitPanel {
         private JLabel iconLabel = new JLabel();
         private JLabel idLabel = new JLabel();
         private JLabel nameLabel = new JLabel();
@@ -752,9 +592,11 @@ public class UnitSelectPanel extends JPanel {
         private JLabel structureImage = new JLabel();
         private JLabel tmmLabel = new JLabel();
 
-        private Unit unit;
+        public Unit getUnit() {
+            return unit;
+        }
 
-        public TargetUnitEntryPanel(Unit unit){
+        public TargetSingleUnitPanel(Unit unit){
             this.unit = unit;
 
             this.setLayout(new GridBagLayout());
@@ -816,7 +658,6 @@ public class UnitSelectPanel extends JPanel {
 
             aLoc.gridx = 5;
             this.add(structureImage, aLoc);
-            //structureImage.setHorizontalAlignment(SwingConstants.RIGHT);
             //structureImage.setBorder(BorderFactory.createLineBorder(Color.GREEN));// DEBUG
 
             this.updateGraphics();
@@ -850,9 +691,6 @@ public class UnitSelectPanel extends JPanel {
             this.revalidate();
             this.repaint();
         }
-
-
     }
-
 
 }
