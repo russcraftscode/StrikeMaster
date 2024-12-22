@@ -6,6 +6,7 @@ import StrikeMaster.Units.Unit;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -14,7 +15,8 @@ import java.util.Observer;
 
 
 /**
- * This panel allows the player to select a unit
+ * This panel displays contextually relevant information about all units and allows
+ * the user to select a unit. UnitManger tracks which unit is selected.
  */
 public class UnitSelectPanel extends JPanel implements Observer {
     public static final int ATTACK = 1;
@@ -156,7 +158,20 @@ public class UnitSelectPanel extends JPanel implements Observer {
 
         editUnitButton.setPreferredSize(new Dimension(editUnitButton.getPreferredSize().width, 20));
         editUnitButton.addActionListener(e -> {
-            EditUnitPopup editUnitPopup = new EditUnitPopup(this.getSeletedUnit());
+            EditUnitPopup editUnitPopup;
+            // pass a different unit to the popup depending on which type of panel this is
+            switch (this.panelType){
+                // TODO add move panel
+                case UnitSelectPanel.ATTACK:
+                    editUnitPopup = new EditUnitPopup(UnitManager.getSelectedAttacker());
+                    break;
+                case UnitSelectPanel.TARGET:
+                    editUnitPopup = new EditUnitPopup(UnitManager.getSelectedTarget());
+                    break;
+                default:
+                    editUnitPopup = new EditUnitPopup(UnitManager.getSelectedAttacker());
+                    break;
+            }
         });
 
         // add components to unit select panel
@@ -181,7 +196,7 @@ public class UnitSelectPanel extends JPanel implements Observer {
      */
     public Unit getSeletedUnit(){
         // TODO make better exception handling than just nulls
-
+        // TODO remove this when UnitManger takes over unit selection tracking
         for(SingleUnitPanel panel : singleUnitPanels){
             System.out.println(panel.isSelected()); // DEBUG
             if(panel.isSelected()){
@@ -620,6 +635,12 @@ public class UnitSelectPanel extends JPanel implements Observer {
             this.add(tarSysHitsImage, aLoc);
             //tarSysHitsImage.setBorder(BorderFactory.createLineBorder(Color.GREEN));// DEBUG
 
+            // tell UnitManger a new unit has been selected
+            this.unitSelectButton.addActionListener(s->
+            {
+                UnitManager.changeSelectedAttacker(unit.getID());
+            });
+
             this.updateGraphics();
         }
 
@@ -665,6 +686,8 @@ public class UnitSelectPanel extends JPanel implements Observer {
          */
         public void setSelected(boolean sel){
             unitSelectButton.setSelected(sel);
+            // tell UnitManger a new unit has been selected
+            UnitManager.changeSelectedAttacker(unit.getID());
         }
 
         /**
@@ -769,6 +792,12 @@ public class UnitSelectPanel extends JPanel implements Observer {
             this.add(structureImage, aLoc);
             //structureImage.setBorder(BorderFactory.createLineBorder(Color.GREEN));// DEBUG
 
+            // tell UnitManger a new unit has been selected
+            this.unitSelectButton.addActionListener(s->
+            {
+                UnitManager.changeSelectedTarget(unit.getID());
+            });
+
             this.updateGraphics();
         }
 
@@ -815,9 +844,7 @@ public class UnitSelectPanel extends JPanel implements Observer {
          * Sets the radio button for this unit.
          * @param sel if the unit should be selected.
          */
-        public void setSelected(boolean sel){
-            unitSelectButton.setSelected(sel);
-        }
+        public void setSelected(boolean sel){unitSelectButton.setSelected(sel);}
 
         /**
          * Returns if this panel is selected.

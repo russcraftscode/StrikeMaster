@@ -98,11 +98,39 @@ public class UnitManager extends Observable {
     }
 
     /**
+     * @return the ID of the currently selected attacking unit
+     */
+    public static int getSelectedAttackerId(){
+        return attackerId;
+    }
+
+    /**
+     * @return the currently selected attacking unit
+     */
+    public static Unit getSelectedAttacker(){
+        return units.get(attackerId);
+    }
+
+    /**
      * @param id the ID number of the newly selected unit
      */
     public static void changeSelectedTarget(int id){
         attackerId = id;
         UnitManager.getInstance().updatedUnit();
+    }
+
+    /**
+     * @return the ID of the currently selected attacking unit
+     */
+    public static int getSelectedTargetId(){
+        return targetId;
+    }
+
+    /**
+     * @return the currently selected attacking unit
+     */
+    public static Unit getSelectedTarget(){
+        return units.get(targetId);
     }
 
     /**
