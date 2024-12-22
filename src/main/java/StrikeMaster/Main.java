@@ -6,6 +6,9 @@ import StrikeMaster.UI.AppWindow;
 public class Main {
     public static void main(String[] args) {
 
+        // Initialize UnitManger singleton
+        UnitManager unitManager = UnitManager.getInstance();
+
         // TODO make this an option for the user
         //boolean hiRez = false;
         boolean hiRez = true;

@@ -5,15 +5,34 @@ import StrikeMaster.Units.Unit;
 import java.io.IOException;
 import java.util.ArrayList;
 
+/**
+ * UnitManager class handles all units in a game.
+ * Employs a singleton pattern to ensure there is
+ * only one copy of this data throughout entire program.
+ */
 public class UnitManager {
-    private ArrayList<Unit> units = new ArrayList<>();
-    private int idNum = 0;
-    private UnitLibrary unitLibrary;
+
+    private static UnitManager instance;
+
+    private static ArrayList<Unit> units = new ArrayList<>();
+    private static int idNum = 0;
+    private static UnitLibrary unitLibrary;
+
+    /**
+     * Instantiate singleton instance of UnitManager
+     * @return TacticController - Always returns the original TacticController object
+     */
+    public static UnitManager getInstance() {
+        if (UnitManager.instance == null) {
+            UnitManager.instance = new UnitManager();
+        }
+
+        return UnitManager.instance;
+    }
 
 
     public UnitManager(){
         // TODO delete this next part. This is only to provide data for prototyping the panel.
-
         try {
            unitLibrary = new UnitLibrary();
         } catch (IOException e) {
@@ -50,7 +69,7 @@ public class UnitManager {
         // end prototyping
     }
     
-    public Unit getUnit (int id){
+    public static Unit getUnit (int id){
         // TODO make better exception handling than returning a null
 
         for(Unit unit : units){
@@ -59,7 +78,9 @@ public class UnitManager {
         return null;
     }
 
-    public int getUnitCount(){
+
+
+    public static int getUnitCount(){
         return units.size();
     }
 }

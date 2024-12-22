@@ -98,7 +98,7 @@ public class UnitSelectPanel extends JPanel {
     private final JButton editUnitButton = new JButton("Edit Unit");
     private final JLabel panelLabel = new JLabel();
 
-    private UnitManager unitManager; // TODO this needs to be replaced with singleton
+    // UnitManager unitManager; // TODO this needs to be replaced with singleton
 
     // create a button group for all unit select radio buttons
     private final ButtonGroup unitSelectGroup = new ButtonGroup();
@@ -113,7 +113,7 @@ public class UnitSelectPanel extends JPanel {
     public UnitSelectPanel(int panelType) {
 
         // TODO delete this prototyping
-        unitManager = new UnitManager();
+        //unitManager = new UnitManager();
 
         // end prototyping
 
@@ -196,18 +196,18 @@ public class UnitSelectPanel extends JPanel {
         gloc.fill = GridBagConstraints.HORIZONTAL;
         gloc.weightx = 1;
 
-        for (int idNum = 0; idNum < unitManager.getUnitCount(); idNum++) {
+        for (int idNum = 0; idNum < UnitManager.getUnitCount(); idNum++) {
             SingleUnitPanel singleUnitPanel;
             switch (this.panelType){
                 // TODO add move panel
                 case UnitSelectPanel.ATTACK:
-                    singleUnitPanel = new AttackSingleUnitPanel(unitManager.getUnit(idNum));
+                    singleUnitPanel = new AttackSingleUnitPanel(UnitManager.getUnit(idNum));
                     break;
                 case UnitSelectPanel.TARGET:
-                    singleUnitPanel = new TargetSingleUnitPanel(unitManager.getUnit(idNum));
+                    singleUnitPanel = new TargetSingleUnitPanel(UnitManager.getUnit(idNum));
                     break;
                 default:
-                    singleUnitPanel = new AttackSingleUnitPanel(unitManager.getUnit(idNum));
+                    singleUnitPanel = new AttackSingleUnitPanel(UnitManager.getUnit(idNum));
                     break;
             }
             unitDataPanel.add(singleUnitPanel, gloc);
@@ -311,6 +311,7 @@ public class UnitSelectPanel extends JPanel {
      * @return the requested image of counters
      */
     private BufferedImage getCounterImage(int total, int current) {
+        // TODO consider moving this to it's own class. Maybe a static class.
         switch (total) {
             case 1:
                 switch (current) {
