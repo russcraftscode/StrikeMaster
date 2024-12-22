@@ -44,19 +44,19 @@ You will still need to have all of your game materials and know how to play. Thi
 - Physical Attacks
 - Pilot Skill Ratings
 - Common Special Abilities such as
--- ENG (energy based weapons)
--- CASE (limits damage from internal ammo explosions)
--- AMS
--- LRM/SRM
-- Basic Optional Rules
--- Through Armor Crits
--- Multiple Attack Rolls
-- Expanded Unit Types
--- Infantry
--- Battle Armor
--- VTOL
--- Aerospace
-- Savable Unit Lists
+-- ENG (energy based weapons)  
+-- CASE (limits damage from internal ammo explosions)  
+-- AMS  
+-- LRM/SRM  
+- Basic Optional Rules  
+-- Through Armor Crits  
+-- Multiple Attack Rolls  
+- Expanded Unit Types  
+-- Infantry  
+-- Battle Armor  
+-- VTOL  
+-- Aerospace  
+- Savable Unit Lists  
 
 ---
 
