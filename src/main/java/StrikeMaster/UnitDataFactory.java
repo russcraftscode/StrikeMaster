@@ -32,13 +32,14 @@ public class UnitDataFactory {
             builtUnitData.setArmorMax(Integer.parseInt(stats[7]));
             builtUnitData.setStructureMax(Integer.parseInt(stats[8]));
             //builtUnitData.setTMMMax(Integer.parseInt(stats[9]));
+            builtUnitData.setMoveMax(Integer.parseInt(stats[10]));
             // TODO find a more accurate way to get TMM
             // TMM is calculated because master-unit-list.com does not have tmm data
             if ( builtUnitData.getMoveMax() < 6) builtUnitData.setTMMMax(0);
             else if ( builtUnitData.getMoveMax() < 10) builtUnitData.setTMMMax(1);
             else if ( builtUnitData.getMoveMax() < 14) builtUnitData.setTMMMax(2);
-            else builtUnitData.setTMMMax(3);
-            builtUnitData.setMoveMax(Integer.parseInt(stats[10]));
+            else if ( builtUnitData.getMoveMax() < 20) builtUnitData.setTMMMax(3);
+            else builtUnitData.setTMMMax(4);
             builtUnitData.setJumpMax(Integer.parseInt(stats[11]));
             builtUnitData.setShortDmg( stats[12].charAt(0) );
             builtUnitData.setMedDmg( stats[13].charAt(0) );
