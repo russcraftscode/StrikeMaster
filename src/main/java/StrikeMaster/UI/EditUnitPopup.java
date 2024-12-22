@@ -13,7 +13,7 @@ public class EditUnitPopup extends JDialog {
     final int statTextCol = 3;
     final int secondSepCol = 4;
     final int boxCol = 5;
-    final int statTextW = 50;
+    final int statTextW = 60;
     final int okButtonRow = 20;
 
     //public EditUnitPopup(Unit selectedUnit) {
