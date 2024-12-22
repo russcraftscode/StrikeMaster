@@ -121,27 +121,27 @@ public class EditUnitPopup extends JDialog {
         addBox(sprintedBox);
 
         JCheckBox jumpedBox = new JCheckBox("Jumped");
-        jumpedBox.setSelected(selectedUnit.didSprintThisRound());
+        jumpedBox.setSelected(selectedUnit.didJumpThisRound());
         addBox(jumpedBox);
 
         JCheckBox movedBox = new JCheckBox("Moved this Round");
-        movedBox.setSelected(selectedUnit.didSprintThisRound());
+        movedBox.setSelected(selectedUnit.didMoveThisRound());
         addBox(movedBox);
 
         JCheckBox firedBox = new JCheckBox("Fired Weapons this Round");
-        firedBox.setSelected(selectedUnit.didSprintThisRound());
+        firedBox.setSelected(selectedUnit.didAttackThisRound());
         addBox(firedBox);
 
         JCheckBox waterBox = new JCheckBox("In Water");
-        waterBox.setSelected(selectedUnit.didSprintThisRound());
+        waterBox.setSelected(selectedUnit.isInWater());
         addBox(waterBox);
 
         JCheckBox shutdownBox = new JCheckBox("Shutdown");
-        shutdownBox.setSelected(selectedUnit.didSprintThisRound());
+        shutdownBox.setSelected(selectedUnit.isShutdown());
         addBox(shutdownBox);
 
         JCheckBox immobileBox = new JCheckBox("Immobile");
-        immobileBox.setSelected(selectedUnit.didSprintThisRound());
+        immobileBox.setSelected(selectedUnit.isImmobile());
         addBox(immobileBox);
 
         JCheckBox destroyedBox = new JCheckBox("Destroyed");
