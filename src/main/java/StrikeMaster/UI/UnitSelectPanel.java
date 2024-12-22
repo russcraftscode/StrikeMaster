@@ -105,7 +105,11 @@ public class UnitSelectPanel extends JPanel {
 
     private final ArrayList<SingleUnitPanel> singleUnitPanels = new ArrayList<>();
 
-    //TODO make a move unit sub panel
+    /**
+     * Constructs either an attacker-unit select panel, a target-unit select panel,
+     * or a move-unit select panel.
+     * @param panelType use static constants to determine ATTACK, TARGET, or MOVE
+     */
     public UnitSelectPanel(int panelType) {
 
         // TODO delete this prototyping
@@ -124,6 +128,7 @@ public class UnitSelectPanel extends JPanel {
             case UnitSelectPanel.TARGET:
                 this.panelLabel.setText("Select Unit to target");
                 break;
+            //TODO make a move unit sub panel
             default:
                 this.panelLabel.setText("Select unit to move");
                 break;
@@ -137,7 +142,6 @@ public class UnitSelectPanel extends JPanel {
             throw new RuntimeException(e);
         }
 
-        //this.update();
         this.buildUnitPanel();
 
         // Add unit data panel to scroll pane and add that to AttackPanel
@@ -148,7 +152,6 @@ public class UnitSelectPanel extends JPanel {
 
         editUnitButton.setPreferredSize(new Dimension(editUnitButton.getPreferredSize().width, 20));
         editUnitButton.addActionListener(e -> {
-            // TODO pass the selected unit instead of a random unit
             EditUnitPopup editUnitPopup = new EditUnitPopup(this.getSeletedUnit(), this);
         });
 
@@ -168,6 +171,10 @@ public class UnitSelectPanel extends JPanel {
         this.add(editUnitButton, selectLoc);
     }
 
+    /**
+     * Returns the unit who's radio button is highlighted.
+     * @return the currently selected unit
+     */
     public Unit getSeletedUnit(){
         // TODO make better exception handling than just nulls
 
@@ -213,7 +220,7 @@ public class UnitSelectPanel extends JPanel {
     }
 
     /**
-     * This builds swing elements to go in the scroll pane
+     * Updates all unit entries to reflect any changes to unit objects.
      */
     public void updateUnits() {
         for(SingleUnitPanel entryPanel : singleUnitPanels){
@@ -297,7 +304,13 @@ public class UnitSelectPanel extends JPanel {
         ten10Icon = ImageIO.read(classLoader.getResourceAsStream("10of10.png"));
     }
 
-    public BufferedImage getCounterImage(int total, int current) {
+    /**
+     * Gets an image of circle counters that represent an x out of y situation.
+     * @param total the total number of circles
+     * @param current the number of circles not filled in
+     * @return the requested image of counters
+     */
+    private BufferedImage getCounterImage(int total, int current) {
         switch (total) {
             case 1:
                 switch (current) {
@@ -464,30 +477,51 @@ public class UnitSelectPanel extends JPanel {
         }
     }
 
+    /**
+     * Superclass for AttackSingleUnitPanel, TargetSingleUnitPanel, and MoveSingleUnitPanel
+     */
     class SingleUnitPanel extends JPanel{
-        //protected JRadioButton unitSelectButton = new JRadioButton();
         protected Unit unit;
 
         public SingleUnitPanel(){}
 
+        /**
+         * Creates a panel that represents a single unit to go onto a
+         * UnitSelectPanel
+         * @param unit the unit this panel will represent
+         */
         public SingleUnitPanel(Unit unit){
             this.unit = unit;
             this.updateGraphics();
         }
 
+        /**
+         * Updates all UI elements to reflect any changes to the unit
+         */
         public void updateGraphics(){
             this.revalidate();
             this.repaint();
         }
 
+        /**
+         * Sets the radio button for this unit.
+         * @param sel if the unit should be selected.
+         */
         public void setSelected(boolean sel){
         }
 
+        /**
+         * Returns if this panel is selected.
+         * @return true if the unit this panel represents is the selected unit
+         */
         public boolean isSelected(){
             return true;
         }
     }
 
+    /**
+     * Subclass of SingleUnitPanel that represents a single unit that is making an attack.
+     */
     class AttackSingleUnitPanel extends SingleUnitPanel {
         private JRadioButton unitSelectButton = new JRadioButton();
         private JLabel iconLabel = new JLabel();
@@ -500,10 +534,19 @@ public class UnitSelectPanel extends JPanel {
         private JLabel tarSysHitsLabel = new JLabel("FC Damage");
         private JLabel tarSysHitsImage = new JLabel();
 
+        /**
+         * Gets the unit that this panel represents.
+         * @return the unit this panel represents
+         */
         public Unit getUnit() {
             return unit;
         }
 
+        /**
+         * Creates a panel that represents a single unit to go onto a
+         * UnitSelectPanel
+         * @param unit the unit this panel will represent
+         */
         public AttackSingleUnitPanel(Unit unit){
             this.unit = unit;
 
@@ -564,6 +607,9 @@ public class UnitSelectPanel extends JPanel {
             this.updateGraphics();
         }
 
+        /**
+         * Updates all UI elements to reflect any changes to the unit
+         */
         public void updateGraphics(){
             nameLabel.setText(unit.getName() + " " + unit.getVariant());
             sideLabel.setText("Red");
@@ -597,15 +643,27 @@ public class UnitSelectPanel extends JPanel {
             this.repaint();
         }
 
+        /**
+         * Sets the radio button for this unit.
+         * @param sel if the unit should be selected.
+         */
         public void setSelected(boolean sel){
             unitSelectButton.setSelected(sel);
         }
 
+        /**
+         * Returns if this panel is selected.
+         * @return true if the unit this panel represents is the selected unit
+         */
         public boolean isSelected(){
             return unitSelectButton.isSelected();
         }
     }
 
+    /**
+     * Subclass of SingleUnitPanel that represents a single unit that is
+     * a potential target for an attack.
+     */
     class TargetSingleUnitPanel extends SingleUnitPanel {
         private JRadioButton unitSelectButton = new JRadioButton();
         private JLabel iconLabel = new JLabel();
@@ -618,10 +676,19 @@ public class UnitSelectPanel extends JPanel {
         private JLabel structureImage = new JLabel();
         private JLabel tmmLabel = new JLabel();
 
+        /**
+         * Gets the unit that this panel represents.
+         * @return the unit this panel represents
+         */
         public Unit getUnit() {
             return unit;
         }
 
+        /**
+         * Creates a panel that represents a single unit to go onto a
+         * UnitSelectPanel
+         * @param unit the unit this panel will represent
+         */
         public TargetSingleUnitPanel(Unit unit){
             this.unit = unit;
 
@@ -689,6 +756,9 @@ public class UnitSelectPanel extends JPanel {
             this.updateGraphics();
         }
 
+        /**
+         * Updates all UI elements to reflect any changes to the unit
+         */
         public void updateGraphics(){
             nameLabel.setText(unit.getName() + " " + unit.getVariant());
 
@@ -725,10 +795,18 @@ public class UnitSelectPanel extends JPanel {
             this.repaint();
         }
 
+        /**
+         * Sets the radio button for this unit.
+         * @param sel if the unit should be selected.
+         */
         public void setSelected(boolean sel){
             unitSelectButton.setSelected(sel);
         }
 
+        /**
+         * Returns if this panel is selected.
+         * @return true if the unit this panel represents is the selected unit
+         */
         public boolean isSelected(){
             return unitSelectButton.isSelected();
         }

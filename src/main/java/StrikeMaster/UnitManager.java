@@ -31,13 +31,13 @@ public class UnitManager {
         units.add(UnitFactory.buidUnit(unitLibrary.getUnitData("UM-R60"), idNum++));
         units.add(UnitFactory.buidUnit(unitLibrary.getUnitData("VLK-QA"), idNum++));
         units.add(UnitFactory.buidUnit(unitLibrary.getUnitData("VL-2T"), idNum++));
-        units.add(UnitFactory.buidUnit(unitLibrary.getUnitData("VND-1R"), idNum++));
+        /*units.add(UnitFactory.buidUnit(unitLibrary.getUnitData("VND-1R"), idNum++));
         units.add(UnitFactory.buidUnit(unitLibrary.getUnitData("VTR-9B"), idNum++));
         units.add(UnitFactory.buidUnit(unitLibrary.getUnitData("WHM-6R"), idNum++));
         units.add(UnitFactory.buidUnit(unitLibrary.getUnitData("WSP-1A"), idNum++));
         units.add(UnitFactory.buidUnit(unitLibrary.getUnitData("WVR-6R"), idNum++));
         units.add(UnitFactory.buidUnit(unitLibrary.getUnitData("ZEU-6S"), idNum++));
-        /*units.add(UnitFactory.buidUnit(unitLibrary.getUnitData("ARC-2R"), idNum++));
+        units.add(UnitFactory.buidUnit(unitLibrary.getUnitData("ARC-2R"), idNum++));
         units.add(UnitFactory.buidUnit(unitLibrary.getUnitData("BLR-1G"), idNum++));
         units.add(UnitFactory.buidUnit(unitLibrary.getUnitData("CPLT-C1"), idNum++));
         units.add(UnitFactory.buidUnit(unitLibrary.getUnitData("HBK-4G"), idNum++));
