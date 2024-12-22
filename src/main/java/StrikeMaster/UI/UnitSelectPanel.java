@@ -109,7 +109,7 @@ public class UnitSelectPanel extends JPanel {
     private int selectedUnitId = 0;
 
     //private ArrayList<ArrayList<JComponent>> unitRows = new ArrayList<>();
-    private ArrayList<AttackUnitEntryPanel> unitSubPanels = new ArrayList<AttackUnitEntryPanel>();
+    private ArrayList<UnitEntryPanel> unitEntryPanels = new ArrayList<UnitEntryPanel>();
     //private ArrayList<TargetUnitEntryPanel> unitSubPanels = new ArrayList<AttackUnitEntryPanel>();
 //TODO make a move unit sub panel
     public UnitSelectPanel(int panelType) {
@@ -190,137 +190,32 @@ public class UnitSelectPanel extends JPanel {
         gloc.weightx = 1;
 
         for (int idNum = 0; idNum < unitManager.getUnitCount(); idNum++) {
-            AttackUnitEntryPanel unitEntryPanel = new AttackUnitEntryPanel(unitManager.getUnit(idNum));
+            UnitEntryPanel unitEntryPanel;
+            switch (this.panelType){
+                // TODO add move panel
+                case UnitSelectPanel.ATTACK:
+                    unitEntryPanel = new AttackUnitEntryPanel(unitManager.getUnit(idNum));
+                    break;
+                case UnitSelectPanel.TARGET:
+                    unitEntryPanel = new TargetUnitEntryPanel(unitManager.getUnit(idNum));
+                    break;
+                default:
+                    unitEntryPanel = new AttackUnitEntryPanel(unitManager.getUnit(idNum));
+                    break;
+            }
             unitDataPanel.add(unitEntryPanel, gloc);
             unitEntryPanel.setBorder(BorderFactory.createLineBorder(Color.RED)); // DEBUG
             gloc.gridy++;
-            unitSubPanels.add(unitEntryPanel);
+            unitEntryPanels.add(unitEntryPanel);
         }
     }
 
-    private void buildUnitPanelOld(){
-        // Define the layout of the sub panel that will hold all units
-        unitDataPanel.setLayout(new GridBagLayout());
-        GridBagConstraints gloc = new GridBagConstraints();
-        gloc.insets = new Insets(2, 0, 1, 0);
-
-
-        for (int idNum = 0; idNum < unitManager.getUnitCount(); idNum++) {
-            Unit rowUnit = unitManager.getUnit(idNum);
-
-            ArrayList<JComponent> rowElements = new ArrayList<>();
-
-            gloc.gridy = idNum;
-            gloc.gridx = 0;
-            gloc.fill = 1;
-            JRadioButton unitSelectButton = new JRadioButton();
-            unitSelectGroup.add(unitSelectButton);
-            unitDataPanel.add(unitSelectButton, gloc);
-
-            // Create the icon for the unit
-            gloc.gridx++; // move to the next col
-            JLabel iconLabel;
-            switch (rowUnit.getType()) {
-                default:
-                    iconLabel = new JLabel(new ImageIcon(infIcon));
-                    break;
-                case 'm':
-                    iconLabel = new JLabel(new ImageIcon(mechIcon));
-                    break;
-            }
-            unitDataPanel.add(iconLabel, gloc);
-            rowElements.add(iconLabel);
-
-            // Create the name label for the unit
-            gloc.gridx++; // move to the next col
-            JLabel nameLabel = new JLabel(rowUnit.getName() + " " + rowUnit.getVariant());
-            unitDataPanel.add(nameLabel, gloc);
-            rowElements.add(nameLabel);
-
-            // if attack panel show damage values
-            if (this.panelType == UnitSelectPanel.ATTACK) {
-                gloc.gridx++; // move to the next col
-                JLabel damageLabel = new JLabel("  Attack Strength "
-                        + rowUnit.getShortDmg() + "/"
-                        + rowUnit.getMedDmg() + "/"
-                        + rowUnit.getLongDmg());
-                unitDataPanel.add(damageLabel, gloc);
-                rowElements.add(damageLabel);
-
-                gloc.gridx++; // move to the next col
-                JLabel wepSysHitsLabel = new JLabel("  Wep Damage");
-                unitDataPanel.add(wepSysHitsLabel, gloc);
-                rowElements.add(wepSysHitsLabel);
-
-                gloc.gridx++; // move to the next col
-                JLabel wepSysHitsImage = new JLabel(new ImageIcon(
-                        this.getCounterImage(4, 4- rowUnit.getWepHits())));
-                unitDataPanel.add(wepSysHitsImage, gloc);
-                rowElements.add(wepSysHitsImage);
-
-                gloc.gridx++; // move to the next col
-                JLabel tarSysHitsLabel = new JLabel("  FC Damage");
-                unitDataPanel.add(tarSysHitsLabel, gloc);
-                rowElements.add(tarSysHitsLabel);
-
-                gloc.gridx++; // move to the next col
-                JLabel tarSysHitsImage = new JLabel(new ImageIcon(
-                        this.getCounterImage(4, 4- rowUnit.getFCHits())));
-                unitDataPanel.add(tarSysHitsImage, gloc);
-                rowElements.add(tarSysHitsImage);
-            }
-
-            // if target panel show armor / structure values
-            if (this.panelType == UnitSelectPanel.TARGET) {
-                gloc.gridx++; // move to the next col
-                JLabel armorLabel = new JLabel(" Armor:");
-                unitDataPanel.add(armorLabel, gloc);
-                rowElements.add(armorLabel);
-                // Display a graphic for prototyping purposes
-                gloc.gridx++; // move to the next col
-                JLabel armorImage = new JLabel(new ImageIcon(
-                        getCounterImage( rowUnit.getArmorMax(), rowUnit.getArmorCur())));
-                unitDataPanel.add(armorImage, gloc);
-                rowElements.add(armorImage);
-                gloc.gridx++; // move to the next col
-                JLabel structureLabel = new JLabel(" Internal:");
-                unitDataPanel.add(structureLabel, gloc);
-                rowElements.add(structureLabel);
-                // Display a graphic for prototyping purposes
-                gloc.gridx++; // move to the next col
-                JLabel structureImage = new JLabel(new ImageIcon(
-                        getCounterImage( rowUnit.getArmorMax(), rowUnit.getArmorCur())));
-                unitDataPanel.add(structureImage, gloc);
-                rowElements.add(structureImage);
-                gloc.gridx++; // move to the next col
-                JLabel tmmLabel = new JLabel(" TMM: ");
-                unitDataPanel.add(tmmLabel, gloc);
-                rowElements.add(tmmLabel);
-                gloc.gridx++; // move to the next col
-                JLabel tmmValue = new JLabel(rowUnit.getTMM() + " ");
-                tmmValue.setPreferredSize(LabelSizer.dimension(tmmValue));
-                unitDataPanel.add(tmmValue, gloc);
-                rowElements.add(tmmValue);
-            }
-
-
-            // Darken every other line
-            if (idNum % 2 == 0) {
-                for (JComponent component : rowElements) {
-                    component.setBackground(Color.LIGHT_GRAY);
-                    component.setOpaque(true);
-                }
-            }
-            // add this row of components to the list of
-            //this.unitRows.add(rowElements);
-        }
-    }
 
     /**
      * This builds swing elements to go in the scroll pane
      */
     public void updateUnits() {
-        for(AttackUnitEntryPanel entryPanel : this.unitSubPanels){
+        for(UnitEntryPanel entryPanel : unitEntryPanels){
             entryPanel.updateGraphics();
         }
 
@@ -717,7 +612,27 @@ public class UnitSelectPanel extends JPanel {
         }
     }
 
-    class AttackUnitEntryPanel extends JPanel{
+    class UnitEntryPanel extends JPanel{
+
+        public UnitEntryPanel(){
+
+        }
+
+        public UnitEntryPanel(Unit unit){
+
+            this.updateGraphics();
+        }
+
+        public void updateGraphics(){
+
+            this.revalidate();
+            this.repaint();
+        }
+
+
+    }
+
+    class AttackUnitEntryPanel extends UnitEntryPanel{
         private JRadioButton unitSelectButton = new JRadioButton();
         private JLabel iconLabel = new JLabel();
         private JLabel idLabel = new JLabel();
@@ -818,6 +733,119 @@ public class UnitSelectPanel extends JPanel {
 
             tarSysHitsImage.setIcon(new ImageIcon(
                     getCounterImage(4, 4- unit.getFCHits())));
+
+            this.revalidate();
+            this.repaint();
+        }
+
+
+    }
+    class TargetUnitEntryPanel extends UnitEntryPanel{
+        private JRadioButton unitSelectButton = new JRadioButton();
+        private JLabel iconLabel = new JLabel();
+        private JLabel idLabel = new JLabel();
+        private JLabel nameLabel = new JLabel();
+        private JLabel sideLabel = new JLabel();
+        private JLabel armorLabel   = new JLabel("Armor:");
+        private JLabel armorImage = new JLabel();
+        private JLabel structureLabel = new JLabel(" Internal:");
+        private JLabel structureImage = new JLabel();
+        private JLabel tmmLabel = new JLabel();
+
+        private Unit unit;
+
+        public TargetUnitEntryPanel(Unit unit){
+            this.unit = unit;
+
+            this.setLayout(new GridBagLayout());
+            GridBagConstraints aLoc = new GridBagConstraints();
+            aLoc.insets = new Insets(0,1,0,2);
+
+            aLoc.gridx = 0;
+            aLoc.gridy = 0;
+            aLoc.fill = GridBagConstraints.BOTH;
+            aLoc.anchor = GridBagConstraints.WEST;
+            aLoc.weightx = 1;
+            this.add(unitSelectButton, aLoc);
+            unitSelectGroup.add(unitSelectButton); // add button to parent panel's group
+            //unitSelectButton.setBackground(Color.GREEN);// DEBUG
+
+            aLoc.gridy = 1;
+            idLabel.setHorizontalAlignment(SwingConstants.CENTER);
+            this.add(idLabel, aLoc);
+            //idLabel.setBorder(BorderFactory.createLineBorder(Color.GREEN));// DEBUG
+
+            aLoc.gridy = 1;
+            aLoc.gridx = 1;
+            //aLoc.weightx = 0;
+            this.add(iconLabel, aLoc);
+            //iconLabel.setBorder(BorderFactory.createLineBorder(Color.GREEN));// DEBUG
+
+            aLoc.gridy = 0;
+            this.add(sideLabel, aLoc);
+            //sideLabel.setBorder(BorderFactory.createLineBorder(Color.GREEN));// DEBUG
+
+            aLoc.gridx = 2;
+            aLoc.gridwidth = 2;
+            nameLabel.setText(unit.getName() + " " + unit.getVariant());
+            this.add(nameLabel, aLoc);
+            //nameLabel.setBorder(BorderFactory.createLineBorder(Color.GREEN));// DEBUG
+
+            aLoc.gridx = 4;
+            aLoc.anchor = GridBagConstraints.EAST;
+            this.add(tmmLabel, aLoc);
+            //tmmLabel.setBorder(BorderFactory.createLineBorder(Color.GREEN));// DEBUG
+
+            aLoc.gridy = 1;
+            aLoc.gridx = 2;
+            aLoc.gridwidth = 1;
+            aLoc.anchor = GridBagConstraints.WEST;
+            this.add(armorLabel, aLoc);
+            //armorLabel.setBorder(BorderFactory.createLineBorder(Color.GREEN));// DEBUG
+
+            aLoc.gridwidth = 1;
+            aLoc.gridx = 3;
+            this.add(armorImage, aLoc);
+            //armorImage.setBorder(BorderFactory.createLineBorder(Color.GREEN));// DEBUG
+
+            aLoc.gridx = 4;
+            this.add(structureLabel, aLoc);
+            aLoc.anchor = GridBagConstraints.EAST;
+            structureLabel.setHorizontalAlignment(SwingConstants.RIGHT);
+            //structureLabel.setBorder(BorderFactory.createLineBorder(Color.GREEN));// DEBUG
+
+            aLoc.gridx = 5;
+            this.add(structureImage, aLoc);
+            //structureImage.setHorizontalAlignment(SwingConstants.RIGHT);
+            //structureImage.setBorder(BorderFactory.createLineBorder(Color.GREEN));// DEBUG
+
+            this.updateGraphics();
+        }
+
+        public void updateGraphics(){
+            nameLabel.setText(unit.getName() + " " + unit.getVariant());
+
+            sideLabel.setText("Red");
+
+            idLabel.setText(String.valueOf(unit.getID()));
+
+            tmmLabel.setText(" Target Movement Mod: " + unit.getTMM());
+
+            switch (unit.getType()) {
+                // TODO add other unit types
+                default:
+                    iconLabel.setIcon(new ImageIcon(infIcon));
+                    break;
+                case 'm':
+                    iconLabel.setIcon(new ImageIcon(mechIcon));
+                    break;
+            }
+
+            armorImage.setIcon(new ImageIcon(
+                    getCounterImage(unit.getArmorMax(), unit.getArmorCur())));
+
+            structureImage.setIcon(new ImageIcon(
+                    getCounterImage(unit.getStructureMax(), unit.getStructureCur())));
 
             this.revalidate();
             this.repaint();

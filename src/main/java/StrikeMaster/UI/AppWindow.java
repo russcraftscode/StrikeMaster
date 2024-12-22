@@ -33,8 +33,7 @@ public class AppWindow extends JFrame {
        GridBagConstraints combatLoc = new GridBagConstraints();
 
         UnitSelectPanel attackerSelectPanel = new UnitSelectPanel(UnitSelectPanel.ATTACK);
-        //UnitSelectPanel targetSelectPanel = new UnitSelectPanel(UnitSelectPanel.TARGET);
-        UnitSelectPanel targetSelectPanel = new UnitSelectPanel(UnitSelectPanel.ATTACK);
+        UnitSelectPanel targetSelectPanel = new UnitSelectPanel(UnitSelectPanel.TARGET);
         AttackOptionsPanel attackOptionsPanel = new AttackOptionsPanel();
         //attackerSelectPanel.setPreferredSize(new Dimension(attackerSelectPanel.getPreferredSize().width, attackOptionsPanel.getPreferredSize().height));
         //targetSelectPanel.setPreferredSize(new Dimension(targetSelectPanel.getPreferredSize().width, attackOptionsPanel.getPreferredSize().height));
