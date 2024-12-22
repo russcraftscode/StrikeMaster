@@ -30,7 +30,7 @@ public class AttackOptionsPanel extends JPanel {
     private int toHitFinal = 0; // roll needed to hit the target
 
 
-    private boolean indirectFire = true;
+    private boolean indirectFire = false;
     private boolean partialCover = false;
     private boolean woods = false;
     private boolean aftArc = false;
@@ -61,6 +61,7 @@ public class AttackOptionsPanel extends JPanel {
         }
 
         this.attackingUnit = UnitFactory.buidUnit(protoLib.getUnitData("AWS-9M"),99);
+        this.targetUnit = UnitFactory.buidUnit(protoLib.getUnitData("AWS-9M"),98);
         // end prototyping
 
 
@@ -77,6 +78,9 @@ public class AttackOptionsPanel extends JPanel {
         this.targetUnit = target;
     }
 
+    /**
+     * Updates the labels and re-calculates to-hit numbers
+     */
     public void update() {
         // TODO separate UPDATE from CREATE. make the things that need to be updated referenced to by class attributes
         // reset all attack roll variables
@@ -135,6 +139,9 @@ public class AttackOptionsPanel extends JPanel {
         this.repaint();
     }
 
+    /**
+     * Initializes and places all swing components
+     */
     public void buildPanel() {
         this.setLayout(new GridBagLayout());
         this.setBorder(BorderFactory.createBevelBorder(BevelBorder.LOWERED));
@@ -218,7 +225,11 @@ public class AttackOptionsPanel extends JPanel {
         this.add(numSep, gloc);
     }
 
-
+    /**
+     * Creates and formats a JLabel to be a label of an attack roll modifier
+     * @param labelText the text explaining what the modifier is
+     * @param loc the GridBagConstraints that needs to be modified to place the label
+     */
     private void createModLabel(String labelText, GridBagConstraints loc) {
         loc.gridx = 0;
         loc.gridy++;
@@ -229,6 +240,13 @@ public class AttackOptionsPanel extends JPanel {
         this.add(toHitLabel, loc);
     }
 
+    /**
+     * Formats an existing JLabel to be a show a value of an attack roll modifier
+     * @param label the label to be formatted
+     * @param value the value to be shown
+     * @param loc the GridBagConstraints that needs to be modified to place the label
+     * @param sign true if the + sign is to be shown for positive numbers
+     */
     private void createModNumber(JLabel label, int value, GridBagConstraints loc, boolean sign) {
         loc.gridx = 3;
         loc.gridwidth = 1;
@@ -247,12 +265,18 @@ public class AttackOptionsPanel extends JPanel {
         this.add(label, gloc);
     }
 
+    /**
+     * Updates a JLabel that is being used to show the value of an attack modifier
+     * @param label the JLabel to be adjusted
+     * @param value the value to be shown
+     * @param sign true if the + sign is to be shown for positive numbers
+     */
     private void updateModNumber(JLabel label, int value, boolean sign) {
         // put a +/- sign in front of the number if sign is true
         if (sign) {
             if (value < 0) { // minus sign automatically comes with negative numbers
                 label.setText(String.valueOf(value));
-            } else { // add a plus sign to postive numbers
+            } else { // add a plus sign to positive numbers
                 label.setText("+" + value);
             }
         } else {
@@ -260,6 +284,10 @@ public class AttackOptionsPanel extends JPanel {
         }
     }
 
+    /**
+     * Reconfigures a GridBagConstraint object to be in the center column of the AttackOptionsPanel
+     * @param loc the GridBagConstraint object to be formatted
+     */
     private void locationMid(GridBagConstraints loc) {
         loc.gridx = 0;
         loc.gridy++;
@@ -267,6 +295,10 @@ public class AttackOptionsPanel extends JPanel {
         loc.anchor = GridBagConstraints.CENTER;
     }
 
+    /**
+     * Creates and places the components on the sub panel that lets the user
+     * input the situational attack-roll modifiers.
+     */
     private void createSituationalPanel() {
         situationalPanel.setLayout(new BoxLayout(situationalPanel, BoxLayout.Y_AXIS));
         situationalPanel.setBorder(BorderFactory.createBevelBorder(BevelBorder.RAISED));
@@ -312,6 +344,10 @@ public class AttackOptionsPanel extends JPanel {
         situationalPanel.add(aftArcCheckBox);
     }
 
+    /**
+     * Creates and places the components on the sub panel that lets the user
+     * input the range attack-roll modifiers.
+     */
     private void createRangePanel() {
         rangePanel.setBorder(BorderFactory.createBevelBorder(BevelBorder.RAISED));
         rangePanel.setLayout(new GridBagLayout());
@@ -321,6 +357,7 @@ public class AttackOptionsPanel extends JPanel {
 
         ButtonGroup rangeButtons = new ButtonGroup();
 
+        // create the labels for the ranges
         JLabel rangePanelLabel = new JLabel("Enter Range");
         rangeLoc.gridx = 0;
         rangeLoc.gridy = 0;
@@ -350,6 +387,7 @@ public class AttackOptionsPanel extends JPanel {
         rangeLoc.gridx = 3;
         rangePanel.add(extLabel, rangeLoc);
 
+        // Create the buttons to select the ranges
         JRadioButton shortButton = new JRadioButton();
         rangeButtons.add(shortButton);
         rangeLoc.gridx = 0;
@@ -396,6 +434,10 @@ public class AttackOptionsPanel extends JPanel {
 
     }
 
+    /**
+     * Creates and places the components on the sub panel that lets the users
+     * input the amount of overheat they want to add to this attack.
+     */
     private void createOverheatPanel() {
        overHeatPanel.setBorder(BorderFactory.createBevelBorder(BevelBorder.RAISED));
         overHeatPanel.setLayout(new FlowLayout());
