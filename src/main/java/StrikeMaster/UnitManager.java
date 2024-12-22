@@ -115,7 +115,7 @@ public class UnitManager extends Observable {
      * @param id the ID number of the newly selected unit
      */
     public static void changeSelectedTarget(int id){
-        attackerId = id;
+        targetId = id;
         UnitManager.getInstance().updatedUnit();
     }
 
