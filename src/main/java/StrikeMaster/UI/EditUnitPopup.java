@@ -1,5 +1,6 @@
 package StrikeMaster.UI;
 
+import StrikeMaster.UnitManager;
 import StrikeMaster.Units.Unit;
 
 import javax.swing.*;
@@ -26,9 +27,8 @@ public class EditUnitPopup extends JDialog {
      * Constructs the popup that lets a user directly edit a unit outside
      * of normal game interactions.
      * @param selectedUnit the unit to be edited.
-     * @param ownerPanel the panel that called this popup
      */
-    public EditUnitPopup(Unit selectedUnit, UnitSelectPanel ownerPanel) {
+    public EditUnitPopup(Unit selectedUnit) {
         this.setTitle("Manually Edit Unit");
         this.setLayout(new GridBagLayout());
 
@@ -200,13 +200,14 @@ public class EditUnitPopup extends JDialog {
             selectedUnit.setDestroyed(destroyedBox.isSelected());
 
             // close the popup
-            ownerPanel.updateUnits();
+            UnitManager.getInstance().updatedUnit();
             this.dispose();
         });
         closeButton.addActionListener(e -> this.dispose());
 
-        this.setLocationRelativeTo(ownerPanel); // make popup appear centered
-        this.pack();
+
+        this.pack(); // make popup big enough to hold all contents
+        this.setLocationRelativeTo(null); // make popup appear centered
         this.setVisible(true);
     }
 

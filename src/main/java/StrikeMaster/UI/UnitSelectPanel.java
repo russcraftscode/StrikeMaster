@@ -9,12 +9,14 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Observable;
+import java.util.Observer;
 
 
 /**
  * This panel allows the player to select a unit
  */
-public class UnitSelectPanel extends JPanel {
+public class UnitSelectPanel extends JPanel implements Observer {
     public static final int ATTACK = 1;
     public static final int TARGET = 2;
     public static final int MOVE = 3;
@@ -117,6 +119,8 @@ public class UnitSelectPanel extends JPanel {
 
         // end prototyping
 
+        UnitManager.getInstance().addObserver(this);
+
         this.setLayout(new GridBagLayout());
 
         // define the type of unit select panel
@@ -152,7 +156,7 @@ public class UnitSelectPanel extends JPanel {
 
         editUnitButton.setPreferredSize(new Dimension(editUnitButton.getPreferredSize().width, 20));
         editUnitButton.addActionListener(e -> {
-            EditUnitPopup editUnitPopup = new EditUnitPopup(this.getSeletedUnit(), this);
+            EditUnitPopup editUnitPopup = new EditUnitPopup(this.getSeletedUnit());
         });
 
         // add components to unit select panel
@@ -225,6 +229,17 @@ public class UnitSelectPanel extends JPanel {
     public void updateUnits() {
         for(SingleUnitPanel entryPanel : singleUnitPanels){
             entryPanel.updateGraphics();
+        }
+    }
+
+    /**
+     * @param o   the observable object.
+     * @param arg an argument passed to the {@code notifyObservers} method.
+     */
+    @Override
+    public void update(Observable o, Object arg) {
+        if (o instanceof UnitManager) {
+            updateUnits();
         }
     }
 
