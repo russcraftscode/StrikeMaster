@@ -44,6 +44,7 @@ public class AppWindow extends JFrame {
         combatPanel.add(targetSelectPanel, combatLoc);
         combatLoc.gridx++;
         combatLoc.fill = GridBagConstraints.BOTH;
+        combatLoc.weighty = 1;
         combatPanel.add(attackOptionsPanel, combatLoc);
 
         // phase select panel holds all the elements to switch phases and end the turn

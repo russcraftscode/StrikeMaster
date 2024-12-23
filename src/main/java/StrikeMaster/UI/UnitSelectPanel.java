@@ -149,6 +149,7 @@ public class UnitSelectPanel extends JPanel implements Observer {
         JScrollPane unitScroll = new JScrollPane();
         // anchor the unitDataPanel to the top of the scroll pane if it isn't big enough to scroll
         unitScroll.getViewport().setLayout(new FlowLayout(FlowLayout.LEADING));
+        unitScroll.setPreferredSize(new Dimension(unitDataPanel.getPreferredSize().width+30, 200));
         unitScroll.getViewport().add(unitDataPanel);
 
         editUnitButton.setPreferredSize(new Dimension(editUnitButton.getPreferredSize().width, 20));
@@ -175,13 +176,14 @@ public class UnitSelectPanel extends JPanel implements Observer {
         this.add(panelLabel, selectLoc);
 
         selectLoc.gridy++;
+        selectLoc.weighty = 1;
         selectLoc.fill = GridBagConstraints.VERTICAL;
         this.add(unitScroll, selectLoc);
 
         selectLoc.anchor = GridBagConstraints.SOUTH;
         selectLoc.fill = GridBagConstraints.NONE;
         selectLoc.gridy++;
-        selectLoc.weighty = 1;
+        selectLoc.weighty = 0;
         this.add(editUnitButton, selectLoc);
     }
 
