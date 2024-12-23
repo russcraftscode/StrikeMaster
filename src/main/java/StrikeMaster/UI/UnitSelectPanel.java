@@ -102,8 +102,6 @@ public class UnitSelectPanel extends JPanel implements Observer {
     private final JButton editUnitButton = new JButton("Edit Unit");
     private final JLabel panelLabel = new JLabel();
 
-    // UnitManager unitManager; // TODO this needs to be replaced with singleton
-
     // create a button group for all unit select radio buttons
     private final ButtonGroup unitSelectGroup = new ButtonGroup();
 
