@@ -16,15 +16,15 @@ You will still need to have all of your game materials and know how to play. Thi
 
 ## Features
 
-- **Dice Rolling**: *WIP: not implemented* Dice rolls can be handled automatically. Alternatively, **StrikeMaster** can calculate the target number and the use can roll dice and tell the program if the roll succeeded.
-- **Combat Calculations**: Handles attack resolution, damage calculation, and other in-game mechanics.
+- **Dice Rolling**: Dice rolls can be handled automatically. Alternatively, **StrikeMaster** can calculate the target number and the use can roll dice and tell the program if the roll succeeded. *WIP: not implemented*  
+- **Combat Calculations**: Handles attack resolution, damage calculation, and other in-game mechanics. ***WIP**: not implemented*  
 - **Unit Card Management**:
   - Load unit cards.
   - Track damage and damage effects.
-  - Manage abilities and special rules. *WIP: Intended to be implemented after initial release*.
+  - Manage abilities and special rules. ***WIP**: Intended to be implemented after initial release*.
 - **Customizable Settings**:
-  - Select rule complexity levels.
-  - Select optional rules (e.g. multiple damage rolls, thru-armor critical, extreme range etc)
+  - Select rule complexity levels. ***WIP**: not implemented*
+  - Select optional rules (e.g. multiple damage rolls, thru-armor critical, extreme range etc) *WIP: not implemented*
 - **User-Friendly Interface**: Intuitive GUI for players to interact with all features seamlessly.
 
 ---
@@ -32,31 +32,30 @@ You will still need to have all of your game materials and know how to play. Thi
 ## Roadmap
 
 #### Planned Initial Release Features
-- Basic *Alpha Strike* ranged combat rules
-- Heat
-- 3025 Mechs
-- Ground Vehicles
-- Auto dice rolls
-- Direct Unit Editing
+
+| Feature                            | Status             | Notes |
+|------------------------------------|--------------------|-------|
+| Basic *Alpha Strike* ranged combat | Not Implemented    |       |
+| Heat                               | Not Implemented    |       |
+| Auto dice rolls                    | Not Implemented    |       |
+| Direct Unit Editing                | Implemented Dec 24 |       |
+| 3025 Mechs                         | Implemented Dec 24 |       |
+| Ground Vehicles                    | Not Implemented    |       |
+
 
 #### Possible Future Additions
-- Manual Dice Rolls
-- Physical Attacks
-- Pilot Skill Ratings
-- Common Special Abilities such as
--- ENG (energy based weapons)  
--- CASE (limits damage from internal ammo explosions)  
--- AMS  
--- LRM/SRM  
-- Basic Optional Rules  
--- Through Armor Crits  
--- Multiple Attack Rolls  
-- Expanded Unit Types  
--- Infantry  
--- Battle Armor  
--- VTOL  
--- Aerospace  
-- Savable Unit Lists  
+| Feature                                                             | Notes |
+|---------------------------------------------------------------------|-------|
+| Manual Dice Rolls                                                   |       |
+| Savable Unit Lists                                                  |       |
+| Physical Attacks                                                    |       |
+| Pilot Skill Ratings                                                 |       |
+| Common Special Abilities (e.g ENG, CASE, AMS, LRM/SRM)              |       |
+| Basic Optional Rules   (Through Armor Crits, Multiple Attack Rolls) |       |
+| Infantry                                                            |       |
+| Battle Armor                                                        |       |
+| VTOL                                                                |       |
+| Aerospace                                                           |       |
 
 ---
 
