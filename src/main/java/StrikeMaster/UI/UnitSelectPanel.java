@@ -185,22 +185,6 @@ public class UnitSelectPanel extends JPanel implements Observer {
         this.add(editUnitButton, selectLoc);
     }
 
-    /**
-     * Returns the unit who's radio button is highlighted.
-     * @return the currently selected unit
-     */
-    public Unit getSeletedUnit(){
-        // TODO make better exception handling than just nulls
-        // TODO remove this when UnitManger takes over unit selection tracking
-        for(SingleUnitPanel panel : singleUnitPanels){
-            System.out.println(panel.isSelected()); // DEBUG
-            if(panel.isSelected()){
-                return panel.unit;
-            }
-        }
-        return null;
-    }
-
     private void buildUnitPanel(){
         unitDataPanel.setLayout(new GridBagLayout());
         GridBagConstraints gloc = new GridBagConstraints();
