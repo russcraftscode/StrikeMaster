@@ -115,12 +115,7 @@ public class UnitSelectPanel extends JPanel implements Observer {
      * @param panelType use static constants to determine ATTACK, TARGET, or MOVE
      */
     public UnitSelectPanel(int panelType) {
-
-        // TODO delete this prototyping
-        //unitManager = new UnitManager();
-
-        // end prototyping
-
+        // make this panel an observer of UnitManger
         UnitManager.getInstance().addObserver(this);
 
         this.setLayout(new GridBagLayout());
@@ -248,11 +243,13 @@ public class UnitSelectPanel extends JPanel implements Observer {
     }
 
     /**
+     * Whenever a unit is changed the panel will update its graphics.
      * @param o   the observable object.
      * @param arg an argument passed to the {@code notifyObservers} method.
      */
     @Override
     public void update(Observable o, Object arg) {
+        // TODO determine if updating only a single unit will be needed to maintain performance
         if (o instanceof UnitManager) {
             updateUnits();
         }

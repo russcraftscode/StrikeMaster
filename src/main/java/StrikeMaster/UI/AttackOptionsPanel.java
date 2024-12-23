@@ -1,16 +1,17 @@
 package StrikeMaster.UI;
 
 import StrikeMaster.UnitFactory;
-import StrikeMaster.UnitLibrary;
+import StrikeMaster.UnitManager;
 import StrikeMaster.Units.Unit;
 
 import javax.swing.*;
 import javax.swing.border.BevelBorder;
 import java.awt.*;
 import java.awt.event.ItemEvent;
-import java.io.IOException;
+import java.util.Observable;
+import java.util.Observer;
 
-public class AttackOptionsPanel extends JPanel {
+public class AttackOptionsPanel extends JPanel implements Observer {
     private JPanel overHeatPanel;
     private JPanel situationalPanel;
     private JPanel rangePanel;
@@ -52,39 +53,34 @@ public class AttackOptionsPanel extends JPanel {
      * Panel that lets users input all variables that will affect an attack roll.
      */
     public AttackOptionsPanel() {
-
-        // TODO delete this next part. This is only to provide data for prototyping the panel.
-        UnitLibrary protoLib = null;
-        try {
-            protoLib = new UnitLibrary();
-            //protoLib = new UnitLibrary("src/main/resources/mech_data.csv");
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-
-        this.attackingUnit = UnitFactory.buidUnit(protoLib.getUnitData("AWS-9M"),99);
-        this.targetUnit = UnitFactory.buidUnit(protoLib.getUnitData("AWS-9M"),98);
-        // end prototyping
-
+        // make this panel an observer of UnitManger
+        UnitManager.getInstance().addObserver(this);
 
         buildPanel();
         this.setPreferredSize(this.getPreferredSize());
-        update();
+        recalculate();
     }
 
-    public void setAttacker(Unit attacker) {
-        this.attackingUnit = attacker;
-    }
-
-    public void setTarget(Unit target) {
-        this.targetUnit = target;
+    /**
+     * Whenever a unit is changed the panel recalculate the to-hit math.
+     * @param o   the observable object.
+     * @param arg an argument passed to the {@code notifyObservers}
+     *            method.
+     */
+    @Override
+    public void update(Observable o, Object arg) {
+        if (o instanceof UnitManager) {
+            // reload the 2 units involved in the attack
+            attackingUnit = UnitManager.getSelectedAttacker();
+            targetUnit = UnitManager.getSelectedTarget();
+            recalculate();
+        }
     }
 
     /**
      * Updates the labels and re-calculates to-hit numbers
      */
-    public void update() {
-        // TODO separate UPDATE from CREATE. make the things that need to be updated referenced to by class attributes
+    public void recalculate() {
         // reset all attack roll variables
         attackerSkill = 0;
         situationalMod = 0;
@@ -309,7 +305,7 @@ public class AttackOptionsPanel extends JPanel {
         indirectCheckBox.setSelected(this.indirectFire);
         indirectCheckBox.addItemListener(e -> {
             this.indirectFire = (e.getStateChange() == ItemEvent.SELECTED);
-            this.update();
+            this.recalculate();
         });
         situationalPanel.add(indirectCheckBox);
 
@@ -317,7 +313,7 @@ public class AttackOptionsPanel extends JPanel {
         partialCheckBox.setSelected(this.partialCover);
         partialCheckBox.addItemListener(e -> {
             this.partialCover = (e.getStateChange() == ItemEvent.SELECTED);
-            this.update();
+            this.recalculate();
         });
         situationalPanel.add(partialCheckBox);
 
@@ -325,7 +321,7 @@ public class AttackOptionsPanel extends JPanel {
         woodsCheckBox.setSelected(this.woods);
         woodsCheckBox.addItemListener(e -> {
             this.woods = (e.getStateChange() == ItemEvent.SELECTED);
-            this.update();
+            this.recalculate();
         });
         situationalPanel.add(woodsCheckBox);
 
@@ -333,7 +329,7 @@ public class AttackOptionsPanel extends JPanel {
         rearArmorCheckBox.setSelected(this.rearArmor);
         rearArmorCheckBox.addItemListener(e -> {
             this.rearArmor = (e.getStateChange() == ItemEvent.SELECTED);
-            this.update();
+            this.recalculate();
         });
         situationalPanel.add(rearArmorCheckBox);
 
@@ -341,7 +337,7 @@ public class AttackOptionsPanel extends JPanel {
         aftArcCheckBox.setSelected(this.aftArc);
         aftArcCheckBox.addItemListener(e -> {
             this.aftArc = (e.getStateChange() == ItemEvent.SELECTED);
-            this.update();
+            this.recalculate();
         });
         situationalPanel.add(aftArcCheckBox);
     }
@@ -416,22 +412,22 @@ public class AttackOptionsPanel extends JPanel {
         // add logic to buttons
         shortButton.addItemListener(e -> {
             if(e.getStateChange() == ItemEvent.SELECTED) rangeValue = 0;
-            this.update();
+            this.recalculate();
         });
 
         medButton.addItemListener(e -> {
             if(e.getStateChange() == ItemEvent.SELECTED) rangeValue = 1;
-            this.update();
+            this.recalculate();
         });
 
         longButton.addItemListener(e -> {
             if(e.getStateChange() == ItemEvent.SELECTED) rangeValue = 2;
-            this.update();
+            this.recalculate();
         });
 
         extButton.addItemListener(e -> {
             if(e.getStateChange() == ItemEvent.SELECTED) rangeValue = 3;
-            this.update();
+            this.recalculate();
         });
 
     }

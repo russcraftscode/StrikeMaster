@@ -73,6 +73,11 @@ public class UnitManager extends Observable {
         units.add(UnitFactory.buidUnit(unitLibrary.getUnitData("CN9-A"), latestIdNum++));
         units.add(UnitFactory.buidUnit(unitLibrary.getUnitData("JM6-S"), latestIdNum++));
         units.add(UnitFactory.buidUnit(unitLibrary.getUnitData("JR7-D"), latestIdNum++));*/
+
+        // mark every unit as having moved for prototyping attack panel purposes.
+        for (Unit unit : units){
+            unit.setMovedThisRound(true);
+        }
         // end prototyping
     }
 
