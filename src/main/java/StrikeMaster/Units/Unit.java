@@ -2,12 +2,12 @@ package StrikeMaster.Units;
 
 import java.util.ArrayList;
 
-public class Unit {
+public abstract class Unit {
     //identity
-    protected   int ID;
+    protected int ID;
     protected String variant;
-    protected  String name;
-    protected  int PV;
+    protected String name;
+    protected int PV;
     protected String faction;
     // pilot attributes
     protected int skill = 4; // default skill level
@@ -48,8 +48,13 @@ public class Unit {
     protected boolean hullDown;
     protected boolean jumpedThisRound;
     protected boolean attackedThisRound;
+    // hit trackers
+    // damage value of each hit that must be resolved in end phase
+    protected ArrayList<Integer> hits = new ArrayList<>();
+    // the number of crits this unit must resolve in the end phase
+    protected int criticalHits;
 
-    public Unit (){
+    public Unit() {
         this.specialAbilities = new ArrayList<>();
         this.engHits = 0;
         this.FCHits = 0;
@@ -66,6 +71,71 @@ public class Unit {
         this.jumpedThisRound = false;
         this.attackedThisRound = false;
     }
+
+    /**
+     * @param damage the ammount of damage done in by the hit
+     * @param crits  number of extra critcitals done by the attack. Does not include crits
+     *               done by this attack's raw damage.
+     */
+    public void hit(int damage, int crits) {
+        hits.add(damage);
+        criticalHits += crits;
+    }
+
+    /**
+     * If the unit received an invalid crit, apply one point of damage that cannot cause another
+     * critical hit.
+     */
+    public void extraDamage(){
+        if ( armorCur > 0) {
+            armorCur--; // remove a point of armor if there is any to remove
+        } else if (structureCur > 1) {
+            structureCur--; // remove a point of structure if there is any to remove
+        } else {
+            // if there is no structure left then destroy the unit
+            structureCur = 0;
+            destroyed = true;
+            immobile = true;
+        }
+    }
+
+    public abstract String resolveDamage();
+
+    /**
+     * Applies damage from a hit first to armor and then to internal structure.
+     * If the armor was penetrated it adds a critical hit that must be resolved
+     * in the end phase of the turn.
+     *
+     * @param amountOfDamage the amount of damage this attack did
+     */
+    protected void takeDamage(int amountOfDamage) {
+        boolean wentCrit = false;
+        // if the damage overcomes the armor
+        if (amountOfDamage > armorCur) {
+            // apply damage left over after armor to internal structure
+            structureCur -= amountOfDamage - armorCur;
+            // if there is no structure left, destroy the unit
+            if (structureCur < 0) {
+                structureCur = 0;
+                destroyed = true;
+                immobile = true;
+            }
+            // zero out the armor because it has been used up
+            armorCur = 0;
+            // apply a critical hi
+            this.criticalHits++;
+        } else {// if the damage did not get through the armor
+            armorCur -= amountOfDamage;
+        }
+    }
+
+    /**
+     * Must be overridden. Determines the effects of a critical hit on a unit.
+     *
+     * @return brief report on what was destroyed in the critical hit
+     */
+    protected abstract String resolveCritical();
+
 
     public char getType() {
         return 'x';
@@ -91,7 +161,7 @@ public class Unit {
         return faction;
     }
 
-    public int getSkill(){
+    public int getSkill() {
         return this.skill;
     }
 
@@ -163,7 +233,7 @@ public class Unit {
         return TMMCur;
     }
 
-    public int getTMM(){
+    public int getTMM() {
         return 0;
     }
 

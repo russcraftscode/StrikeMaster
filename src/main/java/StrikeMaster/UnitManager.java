@@ -48,6 +48,7 @@ public class UnitManager extends Observable {
 
         units.add(UnitFactory.buidUnit(unitLibrary.getUnitData("AWS-9M"), latestIdNum++));
         units.add(UnitFactory.buidUnit(unitLibrary.getUnitData("AS7-D"), latestIdNum++));
+        units.add(UnitFactory.buidUnit(unitLibrary.getUnitData("ASN-21"), latestIdNum++));
         units.add(UnitFactory.buidUnit(unitLibrary.getUnitData("DRG-1N"), latestIdNum++));
         units.add(UnitFactory.buidUnit(unitLibrary.getUnitData("KGC-0000"), latestIdNum++));
         units.add(UnitFactory.buidUnit(unitLibrary.getUnitData("MAD-3R"), latestIdNum++));

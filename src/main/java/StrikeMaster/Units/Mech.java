@@ -1,5 +1,6 @@
 package StrikeMaster.Units;
 
+import StrikeMaster.Dice;
 import StrikeMaster.UnitData;
 
 import java.util.ArrayList;
@@ -7,7 +8,7 @@ import java.util.ArrayList;
 public class Mech extends Unit {
     //public Mech (MechData data, int ID){
     public Mech(UnitData data, int ID, String side) {
-        super();
+        //super(); // TODO determine if this needed to be here
         //identity
         this.faction = side;
         this.ID = ID;
@@ -28,15 +29,136 @@ public class Mech extends Unit {
         for (String a : data.getSpecialAbilities()) {
             this.specialAbilities.add(a);
         }
-        //this.specialAbilities = data.getName();
         // condition
         this.moveCur = this.moveMax;
         this.armorCur = this.armorMax;
         this.structureCur = this.structureMax;
         this.TMMCur = this.TMMMax;
         this.heatCur = 0;
-
     }
+
+    /**
+     * Must be overridden. Determines the effects of a critical hit on a unit.
+     * @return brief report on what was destroyed in the critical hit
+     */
+    @Override
+    protected String resolveCritical() {
+        String criticalReport = "";
+        boolean validCrit = true;
+        int critRoll = Dice.roll2d6();
+        if(critRoll == 2){
+            validCrit = ammoCritHit();
+            return "ammo";
+        }
+        if(critRoll == 3 || critRoll == 11){
+            validCrit = engineCritHit();
+            return "engine";
+        }
+        if(critRoll == 4 || critRoll == 10){
+            validCrit = fireControlCritHit();
+            return "fire control";
+        }
+        if(critRoll == 6 || critRoll == 8){
+            validCrit = wepCritHit();
+            return "weapons";
+        }
+        if(critRoll == 7){
+            validCrit = mpCritHit();
+            return "drive train";
+        }
+        if(critRoll == 12){
+            destroyed = true;
+            immobile = true;
+            return "unit destroyed";
+        }
+        if(!validCrit) extraDamage();
+        return "no critical hit";
+    }
+
+    public String resolveDamage() {
+        int totalDamageThisTurn = 0;
+        String damageReport = faction + "'s " + name + " " + variant + " took ";
+        for(Integer hit : hits){
+            takeDamage(hit);
+            totalDamageThisTurn =+ hit;
+        }
+        damageReport = damageReport + totalDamageThisTurn + " points of damage";
+        if(criticalHits > 0) damageReport = damageReport +  " and took critical hits to ";
+        for( int i = 0; i < criticalHits; i++){
+            damageReport = damageReport +  resolveCritical();
+            // add a comma if there is another critical report coming
+            if(i != criticalHits -1) damageReport = damageReport + ", ";
+        }
+
+        if(isDestroyed())  damageReport = damageReport + " and was destroyed";
+        else damageReport = damageReport + ".";
+
+        return damageReport;
+    }
+
+    /**
+     * Resolves a hit to internal ammo storage
+     * @return false if the crit was invalid and damage needs to be applied instead
+     */
+    public boolean ammoCritHit(){
+        // TODO apply CASE rules
+        // energy weapon only mechs are unaffected by ammo hits
+        if(!specialAbilities.contains("ENE")) {
+            // mechs susceptible to ammo hits are destroyed outright
+            destroyed = true;
+            immobile = true;
+        }
+        return true; // ammo hits on units without ammo never cause extra damage
+    }
+
+    /**
+     * Resolves a hit to the reactor
+     * @return false if the crit was invalid and damage needs to be applied instead
+     */
+    public boolean engineCritHit(){
+        // if the engine previously undamaged the unit takes one engine hit
+        if (engHits == 0) engHits = 1;
+        else{
+            // engines can only take one hit. A second hit destroys the mech.
+            destroyed = true;
+            immobile = true;
+        }
+        return true; // all mechs are susceptible to engine hits
+    }
+
+    /**
+     * Resolves a hit to the fire control systems
+     * @return false if the crit was invalid and damage needs to be applied instead
+     */
+    public boolean fireControlCritHit(){
+        // if the fire control system was already destroyed take an extra point of damage instead
+        if (FCHits == 4)return false;
+        FCHits += 1;
+        return true;
+    }
+
+    /**
+     * Resolves a hit to the motive systems or drive train
+     * @return false if the crit was invalid and damage needs to be applied instead
+     */
+    public boolean mpCritHit(){
+        // if the mp system was already destroyed take an extra point of damage instead
+        if (MPHits == 4)return false;
+        MPHits += 1;
+        return true;
+    }
+
+    /**
+     * Resolves a hit to the weapons
+     * @return false if the crit was invalid and damage needs to be applied instead
+     */
+    public boolean wepCritHit(){
+        // if the weapons were already destroyed take an extra point of damage instead
+        if (wepHits == 4)return false;
+        wepHits += 1;
+        return true;
+    }
+
 
     @Override
     public char getType(){
@@ -49,7 +171,7 @@ public class Mech extends Unit {
     @Override
     public int getTMM(){
         // TODO replace literals with constants
-        // if the unit moved it recieves its current TMM
+        // if the unit moved it receives its current TMM
         if(this.movedThisRound) return this.TMMCur;
         // if the unit is shutdown or immobilized it is easier to hit
         if( this.shutdown || this.immobile) return -4;
@@ -105,16 +227,19 @@ public class Mech extends Unit {
         char dmg = '0';
         switch (range) {
             case 's':
-                dmg = this.shortDmg;
+                dmg = shortDmg;
                 break;
             case 'm':
-                dmg = this.medDmg;
+                dmg = medDmg;
                 break;
             case 'l':
-                dmg = this.longDmg;
+                dmg = longDmg;
                 break;
             case 'e':
-                dmg = this.extDmg;
+                dmg = extDmg;
+                break;
+            default:
+                dmg = shortDmg;
                 break;
         }
         // asterisks means minimum damage.
@@ -130,6 +255,4 @@ public class Mech extends Unit {
         }
         return dmg;
     }
-
-
 }
