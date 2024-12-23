@@ -68,8 +68,8 @@ For questions or feedback, please open an issue on [GitHub](https://github.com/r
 Pop-up window for directly editing unit status.
 ![image](https://github.com/user-attachments/assets/d7b50749-91cc-46d2-b6d1-4fbf97178bec)
 
-Example of prototype layout.
-![image](https://github.com/user-attachments/assets/d75af728-8a18-4ed3-94d3-20b7b09c39ae)
+Example of prototype of Combat Phase layout  
+![image](https://github.com/user-attachments/assets/053f142a-98ce-4d4c-8679-328edd805ea0)
 
 Early Prototypes of Combat Phase view and Movement Phase view.
 
