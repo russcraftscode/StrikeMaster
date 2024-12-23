@@ -143,11 +143,13 @@ public class UnitSelectPanel extends JPanel implements Observer {
 
         this.buildUnitPanel();
 
-        // Add unit data panel to scroll pane and add that to AttackPanel
+        // create the scroll pane that will hold the unit data panel
         JScrollPane unitScroll = new JScrollPane();
+        unitScroll.getVerticalScrollBar().setUnitIncrement(5); // speed up the scrolling
         // anchor the unitDataPanel to the top of the scroll pane if it isn't big enough to scroll
         unitScroll.getViewport().setLayout(new FlowLayout(FlowLayout.LEADING));
         unitScroll.setPreferredSize(new Dimension(unitDataPanel.getPreferredSize().width+30, 200));
+        // Add unit data panel to scroll pane and add that to AttackPanel
         unitScroll.getViewport().add(unitDataPanel);
 
         editUnitButton.setPreferredSize(new Dimension(editUnitButton.getPreferredSize().width, 20));
