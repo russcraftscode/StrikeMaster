@@ -38,7 +38,7 @@ public class Mech extends Unit {
     }
 
     /**
-     * Must be overridden. Determines the effects of a critical hit on a unit.
+     * Determines the effects of a critical hit on a unit.
      * @return brief report on what was destroyed in the critical hit
      */
     @Override
@@ -242,6 +242,8 @@ public class Mech extends Unit {
                 dmg = shortDmg;
                 break;
         }
+        // 4 wep hits means the mech is disarmed
+        if ( wepHits == 4) return '0';
         // asterisks means minimum damage.
         if(dmg == '*') {
             if(this.wepHits > 0) return '0';

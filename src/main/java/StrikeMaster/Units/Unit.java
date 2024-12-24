@@ -115,7 +115,7 @@ public abstract class Unit {
             // apply damage left over after armor to internal structure
             structureCur -= amountOfDamage - armorCur;
             // if there is no structure left, destroy the unit
-            if (structureCur < 0) {
+            if (structureCur <= 0) {
                 structureCur = 0;
                 destroyed = true;
                 immobile = true;
@@ -130,12 +130,47 @@ public abstract class Unit {
     }
 
     /**
-     * Must be overridden. Determines the effects of a critical hit on a unit.
+     * Determines the effects of a critical hit on a unit.
      *
      * @return brief report on what was destroyed in the critical hit
      */
     protected abstract String resolveCritical();
 
+    /**
+     * Resolves a hit to internal ammo storage
+     * @return false if the crit was invalid and damage needs to be applied instead
+     */
+    public abstract boolean ammoCritHit();
+
+    /**
+     * Resolves a hit to the reactor
+     * @return false if the crit was invalid and damage needs to be applied instead
+     */
+    public abstract boolean engineCritHit();
+
+    /**
+     * Resolves a hit to the fire control systems
+     * @return false if the crit was invalid and damage needs to be applied instead
+     */
+    public abstract boolean fireControlCritHit();
+
+    /**
+     * Resolves a hit to the motive systems or drive train
+     * @return false if the crit was invalid and damage needs to be applied instead
+     */
+    public abstract boolean mpCritHit();
+
+    /**
+     * Resolves a hit to the weapons
+     * @return false if the crit was invalid and damage needs to be applied instead
+     */
+    public abstract boolean wepCritHit();
+
+    /**
+     * @param range s,m,l,e ranges
+     * @return the current damage capability at the provided range
+     */
+    public abstract char getDmg(char range);
 
     public char getType() {
         return 'x';
