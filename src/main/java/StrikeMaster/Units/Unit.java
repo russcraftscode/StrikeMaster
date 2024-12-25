@@ -49,7 +49,7 @@ public abstract class Unit {
     protected boolean immobile;
     protected boolean hullDown;
     protected boolean jumpedThisRound;
-    protected boolean attackedThisRound;
+    protected boolean firedWepThisRound;
     // hit trackers
     // damage value of each hit that must be resolved in end phase
     //protected ArrayList<Integer> hits = new ArrayList<>();
@@ -72,7 +72,7 @@ public abstract class Unit {
         this.immobile = false;
         this.hullDown = false;
         this.jumpedThisRound = false;
-        this.attackedThisRound = false;
+        this.firedWepThisRound = false;
     }
 
     /**
@@ -362,7 +362,7 @@ public abstract class Unit {
     }
 
     public boolean didAttackThisRound() {
-        return attackedThisRound;
+        return firedWepThisRound;
     }
 
     public boolean isFireComplete() {
@@ -417,8 +417,8 @@ public abstract class Unit {
         this.movedThisRound = movedThisRound;
     }
 
-    public void setAttackedThisRound(boolean attackedThisRound) {
-        this.attackedThisRound = attackedThisRound;
+    public void setFiredWepThisRound(boolean firedWepThisRound) {
+        this.firedWepThisRound = firedWepThisRound;
     }
 
     public void setImmobile(boolean immobile) {

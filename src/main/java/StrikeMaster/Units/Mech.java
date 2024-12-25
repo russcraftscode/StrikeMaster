@@ -4,8 +4,6 @@ import StrikeMaster.Attack;
 import StrikeMaster.Dice;
 import StrikeMaster.UnitData;
 
-import java.util.ArrayList;
-
 public class Mech extends Unit {
     //public Mech (MechData data, int ID){
     public Mech(UnitData data, int ID, String side) {
@@ -49,6 +47,8 @@ public class Mech extends Unit {
     public String makeAttack(Unit target, int overheat, char range, int toHit) {
         // apply effects of firing weapons
         this.overheat += overheat;
+        this.firedWepThisRound = true;
+        this.fireComplete = true; // used to determine if the unit can make an attack
 
         // initialize the attackReport
         int attackRoll = Dice.roll2d6();

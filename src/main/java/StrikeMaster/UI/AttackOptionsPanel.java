@@ -47,7 +47,15 @@ public class AttackOptionsPanel extends JPanel implements Observer {
     private final JLabel attackerDamModNumber = new JLabel();
     private final JLabel toHitNumber = new JLabel();
 
-    private final JComboBox overHeatBox = new JComboBox();
+    private final JComboBox<Integer> overHeatBox = new JComboBox();
+
+    private final ButtonGroup rangeButtons = new ButtonGroup();
+
+    private final String rangeButtonStringS = "Short";
+    private final String rangeButtonStringM = "Med";
+    private final String rangeButtonStringL = "Long";
+    private final String rangeButtonStringE = "Extreme";
+
 
     /**
      * Panel that lets users input all variables that will affect an attack roll.
@@ -63,6 +71,7 @@ public class AttackOptionsPanel extends JPanel implements Observer {
 
     /**
      * Whenever a unit is changed the panel recalculate the to-hit math.
+     *
      * @param o   the observable object.
      * @param arg an argument passed to the {@code notifyObservers}
      *            method.
@@ -127,8 +136,8 @@ public class AttackOptionsPanel extends JPanel implements Observer {
         // update heat select
         overHeatBox.removeAllItems();
         overHeatBox.addItem(0);
-        if(attackingUnit != null){
-            for (int i = 1; i <= attackingUnit.getOverheat(); i++){
+        if (attackingUnit != null) {
+            for (int i = 1; i <= attackingUnit.getOverheat(); i++) {
                 overHeatBox.addItem(i);
             }
         }
@@ -221,12 +230,36 @@ public class AttackOptionsPanel extends JPanel implements Observer {
         gloc.gridheight = gloc.gridy - 2;
         gloc.gridy = 2;
         this.add(numSep, gloc);
+
+        // add logic to buttons
+        fireButton.addActionListener(f -> {
+            if( attackingUnit != null && targetUnit != null) {
+                attackingUnit.makeAttack(targetUnit,
+                        (int) this.overHeatBox.getSelectedItem(),
+                        getSelectedRange(),
+                        toHitFinal);
+            }
+        });
+    }
+
+
+    private char getSelectedRange(){
+        char attackRange;
+        if (rangeButtons.getSelection().equals(this.rangeButtonStringS)) {
+            attackRange = 's';
+        } else if (rangeButtons.getSelection().equals(this.rangeButtonStringM) ){
+            attackRange = 'm';
+        } else if (rangeButtons.getSelection().equals(this.rangeButtonStringL)) {
+            attackRange = 'l';
+        } else attackRange = 'e';
+        return attackRange;
     }
 
     /**
      * Creates and formats a JLabel to be a label of an attack roll modifier
+     *
      * @param labelText the text explaining what the modifier is
-     * @param loc the GridBagConstraints that needs to be modified to place the label
+     * @param loc       the GridBagConstraints that needs to be modified to place the label
      */
     private void createModLabel(String labelText, GridBagConstraints loc) {
         loc.gridx = 0;
@@ -240,10 +273,11 @@ public class AttackOptionsPanel extends JPanel implements Observer {
 
     /**
      * Formats an existing JLabel to be a show a value of an attack roll modifier
+     *
      * @param label the label to be formatted
      * @param value the value to be shown
-     * @param loc the GridBagConstraints that needs to be modified to place the label
-     * @param sign true if the + sign is to be shown for positive numbers
+     * @param loc   the GridBagConstraints that needs to be modified to place the label
+     * @param sign  true if the + sign is to be shown for positive numbers
      */
     private void createModNumber(JLabel label, int value, GridBagConstraints loc, boolean sign) {
         loc.gridx = 3;
@@ -252,7 +286,7 @@ public class AttackOptionsPanel extends JPanel implements Observer {
         // put a +/- sign in front of the number if sign is true
         if (sign) {
             if (value < 0) { // minus sign automatically comes with negative numbers
-                label.setText(String.valueOf( value) );
+                label.setText(String.valueOf(value));
             } else {
                 label.setText("+" + value);
             }
@@ -265,9 +299,10 @@ public class AttackOptionsPanel extends JPanel implements Observer {
 
     /**
      * Updates a JLabel that is being used to show the value of an attack modifier
+     *
      * @param label the JLabel to be adjusted
      * @param value the value to be shown
-     * @param sign true if the + sign is to be shown for positive numbers
+     * @param sign  true if the + sign is to be shown for positive numbers
      */
     private void updateModNumber(JLabel label, int value, boolean sign) {
         // put a +/- sign in front of the number if sign is true
@@ -284,6 +319,7 @@ public class AttackOptionsPanel extends JPanel implements Observer {
 
     /**
      * Reconfigures a GridBagConstraint object to be in the center column of the AttackOptionsPanel
+     *
      * @param loc the GridBagConstraint object to be formatted
      */
     private void locationMid(GridBagConstraints loc) {
@@ -353,7 +389,8 @@ public class AttackOptionsPanel extends JPanel implements Observer {
         rangeLoc.weightx = 1.0;
         rangeLoc.insets = new Insets(2, 2, 2, 2);
 
-        ButtonGroup rangeButtons = new ButtonGroup();
+
+        rangeButtons.getSelection();
 
         // create the labels for the ranges
         JLabel rangePanelLabel = new JLabel("Enter Range");
@@ -363,7 +400,7 @@ public class AttackOptionsPanel extends JPanel implements Observer {
         rangeLoc.anchor = GridBagConstraints.NORTH;
         rangePanel.add(rangePanelLabel, rangeLoc);
 
-        JLabel shortLabel = new JLabel("Short ");
+        JLabel shortLabel = new JLabel(rangeButtonStringS);
         shortLabel.setHorizontalAlignment(SwingConstants.CENTER);
         rangeLoc.gridx = 0;
         rangeLoc.gridy = 1;
@@ -371,16 +408,16 @@ public class AttackOptionsPanel extends JPanel implements Observer {
         rangeLoc.anchor = GridBagConstraints.SOUTH;
         rangePanel.add(shortLabel, rangeLoc);
 
-        JLabel medLabel = new JLabel("Med");
+        JLabel medLabel = new JLabel(rangeButtonStringM);
         rangeLoc.gridx = 1;
         rangePanel.add(medLabel, rangeLoc);
 
-        JLabel longLabel = new JLabel("Long");
+        JLabel longLabel = new JLabel(rangeButtonStringL);
         longLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
         rangeLoc.gridx = 2;
         rangePanel.add(longLabel, rangeLoc);
 
-        JLabel extLabel = new JLabel("Ext");
+        JLabel extLabel = new JLabel(rangeButtonStringE);
         extLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
         rangeLoc.gridx = 3;
         rangePanel.add(extLabel, rangeLoc);
@@ -411,25 +448,24 @@ public class AttackOptionsPanel extends JPanel implements Observer {
 
         // add logic to buttons
         shortButton.addItemListener(e -> {
-            if(e.getStateChange() == ItemEvent.SELECTED) rangeValue = 0;
+            if (e.getStateChange() == ItemEvent.SELECTED) rangeValue = 0;
             this.recalculate();
         });
 
         medButton.addItemListener(e -> {
-            if(e.getStateChange() == ItemEvent.SELECTED) rangeValue = 1;
+            if (e.getStateChange() == ItemEvent.SELECTED) rangeValue = 1;
             this.recalculate();
         });
 
         longButton.addItemListener(e -> {
-            if(e.getStateChange() == ItemEvent.SELECTED) rangeValue = 2;
+            if (e.getStateChange() == ItemEvent.SELECTED) rangeValue = 2;
             this.recalculate();
         });
 
         extButton.addItemListener(e -> {
-            if(e.getStateChange() == ItemEvent.SELECTED) rangeValue = 3;
+            if (e.getStateChange() == ItemEvent.SELECTED) rangeValue = 3;
             this.recalculate();
         });
-
     }
 
     /**
@@ -437,7 +473,7 @@ public class AttackOptionsPanel extends JPanel implements Observer {
      * input the amount of overheat they want to add to this attack.
      */
     private void createOverheatPanel() {
-       overHeatPanel.setBorder(BorderFactory.createBevelBorder(BevelBorder.RAISED));
+        overHeatPanel.setBorder(BorderFactory.createBevelBorder(BevelBorder.RAISED));
         overHeatPanel.setLayout(new FlowLayout());
 
         JLabel heatLabel = new JLabel("OverHeat for this Attack");
