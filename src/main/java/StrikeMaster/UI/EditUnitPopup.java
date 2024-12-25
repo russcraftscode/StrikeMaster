@@ -193,7 +193,7 @@ public class EditUnitPopup extends JDialog {
             selectedUnit.setSprinted(sprintedBox.isSelected());
             selectedUnit.setJumped(jumpedBox.isSelected());
             selectedUnit.setMovedThisRound(movedBox.isSelected());
-            selectedUnit.setAttackedThisRound(firedBox.isSelected());
+            selectedUnit.setFiredWepThisRound(firedBox.isSelected());
             selectedUnit.setInWater(waterBox.isSelected());
             selectedUnit.setShutdown(shutdownBox.isSelected());
             selectedUnit.setImmobile(immobileBox.isSelected());

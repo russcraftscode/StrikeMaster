@@ -8,8 +8,9 @@ import java.io.IOException;
 
 
 public class AppWindow extends JFrame {
-    HeaderPanel headerPanel = new HeaderPanel();
+    private HeaderPanel headerPanel = new HeaderPanel();
     private BufferedImage appIcon;
+    private PhasePanel phasePanel = new PhasePanel();
 
     public AppWindow( boolean hiRezMode) {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -48,22 +49,9 @@ public class AppWindow extends JFrame {
         combatPanel.add(attackOptionsPanel, combatLoc);
 
         // phase select panel holds all the elements to switch phases and end the turn
-        // TODO move phasePanel to its own class or method
-        JPanel phasePanel = new JPanel();
-        phasePanel.setLayout(new GridLayout(4,1,2,2));
-        JButton movePhaseButton = new JButton("Move Phase");
-        movePhaseButton.setMinimumSize(new Dimension(150,50));
-        phasePanel.add(movePhaseButton);
-        JButton combatPhaseButton = new JButton("Combat Phase");
-        phasePanel.add(combatPhaseButton);
-        combatPhaseButton.setPreferredSize(new Dimension(150,50));
-        JButton damagePhaseButton = new JButton("Resolve Damage");
-        damagePhaseButton.setPreferredSize(new Dimension(150,50));
-        phasePanel.add(damagePhaseButton);
-        JButton endRoundButton = new JButton("End Round");
-        endRoundButton.setPreferredSize(new Dimension(150,50));
-        phasePanel.add(endRoundButton);
+        phasePanel = new PhasePanel();
 
+        // place all panels on the frame
         mainLoc.gridx = 0;
         mainLoc.gridy = 0;
         mainLoc.gridwidth = 2;
