@@ -1,5 +1,7 @@
 package StrikeMaster.Units;
 
+import StrikeMaster.Attack;
+
 import java.util.ArrayList;
 
 public abstract class Unit {
@@ -50,7 +52,8 @@ public abstract class Unit {
     protected boolean attackedThisRound;
     // hit trackers
     // damage value of each hit that must be resolved in end phase
-    protected ArrayList<Integer> hits = new ArrayList<>();
+    //protected ArrayList<Integer> hits = new ArrayList<>();
+    protected ArrayList<Attack> hits = new ArrayList<>();
     // the number of crits this unit must resolve in the end phase
     protected int criticalHits;
 
@@ -77,9 +80,17 @@ public abstract class Unit {
      * @param crits  number of extra critcitals done by the attack. Does not include crits
      *               done by this attack's raw damage.
      */
-    public void hit(int damage, int crits) {
+   /* public void hit(int damage, int crits) {
         hits.add(damage);
         criticalHits += crits;
+    }*/
+
+    /**
+     * @param attack the attack that hit the unit
+     */
+    public void hit(Attack attack) {
+        hits.add(attack);
+        if (attack.thruArmorCrit) criticalHits ++;
     }
 
     /**
@@ -171,6 +182,24 @@ public abstract class Unit {
      * @return the current damage capability at the provided range
      */
     public abstract char getDmg(char range);
+
+    /**
+     * Applies the effects of firing weapons to the unit that fired its weapons
+     * @param overheat the amount of overheat to add to the attack
+     */
+    //public abstract void fireWeapons(int overheat);
+
+    /**
+     * Handles making an attack on another unit. Calculates if the attack hits,
+     * applies effects of making an attack on the attacker, passes damage information
+     * to the target.
+     * @param target the unit being attacked
+     * @param overheat how much overheat to apply to the attack
+     * @param range the range between the 2 units
+     * @param toHit the required roll to hit the target
+     * @return a report on the attack
+     */
+    public abstract String makeAttack( Unit target, int overheat, char range, int toHit);
 
     public char getType() {
         return 'x';

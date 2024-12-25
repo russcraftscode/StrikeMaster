@@ -1,3 +1,4 @@
+import StrikeMaster.Attack;
 import StrikeMaster.UnitFactory;
 import StrikeMaster.UnitLibrary;
 import StrikeMaster.Units.Unit;
@@ -110,7 +111,7 @@ public class MechTest {
         int beforeHitArmor = testUnit.getArmorCur();
         int beforeHitStructure = testUnit.getStructureCur();
         // hit the mech for 1 damage
-        testUnit.hit(1, 0);
+        testUnit.hit(new Attack(1, Attack.DamageType.REGULAR, false ) );
         System.out.println(testUnit.resolveDamage());
         ;
         assertEquals(beforeHitArmor - 1, testUnit.getArmorCur());
@@ -124,7 +125,7 @@ public class MechTest {
         testUnit.setArmorCur(1);
         beforeHitArmor = testUnit.getArmorCur();
         beforeHitStructure = testUnit.getStructureCur();
-        testUnit.hit(1, 0);
+        testUnit.hit(new Attack(1, Attack.DamageType.REGULAR, false ) );
         System.out.println(testUnit.resolveDamage());
         ;
         assertEquals(beforeHitArmor - 1, testUnit.getArmorCur());
@@ -138,7 +139,7 @@ public class MechTest {
         testUnit.setArmorCur(0);
         beforeHitArmor = testUnit.getArmorCur();
         beforeHitStructure = testUnit.getStructureCur();
-        testUnit.hit(1, 0);
+        testUnit.hit(new Attack(1, Attack.DamageType.REGULAR, false ) );
         System.out.println(testUnit.resolveDamage());
         ;
         assertEquals(beforeHitArmor, testUnit.getArmorCur()); // armor should stay 0
@@ -154,7 +155,7 @@ public class MechTest {
         testUnit.setStructureCur(1);
         beforeHitArmor = testUnit.getArmorCur();
         beforeHitStructure = testUnit.getStructureCur();
-        testUnit.hit(1, 0);
+        testUnit.hit(new Attack(1, Attack.DamageType.REGULAR, false ) );
         System.out.println(testUnit.resolveDamage());
         ;
         assertEquals(beforeHitArmor, testUnit.getArmorCur()); // armor should stay 0
@@ -168,7 +169,7 @@ public class MechTest {
         // test destroying unit from a fresh state
         beforeHitArmor = testUnit.getArmorCur();
         beforeHitStructure = testUnit.getStructureCur();
-        testUnit.hit(50, 0);
+        testUnit.hit(new Attack(50, Attack.DamageType.REGULAR, false ) );
         System.out.println(testUnit.resolveDamage());
         assertEquals(0, testUnit.getArmorCur()); // armor should be gone
         // internal structure should go down
