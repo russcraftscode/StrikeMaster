@@ -224,7 +224,7 @@ public class MechTest {
             throw new RuntimeException(e);
         }
 
-        // make a mech without ammo
+        // make a mech to test
         Unit testUnit = UnitFactory.buidUnit(unitLibrary.getUnitData("AWS-8Q"), 0);
 
         // fail to blow it up
@@ -254,7 +254,7 @@ public class MechTest {
             throw new RuntimeException(e);
         }
 
-        // make a mech without ammo
+        // make a mech with more than 4 damage
         Unit testUnit = UnitFactory.buidUnit(unitLibrary.getUnitData("ANH-1X"), 0);
         int beforeSDamage = Character.getNumericValue(testUnit.getDmg('s'));
         int beforeMDamage = Character.getNumericValue(testUnit.getDmg('m'));
@@ -306,6 +306,34 @@ public class MechTest {
         assertEquals(0, Character.getNumericValue(testUnit.getDmg('m')));
         assertEquals(0, Character.getNumericValue(testUnit.getDmg('l')));
 
+    }
+
+    /**
+     * Tests engine hits. Doesn't test ext damage
+     */
+    @Test
+    public void testMechEngineCritical() {
+        // TODO add testing for adding +1 heat to firing weapons after the engine is hit
+        UnitLibrary unitLibrary;
+        try {
+            unitLibrary = new UnitLibrary();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+        // make a mech to test
+        Unit testUnit = UnitFactory.buidUnit(unitLibrary.getUnitData("AS7-D"), 0);
+        // should start with no engine hits
+        assertEquals(0, testUnit.getEngHits());
+        // after 1 hit the mech should not be destroyed but have 1 engin hit marked
+        testUnit.engineCritHit();
+        assertEquals(1, testUnit.getEngHits());
+        assertFalse(testUnit.isDestroyed());
+        // after a 2nd engine hit mech should be destroyed and still have just 1 engine hit marked
+        testUnit.engineCritHit();
+        assertEquals(1, testUnit.getEngHits());
+        assertTrue(testUnit.isDestroyed());
+        assertTrue(testUnit.isImmobile());
     }
 
 }

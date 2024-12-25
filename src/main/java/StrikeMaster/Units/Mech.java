@@ -223,6 +223,7 @@ public class Mech extends Unit {
      * @return the current damage capability at the provided range
      */
     public char getDmg(char range) {
+        // TODO seriously consider if minimum damage (aka *) is worth implementing
         //int dmg = 0;
         char dmg = '0';
         switch (range) {
@@ -235,11 +236,8 @@ public class Mech extends Unit {
             case 'l':
                 dmg = longDmg;
                 break;
-            case 'e':
-                dmg = extDmg;
-                break;
-            default:
-                dmg = shortDmg;
+            default: // there is no extreme range for a mech, so default to long
+                dmg = longDmg;
                 break;
         }
         // 4 wep hits means the mech is disarmed
