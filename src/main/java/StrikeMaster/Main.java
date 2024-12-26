@@ -6,8 +6,9 @@ import StrikeMaster.UI.AppWindow;
 public class Main {
     public static void main(String[] args) {
 
-        // Initialize UnitManger singleton
+        // Initialize singletons
         UnitManager unitManager = UnitManager.getInstance();
+        ImageManager imageLoader = ImageManager.getInstance();
 
         // TODO make this an option for the user
         //boolean hiRez = false;

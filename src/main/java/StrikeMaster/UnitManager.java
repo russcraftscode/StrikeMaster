@@ -28,7 +28,7 @@ public class UnitManager extends Observable {
 
     /**
      * Instantiate singleton instance of UnitManager
-     * @return TacticController - Always returns the original TacticController object
+     * @return the only instance of UnitManger
      */
     public static UnitManager getInstance() {
         if (UnitManager.instance == null) {
