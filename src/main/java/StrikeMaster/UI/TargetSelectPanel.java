@@ -39,7 +39,7 @@ public class TargetSelectPanel extends UnitSelectPanel {
         targetSingleUnitPanels.get(0).setSelected(true);
 
         editUnitButton.addActionListener(e -> {
-            EditUnitPopup editUnitPopup = new EditUnitPopup(UnitManager.getSelectedAttacker());
+            EditUnitPopup editUnitPopup = new EditUnitPopup(UnitManager.getSelectedTarget());
         });
     }
 
