@@ -16,50 +16,29 @@ import java.util.Observer;
  * This panel displays contextually relevant information about all units and allows
  * the user to select a unit. UnitManger tracks which unit is selected.
  */
-public class UnitSelectPanel extends JPanel implements Observer {
-    public static final int ATTACK = 1;
-    public static final int TARGET = 2;
-    public static final int MOVE = 3;
-
-    private final int panelType;
+public abstract class UnitSelectPanel extends JPanel implements Observer {
 
 
-    private final JPanel unitDataPanel = new JPanel();
-    private final JButton editUnitButton = new JButton("Edit Unit");
-    private final JLabel panelLabel = new JLabel();
+
+    protected final JPanel unitDataPanel = new JPanel();
+    protected final JButton editUnitButton = new JButton("Edit Unit");
+    protected final JLabel panelLabel = new JLabel();
 
     // create a button group for all unit select radio buttons
-    private final ButtonGroup unitSelectGroup = new ButtonGroup();
+    protected final ButtonGroup unitSelectGroup = new ButtonGroup();
 
-    private final ArrayList<SingleUnitPanel> singleUnitPanels = new ArrayList<>();
 
     /**
      * Constructs either an attacker-unit select panel, a target-unit select panel,
      * or a move-unit select panel.
-     * @param panelType use static constants to determine ATTACK, TARGET, or MOVE
      */
-    public UnitSelectPanel(int panelType) {
+    //public UnitSelectPanel(int panelType) {
+    public UnitSelectPanel() {
         // make this panel an observer of UnitManger
         UnitManager.getInstance().addObserver(this);
 
         this.setLayout(new GridBagLayout());
-
-        // define the type of unit select panel
-        this.panelType = panelType;
-        switch (this.panelType) {
-            case UnitSelectPanel.ATTACK:
-                this.panelLabel.setText("Select Unit to make attack");
-                break;
-            case UnitSelectPanel.TARGET:
-                this.panelLabel.setText("Select Unit to target");
-                break;
-            //TODO make a move unit sub panel
-            default:
-                this.panelLabel.setText("Select unit to move");
-                break;
-        }
-
-               this.buildUnitPanel();
+        this.buildUnitPanel();
 
         // create the scroll pane that will hold the unit data panel
         JScrollPane unitScroll = new JScrollPane();
@@ -72,22 +51,6 @@ public class UnitSelectPanel extends JPanel implements Observer {
         unitScroll.getViewport().add(unitDataPanel);
 
         editUnitButton.setPreferredSize(new Dimension(editUnitButton.getPreferredSize().width, 20));
-        editUnitButton.addActionListener(e -> {
-            EditUnitPopup editUnitPopup;
-            // pass a different unit to the popup depending on which type of panel this is
-            switch (this.panelType){
-                // TODO add move panel
-                case UnitSelectPanel.ATTACK:
-                    editUnitPopup = new EditUnitPopup(UnitManager.getSelectedAttacker());
-                    break;
-                case UnitSelectPanel.TARGET:
-                    editUnitPopup = new EditUnitPopup(UnitManager.getSelectedTarget());
-                    break;
-                default:
-                    editUnitPopup = new EditUnitPopup(UnitManager.getSelectedAttacker());
-                    break;
-            }
-        });
 
         // add components to unit select panel
         GridBagConstraints selectLoc = new GridBagConstraints();
@@ -106,46 +69,12 @@ public class UnitSelectPanel extends JPanel implements Observer {
         this.add(editUnitButton, selectLoc);
     }
 
-    private void buildUnitPanel(){
-        unitDataPanel.setLayout(new GridBagLayout());
-        GridBagConstraints gloc = new GridBagConstraints();
-        gloc.insets = new Insets(2, 0, 1, 0);
-        gloc.gridx = 0;
-        gloc.gridy = 0;
-        gloc.fill = GridBagConstraints.HORIZONTAL;
-        gloc.weightx = 1;
-
-        for (int idNum = 0; idNum < UnitManager.getUnitCount(); idNum++) {
-            SingleUnitPanel singleUnitPanel;
-            switch (this.panelType){
-                // TODO add move panel
-                case UnitSelectPanel.ATTACK:
-                    singleUnitPanel = new AttackSingleUnitPanel(UnitManager.getUnit(idNum));
-                    break;
-                case UnitSelectPanel.TARGET:
-                    singleUnitPanel = new TargetSingleUnitPanel(UnitManager.getUnit(idNum));
-                    break;
-                default:
-                    singleUnitPanel = new AttackSingleUnitPanel(UnitManager.getUnit(idNum));
-                    break;
-            }
-            unitDataPanel.add(singleUnitPanel, gloc);
-            gloc.gridy++;
-            singleUnitPanels.add(singleUnitPanel);
-        }
-
-        // set the default selection to the first  sub panel  to prevent no-unit selected errors
-        singleUnitPanels.get(0).setSelected(true);
-    }
+    protected abstract void buildUnitPanel();
 
     /**
      * Updates all unit entries to reflect any changes to unit objects.
      */
-    public void updateUnits() {
-        for(SingleUnitPanel entryPanel : singleUnitPanels){
-            entryPanel.updateGraphics();
-        }
-    }
+    public abstract void updateUnits();
 
     /**
      * Whenever a unit is changed the panel will update its graphics.
@@ -201,10 +130,13 @@ public class UnitSelectPanel extends JPanel implements Observer {
             return true;
         }
     }
+/*
 
-    /**
+    */
+/**
      * Subclass of SingleUnitPanel that represents a single unit that is making an attack.
-     */
+     *//*
+
     class AttackSingleUnitPanel extends SingleUnitPanel {
         private JRadioButton unitSelectButton = new JRadioButton();
         private JLabel iconLabel = new JLabel();
@@ -217,19 +149,23 @@ public class UnitSelectPanel extends JPanel implements Observer {
         private JLabel tarSysHitsLabel = new JLabel("FC Damage");
         private JLabel tarSysHitsImage = new JLabel();
 
-        /**
+        */
+/**
          * Gets the unit that this panel represents.
          * @return the unit this panel represents
-         */
+         *//*
+
         public Unit getUnit() {
             return unit;
         }
 
-        /**
+        */
+/**
          * Creates a panel that represents a single unit to go onto a
          * UnitSelectPanel
          * @param unit the unit this panel will represent
-         */
+         *//*
+
         public AttackSingleUnitPanel(Unit unit){
             this.unit = unit;
 
@@ -296,9 +232,11 @@ public class UnitSelectPanel extends JPanel implements Observer {
             this.updateGraphics();
         }
 
-        /**
+        */
+/**
          * Updates all UI elements to reflect any changes to the unit
-         */
+         *//*
+
         public void updateGraphics(){
             nameLabel.setText(unit.getName() + " " + unit.getVariant());
             sideLabel.setText("Red");
@@ -332,29 +270,35 @@ public class UnitSelectPanel extends JPanel implements Observer {
             this.repaint();
         }
 
-        /**
+        */
+/**
          * Sets the radio button for this unit.
          * @param sel if the unit should be selected.
-         */
+         *//*
+
         public void setSelected(boolean sel){
             unitSelectButton.setSelected(sel);
             // tell UnitManger a new unit has been selected
             UnitManager.changeSelectedAttacker(unit.getID());
         }
 
-        /**
+        */
+/**
          * Returns if this panel is selected.
          * @return true if the unit this panel represents is the selected unit
-         */
+         *//*
+
         public boolean isSelected(){
             return unitSelectButton.isSelected();
         }
     }
 
-    /**
+    */
+/**
      * Subclass of SingleUnitPanel that represents a single unit that is
      * a potential target for an attack.
-     */
+     *//*
+
     class TargetSingleUnitPanel extends SingleUnitPanel {
         private JRadioButton unitSelectButton = new JRadioButton();
         private JLabel iconLabel = new JLabel();
@@ -367,19 +311,23 @@ public class UnitSelectPanel extends JPanel implements Observer {
         private JLabel structureImage = new JLabel();
         private JLabel tmmLabel = new JLabel();
 
-        /**
+        */
+/**
          * Gets the unit that this panel represents.
          * @return the unit this panel represents
-         */
+         *//*
+
         public Unit getUnit() {
             return unit;
         }
 
-        /**
+        */
+/**
          * Creates a panel that represents a single unit to go onto a
          * UnitSelectPanel
          * @param unit the unit this panel will represent
-         */
+         *//*
+
         public TargetSingleUnitPanel(Unit unit){
             this.unit = unit;
 
@@ -453,9 +401,11 @@ public class UnitSelectPanel extends JPanel implements Observer {
             this.updateGraphics();
         }
 
-        /**
+        */
+/**
          * Updates all UI elements to reflect any changes to the unit
-         */
+         *//*
+
         public void updateGraphics(){
             nameLabel.setText(unit.getName() + " " + unit.getVariant());
 
@@ -492,19 +442,24 @@ public class UnitSelectPanel extends JPanel implements Observer {
             this.repaint();
         }
 
-        /**
+        */
+/**
          * Sets the radio button for this unit.
          * @param sel if the unit should be selected.
-         */
+         *//*
+
         public void setSelected(boolean sel){unitSelectButton.setSelected(sel);}
 
-        /**
+        */
+/**
          * Returns if this panel is selected.
          * @return true if the unit this panel represents is the selected unit
-         */
+         *//*
+
         public boolean isSelected(){
             return unitSelectButton.isSelected();
         }
     }
+*/
 
 }

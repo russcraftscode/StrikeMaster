@@ -33,8 +33,8 @@ public class AppWindow extends JFrame {
        combatPanel.setLayout(new GridBagLayout());
        GridBagConstraints combatLoc = new GridBagConstraints();
 
-        UnitSelectPanel attackerSelectPanel = new UnitSelectPanel(UnitSelectPanel.ATTACK);
-        UnitSelectPanel targetSelectPanel = new UnitSelectPanel(UnitSelectPanel.TARGET);
+        AttackerSelectPanel attackerSelectPanel = new AttackerSelectPanel();
+        TargetSelectPanel targetSelectPanel = new TargetSelectPanel();
         AttackOptionsPanel attackOptionsPanel = new AttackOptionsPanel();
 
         combatLoc.fill = GridBagConstraints.VERTICAL;
