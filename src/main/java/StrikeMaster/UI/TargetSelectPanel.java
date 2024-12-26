@@ -47,7 +47,9 @@ public class TargetSelectPanel extends UnitSelectPanel {
      * Updates all unit entries to reflect any changes to unit objects.
      */
     public void updateUnits() {
+        System.out.println("Updating");// DEBUG
         for (TargetSingleUnitPanel singlePanel : targetSingleUnitPanels) {
+            System.out.println("Updating panel");// DEBUG
             singlePanel.updateGraphics();
         }
     }
@@ -185,6 +187,7 @@ public class TargetSelectPanel extends UnitSelectPanel {
                     break;
             }
 
+            System.out.println("Updating target graphics");// DEBUG
             armorImage.setIcon(new ImageIcon(
                     ImageManager.getCounterImage(unit.getArmorMax(), unit.getArmorCur())));
 

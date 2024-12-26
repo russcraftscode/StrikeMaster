@@ -49,7 +49,7 @@ public class UnitManager extends Observable {
         units.add(UnitFactory.buidUnit(unitLibrary.getUnitData("AWS-9M"), latestIdNum++));
         units.add(UnitFactory.buidUnit(unitLibrary.getUnitData("AS7-D"), latestIdNum++));
         units.add(UnitFactory.buidUnit(unitLibrary.getUnitData("ASN-21"), latestIdNum++));
-        units.add(UnitFactory.buidUnit(unitLibrary.getUnitData("DRG-1N"), latestIdNum++));
+        /*units.add(UnitFactory.buidUnit(unitLibrary.getUnitData("DRG-1N"), latestIdNum++));
         units.add(UnitFactory.buidUnit(unitLibrary.getUnitData("KGC-0000"), latestIdNum++));
         units.add(UnitFactory.buidUnit(unitLibrary.getUnitData("MAD-3R"), latestIdNum++));
         units.add(UnitFactory.buidUnit(unitLibrary.getUnitData("RFL-3N"), latestIdNum++));
@@ -61,7 +61,7 @@ public class UnitManager extends Observable {
         units.add(UnitFactory.buidUnit(unitLibrary.getUnitData("VND-1R"), latestIdNum++));
         units.add(UnitFactory.buidUnit(unitLibrary.getUnitData("VTR-9B"), latestIdNum++));
         units.add(UnitFactory.buidUnit(unitLibrary.getUnitData("WHM-6R"), latestIdNum++));
-        /*units.add(UnitFactory.buidUnit(unitLibrary.getUnitData("WSP-1A"), latestIdNum++));
+        units.add(UnitFactory.buidUnit(unitLibrary.getUnitData("WSP-1A"), latestIdNum++));
         units.add(UnitFactory.buidUnit(unitLibrary.getUnitData("WVR-6R"), latestIdNum++));
         units.add(UnitFactory.buidUnit(unitLibrary.getUnitData("ZEU-6S"), latestIdNum++));
         units.add(UnitFactory.buidUnit(unitLibrary.getUnitData("ARC-2R"), latestIdNum++));
@@ -99,6 +99,7 @@ public class UnitManager extends Observable {
         // reset attack and move for all units still in play
         for(Unit unit : units){
             //unit.endTurn();
+            System.out.println(unit);// debug
         }
 
         // inform observers that the units have been updated

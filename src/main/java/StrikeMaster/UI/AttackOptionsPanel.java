@@ -36,7 +36,7 @@ public class AttackOptionsPanel extends JPanel implements Observer {
     private boolean aftArc = false;
     private boolean rearArmor = false;
 
-    private int rangeValue = 0; // 0 = short, 1 = med, 2 = long
+    private char rangeValue = 0; // 0 = short, 1 = med, 2 = long
 
     private final JLabel attackerSkillNumber = new JLabel();
     private final JLabel situationalModNumber = new JLabel();
@@ -246,14 +246,10 @@ public class AttackOptionsPanel extends JPanel implements Observer {
 
     private char getSelectedRange(){
         char attackRange;
-        if (rangeButtons.getSelection().equals(this.rangeButtonStringS)) {
-            attackRange = 's';
-        } else if (rangeButtons.getSelection().equals(this.rangeButtonStringM) ){
-            attackRange = 'm';
-        } else if (rangeButtons.getSelection().equals(this.rangeButtonStringL)) {
-            attackRange = 'l';
-        } else attackRange = 'e';
-        return attackRange;
+        if (rangeValue == 0) return 's';
+        if (rangeValue == 1) return 'm';
+        if (rangeValue == 2) return 'l';
+        return 'e';
     }
 
     /**
