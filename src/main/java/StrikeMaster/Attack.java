@@ -7,14 +7,16 @@ public class Attack {
     public int baseDamage; // 0 is minimum damage, AKA '*'
     public DamageType damageType;
     public boolean thruArmorCrit;
+    public boolean rearHit;
 
    public enum DamageType {REGULAR, HEAT, TANDEM, PHYSICAL, MISSILE, BALLISTIC }
 
-    public Attack (int damage, DamageType damageType, boolean critical){
+    public Attack (int damage, DamageType damageType, boolean critical, boolean rearHit){
         baseDamage = damage;
         this.damageType = damageType;
         thruArmorCrit = critical;
     }
+
 
 
 }

@@ -237,7 +237,8 @@ public class AttackOptionsPanel extends JPanel implements Observer {
                 attackingUnit.makeAttack(targetUnit,
                         (int) this.overHeatBox.getSelectedItem(),
                         getSelectedRange(),
-                        toHitFinal);
+                        toHitFinal,
+                        this.rearArmor);
             }
         });
     }

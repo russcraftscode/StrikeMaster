@@ -44,7 +44,7 @@ public class Mech extends Unit {
      * @param toHit the required roll to hit the target
      * @return report of the attack
      */
-    public String makeAttack(Unit target, int overheat, char range, int toHit) {
+    public String makeAttack(Unit target, int overheat, char range, int toHit, boolean rearHit) {
         // apply effects of firing weapons
         this.overheat += overheat;
         this.firedWepThisRound = true;
@@ -68,11 +68,11 @@ public class Mech extends Unit {
         if (this.getDmg( range ) != '*') damageValue =
                 Character.getNumericValue(this.getDmg(range));
         if ( attackRoll == 12) { // if thru-armor critical
-            target.hit(new Attack(damageValue, Attack.DamageType.REGULAR, true));
+            target.hit(new Attack(damageValue, Attack.DamageType.REGULAR, true, rearHit));
             attackReport += " and hit " + target.getFaction() + "'s "
                     + target.getName() + " for " + damageValue + " damage with critical damage.";
         }else{ // no thru-armor critical
-            target.hit(new Attack(damageValue, Attack.DamageType.REGULAR, false));
+            target.hit(new Attack(damageValue, Attack.DamageType.REGULAR, false, rearHit));
             attackReport += " and hit " + target.getFaction() + "'s "
                     + target.getName() + " for " + damageValue + " damage.";
         }
@@ -125,7 +125,8 @@ public class Mech extends Unit {
         String damageReport = faction + "'s " + name + " " + variant + " took ";
         for (Attack hit : hits) {
             // TODO add handling of different damage types here in later release
-            takeDamage(hit.baseDamage);
+            if(hit.rearHit) takeDamage(hit.baseDamage+1); // rear hit +1 damage
+            else takeDamage(hit.baseDamage);
             totalDamageThisTurn = hit.baseDamage;
         }
         damageReport = damageReport + totalDamageThisTurn + " points of damage";
