@@ -12,7 +12,7 @@ public class AttackerSelectPanel extends UnitSelectPanel{
     private ArrayList<AttackSingleUnitPanel> attackSingleUnitPanels ;
 
     protected void buildUnitPanel(){
-        attackSingleUnitPanels = new ArrayList<>();
+        attackSingleUnitPanels =  new ArrayList<>();
         this.panelLabel.setText("Select Unit to make attack");
 
         unitDataPanel.setLayout(new GridBagLayout());
