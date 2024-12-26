@@ -1,5 +1,7 @@
 package StrikeMaster.UI;
 
+import StrikeMaster.UnitManager;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -19,5 +21,11 @@ public class PhasePanel extends JPanel {
         JButton endRoundButton = new JButton("End Round");
         endRoundButton.setPreferredSize(new Dimension(150, 50));
         this.add(endRoundButton);
+
+        // add logic to buttons
+
+        endRoundButton.addActionListener(e->{
+            UnitManager.endRound();
+    });
     }
 }

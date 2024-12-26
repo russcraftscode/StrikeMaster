@@ -83,6 +83,29 @@ public class UnitManager extends Observable {
     }
 
     /**
+     * Handles end-of-turn steps for all units
+     */
+    public static void endRound(){
+        // each step must be in its own loop so that a step is completed for all units before
+        // starting on the next step.
+        // resolve damage for all units
+        for(Unit unit : units){
+            unit.resolveDamage();
+        }
+        // resolve heat for all units
+        for(Unit unit : units){
+            //unit.heat();
+        }
+        // reset attack and move for all units still in play
+        for(Unit unit : units){
+            //unit.endTurn();
+        }
+
+        // inform observers that the units have been updated
+        UnitManager.getInstance().updatedUnit();
+    }
+
+    /**
      * @param id the number of the unit to be retrieved
      * @return the requested unit
      */
