@@ -127,7 +127,7 @@ public class Mech extends Unit {
             // TODO add handling of different damage types here in later release
             if(hit.rearHit) takeDamage(hit.baseDamage+1); // rear hit +1 damage
             else takeDamage(hit.baseDamage);
-            totalDamageThisTurn = hit.baseDamage;
+            totalDamageThisTurn += hit.baseDamage;
         }
         damageReport = damageReport + totalDamageThisTurn + " points of damage";
         if (criticalHits > 0) damageReport = damageReport + " and took critical hits to ";

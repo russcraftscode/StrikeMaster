@@ -9,11 +9,10 @@ import java.awt.*;
 import java.util.ArrayList;
 
 public class TargetSelectPanel extends UnitSelectPanel {
-    private ArrayList<TargetSingleUnitPanel> targetSingleUnitPanels = new ArrayList<>();
+    private ArrayList<TargetSingleUnitPanel> targetSingleUnitPanels;
 
     protected void buildUnitPanel() {
         targetSingleUnitPanels = new ArrayList<>();
-
 
         this.panelLabel.setText("Select Unit to target");
 
@@ -26,13 +25,14 @@ public class TargetSelectPanel extends UnitSelectPanel {
         gloc.weightx = 1;
 
         for (int idNum = 0; idNum < UnitManager.getUnitCount(); idNum++) {
-            TargetSingleUnitPanel TargetSingleUnitPanel =
+            TargetSingleUnitPanel singleUnitPanel =
                     new TargetSingleUnitPanel(UnitManager.getUnit(idNum));
             // add the single unit panel to the main panel
-            unitDataPanel.add(TargetSingleUnitPanel, gloc);
+            unitDataPanel.add(singleUnitPanel, gloc);
             gloc.gridy++;
             // add the single unit panel to the list of single unit panels
-            targetSingleUnitPanels.add(TargetSingleUnitPanel);
+            targetSingleUnitPanels.add(singleUnitPanel);
+            System.out.println("targetSingleUnitPanels size = " + targetSingleUnitPanels.size());// DEBUG
         }
 
         // set the default selection to the first  sub panel  to prevent no-unit selected errors
@@ -47,9 +47,10 @@ public class TargetSelectPanel extends UnitSelectPanel {
      * Updates all unit entries to reflect any changes to unit objects.
      */
     public void updateUnits() {
-        System.out.println("Updating");// DEBUG
+        //System.out.println("Updating");// DEBUG
+        //System.out.println(targetSingleUnitPanels.size());
         for (TargetSingleUnitPanel singlePanel : targetSingleUnitPanels) {
-            System.out.println("Updating panel");// DEBUG
+            //System.out.println("Updating panel");// DEBUG
             singlePanel.updateGraphics();
         }
     }
@@ -187,7 +188,7 @@ public class TargetSelectPanel extends UnitSelectPanel {
                     break;
             }
 
-            System.out.println("Updating target graphics");// DEBUG
+            //System.out.println("Updating target graphics");// DEBUG
             armorImage.setIcon(new ImageIcon(
                     ImageManager.getCounterImage(unit.getArmorMax(), unit.getArmorCur())));
 

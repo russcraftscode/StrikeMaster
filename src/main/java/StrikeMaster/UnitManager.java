@@ -23,7 +23,7 @@ public class UnitManager extends Observable {
     //private static int moveId = 0;
     private static int latestIdNum = 0;
 
-    private static ArrayList<Unit> units = new ArrayList<>();
+    private static final ArrayList<Unit> units = new ArrayList<>();
     private static UnitLibrary unitLibrary;
 
     /**

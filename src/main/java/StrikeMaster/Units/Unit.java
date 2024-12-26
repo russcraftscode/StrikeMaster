@@ -122,6 +122,7 @@ public abstract class Unit {
     protected void takeDamage(int amountOfDamage) {
         boolean wentCrit = false;
         // if the damage overcomes the armor
+        System.out.println(amountOfDamage + " " + armorCur + "/" + structureCur);// DEBUG
         if (amountOfDamage > armorCur) {
             // apply damage left over after armor to internal structure
             structureCur -= amountOfDamage - armorCur;
@@ -133,11 +134,12 @@ public abstract class Unit {
             }
             // zero out the armor because it has been used up
             armorCur = 0;
-            // apply a critical hi
+            // apply a critical hit
             this.criticalHits++;
         } else {// if the damage did not get through the armor
             armorCur -= amountOfDamage;
         }
+        System.out.println(amountOfDamage + " " + armorCur + "/" + structureCur);// DEBUG
     }
 
     /**
