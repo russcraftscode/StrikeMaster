@@ -110,6 +110,10 @@ public abstract class Unit {
         }
     }
 
+    /**
+     * Resolves all hits and determines if the unit is destoyed
+     * @return Damage report
+     */
     public abstract String resolveDamage();
 
     /**
@@ -184,6 +188,17 @@ public abstract class Unit {
      * @return the current damage capability at the provided range
      */
     public abstract char getDmg(char range);
+
+
+    /**
+     * Resolves heat accumulation and shutdowns
+     */
+    public abstract void resolveHeat();
+
+    /**
+     * Resets the unit at the end of the round
+     */
+    public abstract void endRound();
 
     /**
      * Applies the effects of firing weapons to the unit that fired its weapons

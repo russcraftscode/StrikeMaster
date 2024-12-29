@@ -32,7 +32,6 @@ public class TargetSelectPanel extends UnitSelectPanel {
             gloc.gridy++;
             // add the single unit panel to the list of single unit panels
             targetSingleUnitPanels.add(singleUnitPanel);
-            System.out.println("targetSingleUnitPanels size = " + targetSingleUnitPanels.size());// DEBUG
         }
 
         // set the default selection to the first  sub panel  to prevent no-unit selected errors
@@ -47,10 +46,7 @@ public class TargetSelectPanel extends UnitSelectPanel {
      * Updates all unit entries to reflect any changes to unit objects.
      */
     public void updateUnits() {
-        //System.out.println("Updating");// DEBUG
-        //System.out.println(targetSingleUnitPanels.size());
-        for (TargetSingleUnitPanel singlePanel : targetSingleUnitPanels) {
-            //System.out.println("Updating panel");// DEBUG
+       for (TargetSingleUnitPanel singlePanel : targetSingleUnitPanels) {
             singlePanel.updateGraphics();
         }
     }
@@ -73,7 +69,8 @@ public class TargetSelectPanel extends UnitSelectPanel {
         private JLabel structureLabel = new JLabel(" Internal:");
         private JLabel structureImage = new JLabel();
         private JLabel tmmLabel = new JLabel();
-
+        private ArrayList<JComponent> components = new ArrayList<>();
+        private Font font;
 
         /**
          * Gets the unit that this panel represents.
@@ -161,6 +158,17 @@ public class TargetSelectPanel extends UnitSelectPanel {
                 UnitManager.changeSelectedTarget(unit.getID());
             });
 
+            // add all graphical components to array list for easier group updates
+            components.add(iconLabel);
+            components.add(idLabel);
+            components.add(sideLabel);
+            components.add(nameLabel);
+            components.add(armorLabel);
+            components.add(armorImage);
+            components.add(structureLabel);
+            components.add(structureImage);
+            components.add(tmmLabel);
+
             this.updateGraphics();
         }
 
@@ -188,7 +196,6 @@ public class TargetSelectPanel extends UnitSelectPanel {
                     break;
             }
 
-            //System.out.println("Updating target graphics");// DEBUG
             armorImage.setIcon(new ImageIcon(
                     ImageManager.getCounterImage(unit.getArmorMax(), unit.getArmorCur())));
 
@@ -200,6 +207,14 @@ public class TargetSelectPanel extends UnitSelectPanel {
                 this.setBackground(Color.LIGHT_GRAY);
                 unitSelectButton.setBackground(Color.LIGHT_GRAY);
                 this.setOpaque(true);
+            }
+
+            // pick fonts - only destroyed and ready because these units are not taking actions
+            if(unit.isDestroyed()) font = destroyedFont;
+            else font = turnTakenFont;
+            // apply font
+            for(JComponent component : components){
+                component.setFont(font);
             }
 
             this.revalidate();

@@ -240,6 +240,7 @@ public class AttackOptionsPanel extends JPanel implements Observer {
                         toHitFinal,
                         this.rearArmor);
             }
+            UnitManager.getInstance().updatedUnit();
         });
     }
 

@@ -66,15 +66,8 @@ public class AttackerSelectPanel extends UnitSelectPanel{
         private JLabel wepSysHitsImage = new JLabel();
         private JLabel tarSysHitsLabel = new JLabel("FC Damage");
         private JLabel tarSysHitsImage = new JLabel();
-
-
-        /**
-         * Gets the unit that this panel represents.
-         * @return the unit this panel represents
-         */
-        public Unit getUnit() {
-            return unit;
-        }
+        private ArrayList<JComponent> components = new ArrayList<>();
+        private Font font;
 
         /**
          * Creates a panel that represents a single unit to go onto a
@@ -144,6 +137,17 @@ public class AttackerSelectPanel extends UnitSelectPanel{
                 UnitManager.changeSelectedAttacker(unit.getID());
             });
 
+            // add all graphical components to array list for easier group updates
+            components.add(iconLabel);
+            components.add(idLabel);
+            components.add(sideLabel);
+            components.add(nameLabel);
+            components.add(damageLabel);
+            components.add(wepSysHitsLabel);
+            components.add(wepSysHitsImage);
+            components.add(tarSysHitsLabel);
+            components.add(tarSysHitsImage);
+
             this.updateGraphics();
         }
 
@@ -179,8 +183,25 @@ public class AttackerSelectPanel extends UnitSelectPanel{
                 this.setOpaque(true);
             }
 
+            // pick fonts
+            if(unit.isDestroyed()) font = destroyedFont;
+            else if (unit.didAttackThisRound()) font = turnTakenFont;
+            else font = readyFont;
+            // apply font
+            for(JComponent component : components){
+                component.setFont(font);
+            }
+
             this.revalidate();
             this.repaint();
+        }
+
+        /**
+         * Gets the unit that this panel represents.
+         * @return the unit this panel represents
+         */
+        public Unit getUnit() {
+            return unit;
         }
 
         /**

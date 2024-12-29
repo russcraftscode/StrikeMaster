@@ -90,7 +90,8 @@ public class UnitManager extends Observable {
         // starting on the next step.
         // resolve damage for all units
         for(Unit unit : units){
-            unit.resolveDamage();
+            // TODO move resolveDamage() out of a print and into a text readout
+            if(!unit.isDestroyed()) System.out.println(unit.resolveDamage());
         }
         // resolve heat for all units
         for(Unit unit : units){
@@ -98,8 +99,8 @@ public class UnitManager extends Observable {
         }
         // reset attack and move for all units still in play
         for(Unit unit : units){
-            //unit.endTurn();
-            System.out.println(unit);// debug
+            unit.endRound();
+            //System.out.println(unit);// debug
         }
 
         // inform observers that the units have been updated

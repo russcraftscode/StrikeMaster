@@ -7,7 +7,9 @@ import StrikeMaster.ImageManager;
 import javax.swing.*;
 import java.awt.*;
 
+import java.awt.font.TextAttribute;
 import java.util.ArrayList;
+import java.util.Hashtable;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -27,12 +29,24 @@ public abstract class UnitSelectPanel extends JPanel implements Observer {
     // create a button group for all unit select radio buttons
     protected final ButtonGroup unitSelectGroup = new ButtonGroup();
 
+    protected Font destroyedFont;
+    protected Font turnTakenFont;
+    protected Font readyFont;
+
 
     /**
      * Constructs either an attacker-unit select panel, a target-unit select panel,
      * or a move-unit select panel.
      */
    public UnitSelectPanel() {
+       // set up fonts
+       destroyedFont = new Font("Courier New", Font.PLAIN, 12);
+       Hashtable<TextAttribute, Object> map = new Hashtable<TextAttribute, Object>();
+       map.put(TextAttribute.STRIKETHROUGH, TextAttribute.STRIKETHROUGH_ON);
+       destroyedFont = destroyedFont.deriveFont(map);
+       turnTakenFont = new  Font("Courier New", Font.PLAIN, 12);
+       readyFont = new Font("Courier New", Font.BOLD, 12);
+
         // make this panel an observer of UnitManger
         UnitManager.getInstance().addObserver(this);
 

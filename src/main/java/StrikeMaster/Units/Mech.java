@@ -121,6 +121,11 @@ public class Mech extends Unit {
     }
 
     public String resolveDamage() {
+        // if the unit received no damage
+        if(hits.size() == 0){
+            return faction + "'s " + name + " " + variant + " was unharmed this round.";
+        }
+        // if the unit took at least 1 hit
         int totalDamageThisTurn = 0;
         String damageReport = faction + "'s " + name + " " + variant + " took ";
         for (Attack hit : hits) {
@@ -130,14 +135,30 @@ public class Mech extends Unit {
             totalDamageThisTurn += hit.baseDamage;
         }
         damageReport = damageReport + totalDamageThisTurn + " points of damage";
-        if (criticalHits > 0) damageReport = damageReport + " and took critical hits to ";
+        String critcialHitsReport = "";
+        //if (criticalHits > 0) damageReport = damageReport + " and took critical hits to ";
         for (int i = 0; i < criticalHits; i++) {
-            damageReport = damageReport + resolveCritical();
-            // add a comma if there is another critical report coming
-            if (i != criticalHits - 1) damageReport = damageReport + ", ";
+            String critReport = resolveCritical();
+            // do not report on non-critical hits
+            if(!critReport.equals("no critical hit")) {
+                //damageReport = damageReport + resolveCritical();
+                critcialHitsReport = critcialHitsReport + resolveCritical();
+                // add a comma if there is another critical report coming
+                if (i != criticalHits - 1) critcialHitsReport = critcialHitsReport + ", ";
+            }
+        }
+        // if there are any noteworthy critical hits, then add them to the damage report
+        if(!critcialHitsReport.isEmpty()){
+            damageReport = damageReport + " and took critical hits to " + critcialHitsReport;
         }
 
-        if (isDestroyed()) damageReport = damageReport + " and was destroyed";
+        // check if destroyed AFTER critical hits because extra damage could have occured.
+        if(structureCur <= 0){
+            structureCur = 0;
+            destroyed = true;
+            immobile = true;
+        }
+        if (destroyed) damageReport = damageReport + " and was destroyed";
         else damageReport = damageReport + ".";
 
         return damageReport;
@@ -305,5 +326,69 @@ public class Mech extends Unit {
             dmg = String.valueOf(dmgVal).charAt(0);
         }
         return dmg;
+    }
+
+
+    /**
+     * Resolves heat accumulation and shutdowns
+     */
+    public void resolveHeat() {
+
+    }
+
+    /**
+     * Resets the unit at the end of the round
+     */
+    @Override
+    public void endRound() {
+        // clear out the hits and crits
+        hits.clear();
+        criticalHits = 0;
+
+        if(!destroyed){
+            movedThisRound = false;
+            sprinted = false;
+            moveComplete = false;
+            jumpedThisRound = false;
+            firedWepThisRound = false;
+            immobile = false;
+            fireComplete = false;
+
+            // each MPHit halves move/TMM/jump and each heat point lowers move by 1
+            if(MPHits > 0){
+                moveCur = moveMax / (2*MPHits);
+                TMMCur = TMMMax / (2*MPHits);
+                jumpCur = jumpMax / (2*MPHits);
+            }else {
+                moveCur = moveMax;
+                TMMCur = TMMMax;
+                jumpCur = jumpMax;
+            }
+            moveCur -= heatCur;
+            if (moveCur < 1){
+                moveCur = 0;
+                immobile = true;
+            }
+            if (jumpCur < 1) jumpCur = 0;
+
+            if(immobile){
+                moveCur = 0;
+                jumpCur =  0;
+                TMMCur = -4;
+            }
+
+        }
+        else{ // destroyed mechs can't do much and don't take turns.
+            movedThisRound = false;
+            sprinted = false;
+            moveComplete = true;
+            jumpedThisRound = false;
+            firedWepThisRound = false;
+            immobile = false;
+            fireComplete = true;
+            TMMCur = -4;
+            moveCur = 0;
+            jumpCur = 0;
+        }
     }
 }
