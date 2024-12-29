@@ -66,6 +66,8 @@ public class AttackerSelectPanel extends UnitSelectPanel{
         private JLabel wepSysHitsImage = new JLabel();
         private JLabel tarSysHitsLabel = new JLabel("FC Damage");
         private JLabel tarSysHitsImage = new JLabel();
+        private JLabel heatLabel = new JLabel("Heat");
+        private JLabel heatImage = new JLabel();
         private ArrayList<JComponent> components = new ArrayList<>();
         private Font font;
 
@@ -109,6 +111,7 @@ public class AttackerSelectPanel extends UnitSelectPanel{
             //nameLabel.setBorder(BorderFactory.createLineBorder(Color.GREEN));// DEBUG
 
             aLoc.gridx = 4;
+            aLoc.gridwidth = 4;
             this.add(damageLabel, aLoc);
             //damageLabel.setBorder(BorderFactory.createLineBorder(Color.GREEN));// DEBUG
 
@@ -131,6 +134,14 @@ public class AttackerSelectPanel extends UnitSelectPanel{
             this.add(tarSysHitsImage, aLoc);
             //tarSysHitsImage.setBorder(BorderFactory.createLineBorder(Color.GREEN));// DEBUG
 
+            aLoc.gridx = 6;
+            this.add(heatLabel, aLoc);
+            //heatLabel.setBorder(BorderFactory.createLineBorder(Color.GREEN));// DEBUG
+
+            aLoc.gridx = 7;
+            this.add(heatImage, aLoc);
+            //heatImage.setBorder(BorderFactory.createLineBorder(Color.GREEN));// DEBUG
+
             // tell UnitManger a new unit has been selected
             this.unitSelectButton.addActionListener(s->
             {
@@ -147,6 +158,8 @@ public class AttackerSelectPanel extends UnitSelectPanel{
             components.add(wepSysHitsImage);
             components.add(tarSysHitsLabel);
             components.add(tarSysHitsImage);
+            components.add(heatLabel);
+            components.add(heatImage);
 
             this.updateGraphics();
         }
@@ -175,6 +188,8 @@ public class AttackerSelectPanel extends UnitSelectPanel{
                     ImageManager.getCounterImage(4, 4- unit.getWepHits())));
             tarSysHitsImage.setIcon(new ImageIcon(
                     ImageManager.getCounterImage(4, 4- unit.getFCHits())));
+            heatImage.setIcon(new ImageIcon(
+                    ImageManager.getCounterImage(4, 4- unit.getHeatCur())));
 
             // shade every other line
             if(unit.getID()%2 == 0){
