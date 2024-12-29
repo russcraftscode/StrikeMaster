@@ -69,7 +69,6 @@ public class AttackerSelectPanel extends UnitSelectPanel{
         private JLabel heatLabel = new JLabel("Heat");
         private JLabel heatImage = new JLabel();
         private ArrayList<JComponent> components = new ArrayList<>();
-        private Font font;
 
         /**
          * Creates a panel that represents a single unit to go onto a
@@ -199,12 +198,13 @@ public class AttackerSelectPanel extends UnitSelectPanel{
             }
 
             // pick fonts
-            if(unit.isDestroyed()) font = destroyedFont;
-            else if (unit.didAttackThisRound()) font = turnTakenFont;
-            else font = readyFont;
+            Font panelFont;
+            if(unit.isDestroyed()) panelFont = destroyedFont;
+            else if (unit.didAttackThisRound()) panelFont = turnTakenFont;
+            else panelFont = readyFont;
             // apply font
             for(JComponent component : components){
-                component.setFont(font);
+                component.setFont(panelFont);
             }
 
             this.revalidate();

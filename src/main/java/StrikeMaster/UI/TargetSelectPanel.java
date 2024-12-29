@@ -46,17 +46,15 @@ public class TargetSelectPanel extends UnitSelectPanel {
      * Updates all unit entries to reflect any changes to unit objects.
      */
     public void updateUnits() {
-       for (TargetSingleUnitPanel singlePanel : targetSingleUnitPanels) {
+        for (TargetSingleUnitPanel singlePanel : targetSingleUnitPanels) {
             singlePanel.updateGraphics();
         }
     }
 
-
     /**
-     * Subclass of SingleUnitPanel that represents a single unit that is
-     * a potential target for an attack.
+     * Subclass of SingleUnitPanel that represents a single unit that is a potential target for an
+     * attack.
      */
-
     class TargetSingleUnitPanel extends JPanel {
         private Unit unit;
         private JRadioButton unitSelectButton = new JRadioButton();
@@ -70,24 +68,19 @@ public class TargetSelectPanel extends UnitSelectPanel {
         private JLabel structureImage = new JLabel();
         private JLabel tmmLabel = new JLabel();
         private ArrayList<JComponent> components = new ArrayList<>();
-        private Font font;
 
         /**
          * Gets the unit that this panel represents.
          * @return the unit this panel represents
          */
-
         public Unit getUnit() {
             return unit;
         }
 
-
         /**
-         * Creates a panel that represents a single unit to go onto a
-         * UnitSelectPanel
+         * Creates a panel that represents a single unit to go onto a UnitSelectPanel
          * @param unit the unit this panel will represent
          */
-
         public TargetSingleUnitPanel(Unit unit) {
             this.unit = unit;
 
@@ -172,11 +165,9 @@ public class TargetSelectPanel extends UnitSelectPanel {
             this.updateGraphics();
         }
 
-
         /**
          * Updates all UI elements to reflect any changes to the unit
          */
-
         public void updateGraphics() {
             nameLabel.setText(unit.getName() + " " + unit.getVariant());
 
@@ -210,33 +201,30 @@ public class TargetSelectPanel extends UnitSelectPanel {
             }
 
             // pick fonts - only destroyed and ready because these units are not taking actions
-            if(unit.isDestroyed()) font = destroyedFont;
-            else font = turnTakenFont;
+            Font panelFont;
+            if (unit.isDestroyed()) panelFont = destroyedFont;
+            else panelFont = turnTakenFont;
             // apply font
-            for(JComponent component : components){
-                component.setFont(font);
+            for (JComponent component : components) {
+                component.setFont(panelFont);
             }
 
             this.revalidate();
             this.repaint();
         }
 
-
         /**
          * Sets the radio button for this unit.
          * @param sel if the unit should be selected.
          */
-
         public void setSelected(boolean sel) {
             unitSelectButton.setSelected(sel);
         }
-
 
         /**
          * Returns if this panel is selected.
          * @return true if the unit this panel represents is the selected unit
          */
-
         public boolean isSelected() {
             return unitSelectButton.isSelected();
         }
