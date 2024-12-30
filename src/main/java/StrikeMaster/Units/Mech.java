@@ -76,7 +76,7 @@ public class Mech extends Unit {
             attackReport += " and hit " + target.getFaction() + "'s "
                     + target.getName() + " for " + damageValue + " damage.";
         }
-        System.out.println(attackReport);// DEBUG
+        //System.out.println(attackReport);// DEBUG
         return attackReport;
     }
 

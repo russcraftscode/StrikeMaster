@@ -91,7 +91,10 @@ public class UnitManager extends Observable {
         // resolve damage for all units
         for(Unit unit : units){
             // TODO move resolveDamage() out of a print and into a text readout
-            if(!unit.isDestroyed()) System.out.println(unit.resolveDamage());
+            //if(!unit.isDestroyed()) System.out.println(unit.resolveDamage());
+            if(!unit.isDestroyed()) {
+                MsgManager.postMsg(unit.resolveDamage());
+            }
         }
         // resolve heat for all units
         for(Unit unit : units){

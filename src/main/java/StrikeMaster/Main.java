@@ -9,6 +9,7 @@ public class Main {
         // Initialize singletons
         UnitManager unitManager = UnitManager.getInstance();
         ImageManager imageLoader = ImageManager.getInstance();
+        MsgManager msgManager = MsgManager.getInstance();
 
         // TODO make this an option for the user
         //boolean hiRez = false;

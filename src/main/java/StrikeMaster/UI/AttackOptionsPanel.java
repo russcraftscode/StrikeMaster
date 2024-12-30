@@ -1,5 +1,6 @@
 package StrikeMaster.UI;
 
+import StrikeMaster.MsgManager;
 import StrikeMaster.UnitFactory;
 import StrikeMaster.UnitManager;
 import StrikeMaster.Units.Unit;
@@ -234,11 +235,14 @@ public class AttackOptionsPanel extends JPanel implements Observer {
         // add logic to buttons
         fireButton.addActionListener(f -> {
             if( attackingUnit != null && targetUnit != null) {
-                attackingUnit.makeAttack(targetUnit,
+                String attackReport =  attackingUnit.makeAttack(targetUnit,
                         (int) this.overHeatBox.getSelectedItem(),
                         getSelectedRange(),
                         toHitFinal,
                         this.rearArmor);
+                MsgManager.postMsg( attackReport);
+                //MsgManager.
+                //System.out.println(attackReport);// DEBUG
             }
             UnitManager.getInstance().updatedUnit();
         });
