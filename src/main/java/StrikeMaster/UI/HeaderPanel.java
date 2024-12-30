@@ -44,19 +44,22 @@ public class HeaderPanel extends JPanel implements Observer {
 
         msgBoard = new JTextArea();
         msgBoard.setRows(3);
+        msgBoard.setLineWrap(true);
+        msgBoard.setWrapStyleWord(true); // will keep whole-words together when wrapping
         //this.add(msgBoard, BorderLayout.CENTER);
 
         // create the scroll pane that will hold the msg panel
-        JScrollPane msgScroll = new JScrollPane();
+        JScrollPane msgScroll = new JScrollPane(msgBoard);
         //msgScroll.getVerticalScrollBar().setUnitIncrement(5); // speed up the scrolling
         //msgScroll.getViewport().setLayout(new FlowLayout(FlowLayout.LEADING));
         //msgScroll.setPreferredSize(new Dimension(msgBoard.getPreferredSize().width+30, 0));
         //msgScroll.setPreferredSize(new Dimension(msgBoard.getPreferredSize().width+30, 0));
-        msgScroll.getViewport().add(msgBoard);
+        //msgScroll.getViewport().add(msgBoard);
         this.add(msgScroll, BorderLayout.CENTER);
 
         //this.setPreferredSize(this.getPreferredSize());
-        this.setPreferredSize(new Dimension(200, 100));
+        this.setPreferredSize(new Dimension(200, 80));
+        this.setMinimumSize(new Dimension(200, 80));
     }
 
 
