@@ -21,6 +21,8 @@ public class Main {
         }
         AppWindow window = new AppWindow(hiRez);
 
-        window.changeMode("Combat Phase prototype");
+        //window.changeMode(PhaseName.MOVE);
+
+        //window.changeMode("Combat Phase prototype");
     }
 }

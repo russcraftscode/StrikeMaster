@@ -1,5 +1,7 @@
 package StrikeMaster.UI;
 
+import StrikeMaster.PhaseName;
+
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
@@ -8,9 +10,9 @@ import java.io.IOException;
 
 
 public class AppWindow extends JFrame {
-    private HeaderPanel headerPanel = new HeaderPanel();
+    private final HeaderPanel headerPanel = new HeaderPanel();
     private BufferedImage appIcon;
-    private PhasePanel phasePanel = new PhasePanel();
+    private PhasePanel phasePanel;
 
     public AppWindow( boolean hiRezMode) {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -49,7 +51,7 @@ public class AppWindow extends JFrame {
         combatPanel.add(attackOptionsPanel, combatLoc);
 
         // phase select panel holds all the elements to switch phases and end the turn
-        phasePanel = new PhasePanel();
+        phasePanel = new PhasePanel(this);
 
         // place all panels on the frame
         mainLoc.gridx = 0;
@@ -72,11 +74,26 @@ public class AppWindow extends JFrame {
         this.setVisible(true);
     }
 
-    public void changeMode(String mode) {
+    public void changeMode(PhaseName mode) {
+        switch (mode) {
+            case MOVE:
+                this.headerPanel.setModeText("Movement Phase  ");
+                break;
+            case COMBAT:
+                this.headerPanel.setModeText("Combat Phase  ");
+                break;
+            default:
+                this.headerPanel.setModeText("End Phase  ");
+                break;
+        }
+    }
+
+    public void changeModeOld(String mode) {
         this.headerPanel.setModeText(mode);
     }
 
     private void loadImages() throws IOException {
+        // TODO move this resposibility to the ImageManger class
         ClassLoader classLoader = getClass().getClassLoader();
 
         appIcon = ImageIO.read(classLoader.getResourceAsStream("as16.png"));

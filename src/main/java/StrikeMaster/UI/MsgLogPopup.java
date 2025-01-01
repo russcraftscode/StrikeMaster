@@ -11,16 +11,6 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 public class MsgLogPopup extends JDialog{
-    private GridBagConstraints gbc = new GridBagConstraints();
-    private final int idCol = 0;
-    private final int firstSepCol = 1;
-    private final int statLabelCol = 2;
-    private final int statTextCol = 3;
-    private final int secondSepCol = 4;
-    private final int boxCol = 5;
-    private final int statTextW = 60;
-    private final int okButtonRow = 20;
-
 
     /**
      * Constructs the popup displays entire message log
