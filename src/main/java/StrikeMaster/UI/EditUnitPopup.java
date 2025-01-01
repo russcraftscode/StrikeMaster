@@ -20,8 +20,6 @@ public class EditUnitPopup extends JDialog {
     private final int statTextW = 60;
     private final int okButtonRow = 20;
 
-    // TODO this popup should call on other panels to update by
-    // a better means than being passed its parent panel.
 
     /**
      * Constructs the popup that lets a user directly edit a unit outside

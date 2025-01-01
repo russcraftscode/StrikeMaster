@@ -8,6 +8,9 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.Observable;
 import java.util.Observer;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+
 
 public class HeaderPanel extends JPanel implements Observer {
     private JLabel titleLabel;
@@ -17,7 +20,6 @@ public class HeaderPanel extends JPanel implements Observer {
 
     public HeaderPanel() {
         MsgManager.getInstance().addObserver(this);
-        //this.setBorder(BorderFactory.createEmptyBorder(1, 5, 2, 5));
 
         Font titleFont = new Font("Impact", Font.ITALIC, 24);
         Font modeFont = new Font("Courier", Font.PLAIN, 18);
@@ -46,18 +48,19 @@ public class HeaderPanel extends JPanel implements Observer {
         msgBoard.setRows(3);
         msgBoard.setLineWrap(true);
         msgBoard.setWrapStyleWord(true); // will keep whole-words together when wrapping
-        //this.add(msgBoard, BorderLayout.CENTER);
+
+        // Add click-logic to msgboard
+        msgBoard.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                MsgLogPopup msgLogPopup = new MsgLogPopup();
+            }
+        });
 
         // create the scroll pane that will hold the msg panel
         JScrollPane msgScroll = new JScrollPane(msgBoard);
-        //msgScroll.getVerticalScrollBar().setUnitIncrement(5); // speed up the scrolling
-        //msgScroll.getViewport().setLayout(new FlowLayout(FlowLayout.LEADING));
-        //msgScroll.setPreferredSize(new Dimension(msgBoard.getPreferredSize().width+30, 0));
-        //msgScroll.setPreferredSize(new Dimension(msgBoard.getPreferredSize().width+30, 0));
-        //msgScroll.getViewport().add(msgBoard);
         this.add(msgScroll, BorderLayout.CENTER);
 
-        //this.setPreferredSize(this.getPreferredSize());
         this.setPreferredSize(new Dimension(200, 80));
         this.setMinimumSize(new Dimension(200, 80));
     }
@@ -89,8 +92,6 @@ public class HeaderPanel extends JPanel implements Observer {
         msgBoard.setText(msgBoardString.toString());
         this.repaint();
         this.revalidate();
-
-        //System.getProperty("line.separator")
 
     }
 }

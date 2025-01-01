@@ -241,8 +241,6 @@ public class AttackOptionsPanel extends JPanel implements Observer {
                         toHitFinal,
                         this.rearArmor);
                 MsgManager.postMsg( attackReport);
-                //MsgManager.
-                //System.out.println(attackReport);// DEBUG
             }
             UnitManager.getInstance().updatedUnit();
         });
