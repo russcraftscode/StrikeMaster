@@ -17,8 +17,8 @@ public class AttackOptionsPanel extends JPanel implements Observer {
     private JPanel situationalPanel;
     private JPanel rangePanel;
 
-    private Unit attackingUnit;
-    private Unit targetUnit;
+    //private Unit UnitManager.getSelectedAttacker();
+    //private Unit UnitManager.getSelectedTarget();
 
     private GridBagConstraints gloc;
 
@@ -81,8 +81,8 @@ public class AttackOptionsPanel extends JPanel implements Observer {
     public void update(Observable o, Object arg) {
         if (o instanceof UnitManager) {
             // reload the 2 units involved in the attack
-            attackingUnit = UnitManager.getSelectedAttacker();
-            targetUnit = UnitManager.getSelectedTarget();
+            //UnitManager.getSelectedAttacker() = UnitManager.getSelectedAttacker();
+            //UnitManager.getSelectedTarget() = UnitManager.getSelectedTarget();
             recalculate();
         }
     }
@@ -103,15 +103,15 @@ public class AttackOptionsPanel extends JPanel implements Observer {
         // TODO calculate the remaining modifiers
 
         // calculate the values from the selected units
-        if (attackingUnit != null) { // if no unit selected then just use default values
-            attackerSkill = attackingUnit.getSkill();
-            attackMoveMod = attackingUnit.getAttackMoveMod();
-            attackerDamMod = attackingUnit.getFCHits() * 2;
-            heatMod = attackingUnit.getHeatCur() * 1;
+        if (UnitManager.getSelectedAttacker() != null) { // if no unit selected then just use default values
+            attackerSkill = UnitManager.getSelectedAttacker().getSkill();
+            attackMoveMod = UnitManager.getSelectedAttacker().getAttackMoveMod();
+            attackerDamMod = UnitManager.getSelectedAttacker().getFCHits() * 2;
+            heatMod = UnitManager.getSelectedAttacker().getHeatCur() * 1;
         }
 
-        if (targetUnit != null) { // if no unit selected then just use default values
-            targetMoveMod = targetUnit.getTMM();
+        if (UnitManager.getSelectedTarget() != null) { // if no unit selected then just use default values
+            targetMoveMod = UnitManager.getSelectedTarget().getTMM();
         }
 
         // calculate situational mods
@@ -137,8 +137,8 @@ public class AttackOptionsPanel extends JPanel implements Observer {
         // update heat select
         overHeatBox.removeAllItems();
         overHeatBox.addItem(0);
-        if (attackingUnit != null) {
-            for (int i = 1; i <= attackingUnit.getOverheat(); i++) {
+        if (UnitManager.getSelectedAttacker() != null) {
+            for (int i = 1; i <= UnitManager.getSelectedAttacker().getOverheat(); i++) {
                 overHeatBox.addItem(i);
             }
         }
@@ -234,8 +234,8 @@ public class AttackOptionsPanel extends JPanel implements Observer {
 
         // add logic to buttons
         fireButton.addActionListener(f -> {
-            if( attackingUnit != null && targetUnit != null) {
-                String attackReport =  attackingUnit.makeAttack(targetUnit,
+            if( UnitManager.getSelectedAttacker() != null && UnitManager.getSelectedTarget() != null) {
+                String attackReport =  UnitManager.getSelectedAttacker().makeAttack(UnitManager.getSelectedTarget(),
                         (int) this.overHeatBox.getSelectedItem(),
                         getSelectedRange(),
                         toHitFinal,
