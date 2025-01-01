@@ -8,13 +8,15 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 
-
 public class AppWindow extends JFrame {
     private final HeaderPanel headerPanel = new HeaderPanel();
     private BufferedImage appIcon;
     private PhasePanel phasePanel;
+    private CombatPanel combatPanel;
+    private MovePanel movePanel;
+    private EndPhasePanel endPhasePanel;
 
-    public AppWindow( boolean hiRezMode) {
+    public AppWindow(boolean hiRezMode) {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         // load the graphics
@@ -30,25 +32,9 @@ public class AppWindow extends JFrame {
         GridBagConstraints mainLoc = new GridBagConstraints();
 
         // combatPanel holds all elements needed only in the combat phase
-        // TODO move combatPanel into its own class
-        JPanel combatPanel = new JPanel();
-       combatPanel.setLayout(new GridBagLayout());
-       GridBagConstraints combatLoc = new GridBagConstraints();
-
-        AttackerSelectPanel attackerSelectPanel = new AttackerSelectPanel();
-        TargetSelectPanel targetSelectPanel = new TargetSelectPanel();
-        AttackOptionsPanel attackOptionsPanel = new AttackOptionsPanel();
-
-        combatLoc.fill = GridBagConstraints.VERTICAL;
-        combatLoc.gridx = 0;
-        combatLoc.gridy = 0;
-        combatPanel.add(attackerSelectPanel, combatLoc);
-        combatLoc.gridx++;
-        combatPanel.add(targetSelectPanel, combatLoc);
-        combatLoc.gridx++;
-        combatLoc.fill = GridBagConstraints.BOTH;
-        combatLoc.weighty = 1;
-        combatPanel.add(attackOptionsPanel, combatLoc);
+        combatPanel = new CombatPanel();
+        movePanel = new MovePanel();
+        endPhasePanel = new EndPhasePanel();
 
         // phase select panel holds all the elements to switch phases and end the turn
         phasePanel = new PhasePanel(this);
@@ -64,28 +50,49 @@ public class AppWindow extends JFrame {
         mainLoc.gridy++;
         mainLoc.gridwidth = 1;
         mainLoc.weighty = 1;
+        mainLoc.weightx = .1;
+        mainLoc.anchor = GridBagConstraints.WEST;
         mainLoc.fill = GridBagConstraints.VERTICAL;
         this.add(phasePanel, mainLoc);
         mainLoc.gridx++;
+        mainLoc.weightx = .9;
+        mainLoc.anchor = GridBagConstraints.EAST;
         mainLoc.fill = GridBagConstraints.BOTH;
         this.add(combatPanel, mainLoc);
+        this.add(movePanel, mainLoc);
+        this.add(endPhasePanel, mainLoc);
 
+        changeMode(PhaseName.COMBAT); // set to combat mode for sizing purposes
         this.pack();
         this.setVisible(true);
+        changeMode(PhaseName.MOVE);
     }
 
     public void changeMode(PhaseName mode) {
         switch (mode) {
             case MOVE:
                 this.headerPanel.setModeText("Movement Phase  ");
+                combatPanel.setVisible(false);
+                movePanel.setVisible(true);
+                endPhasePanel.setVisible(false);
                 break;
             case COMBAT:
                 this.headerPanel.setModeText("Combat Phase  ");
+                combatPanel.setVisible(true);
+                movePanel.setVisible(false);
+                endPhasePanel.setVisible(false);
                 break;
             default:
                 this.headerPanel.setModeText("End Phase  ");
+                combatPanel.setVisible(false);
+                movePanel.setVisible(false);
+                endPhasePanel.setVisible(true);
+                endPhasePanel.updateMessages();
                 break;
         }
+        //this.pack();
+        revalidate();
+        repaint();
     }
 
     public void changeModeOld(String mode) {

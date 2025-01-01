@@ -3,18 +3,15 @@ package StrikeMaster.UI;
 import StrikeMaster.MsgManager;
 
 import javax.swing.*;
-import java.awt.*;
+        import java.awt.*;
 
-public class MsgLogPopup extends JDialog{
+public class EndPhasePanel extends JPanel {
+    JTextArea msgBoard;
 
-    /**
-     * Constructs the popup displays entire message log
-     */
-    public MsgLogPopup() {
-        this.setTitle("Message Log");
+    public EndPhasePanel() {
         this.setLayout(new BorderLayout());
 
-        JTextArea msgBoard = new JTextArea();
+        msgBoard = new JTextArea();
         msgBoard.setLineWrap(true);
         msgBoard.setWrapStyleWord(true); // will keep whole-words together when wrapping
 
@@ -22,17 +19,10 @@ public class MsgLogPopup extends JDialog{
         JScrollPane msgScroll = new JScrollPane(msgBoard);
         this.add(msgScroll, BorderLayout.CENTER);
 
-        this.setPreferredSize(new Dimension(600, 800));
-        this.setMinimumSize(new Dimension(600, 800));
+        updateMessages();
+    }
 
-        JButton closeButton = new JButton("Close");
-        this.add(closeButton, BorderLayout.SOUTH);
-
-        closeButton.addActionListener( close ->{
-            this.dispose();
-                });
-
-        // add text to message board
+    public void updateMessages(){
         StringBuilder msgBoardString = new StringBuilder();
         MsgManager.resetIndex();
         while(MsgManager.hasNext()){
@@ -40,8 +30,5 @@ public class MsgLogPopup extends JDialog{
             msgBoardString.append(System.lineSeparator());
         }
         msgBoard.setText(msgBoardString.toString());
-
-        this.setLocationRelativeTo(null); // make popup appear centered
-        this.setVisible(true);
     }
 }

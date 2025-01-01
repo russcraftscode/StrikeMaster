@@ -7,8 +7,6 @@ import javax.swing.*;
 import java.awt.*;
 
 public class PhasePanel extends JPanel {
-    //public enum PhaseName {MOVE, COMBAT, END}
-
     private PhaseName phase = PhaseName.MOVE;
     private HeaderPanel headerPanel;
     private AppWindow mainWindow;
@@ -54,7 +52,7 @@ public class PhasePanel extends JPanel {
         // check to make sure in proper phase before switching
         switch (newPhase) {
             case MOVE:
-                if (phase == PhaseName.COMBAT) {
+                if (phase != PhaseName.END) {
                     AlertPopup wrongPhase = new AlertPopup("Phase Error",
                             "Must be in end the round before moving back to \"Move Phase\"",
                             AlertPopup.AlertType.ERROR);
