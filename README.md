@@ -33,14 +33,14 @@ You will still need to have all of your game materials and know how to play. Thi
 
 #### Planned Initial Release Features
 
-| Feature                            | Status             | Notes |
-|------------------------------------|--------------------|-------|
-| Basic *Alpha Strike* ranged combat | Not Implemented    |       |
-| Heat                               | Not Implemented    |       |
-| Auto dice rolls                    | Not Implemented    |       |
-| Direct Unit Editing                | Implemented Dec 24 |       |
-| 3025 Mechs                         | Implemented Dec 24 |       |
-| Ground Vehicles                    | Not Implemented    |       |
+| Feature                            | Status                  | Notes |
+|------------------------------------|-------------------------|-------|
+| Basic *Alpha Strike* ranged combat | Not Implemented         |       |
+| Heat                               | Not Implemented         |       |
+| Auto dice rolls                    | Implemented Dec 27 2024 |       |
+| Direct Unit Editing                | Implemented Dec 24 2024 |       |
+| 3025 Mechs                         | Implemented Dec 24 2024 |       |
+| Ground Vehicles                    | Not Implemented         |       |
 
 
 #### Possible Future Additions
