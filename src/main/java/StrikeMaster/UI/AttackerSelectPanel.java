@@ -8,11 +8,11 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
 
-public class AttackerSelectPanel extends UnitSelectPanel{
-    private ArrayList<AttackSingleUnitPanel> attackSingleUnitPanels ;
+public class AttackerSelectPanel extends UnitSelectPanel {
+    private ArrayList<AttackSingleUnitPanel> attackSingleUnitPanels;
 
-    protected void buildUnitPanel(){
-        attackSingleUnitPanels =  new ArrayList<>();
+    protected void buildUnitPanel() {
+        attackSingleUnitPanels = new ArrayList<>();
         this.panelLabel.setText("Select Unit to make attack");
 
         unitDataPanel.setLayout(new GridBagLayout());
@@ -45,11 +45,10 @@ public class AttackerSelectPanel extends UnitSelectPanel{
      * Updates all unit entries to reflect any changes to unit objects.
      */
     public void updateUnits() {
-        for(AttackSingleUnitPanel singlePanel : attackSingleUnitPanels){
+        for (AttackSingleUnitPanel singlePanel : attackSingleUnitPanels) {
             singlePanel.updateGraphics();
         }
     }
-
 
     /**
      * Subclass of SingleUnitPanel that represents a single unit that is making an attack.
@@ -71,16 +70,15 @@ public class AttackerSelectPanel extends UnitSelectPanel{
         private ArrayList<JComponent> components = new ArrayList<>();
 
         /**
-         * Creates a panel that represents a single unit to go onto a
-         * UnitSelectPanel
+         * Creates a panel that represents a single unit to go onto a UnitSelectPanel
          * @param unit the unit this panel will represent
          */
-        public AttackSingleUnitPanel(Unit unit){
+        public AttackSingleUnitPanel(Unit unit) {
             this.unit = unit;
 
             this.setLayout(new GridBagLayout());
             GridBagConstraints aLoc = new GridBagConstraints();
-            aLoc.insets = new Insets(0,1,0,2);
+            aLoc.insets = new Insets(0, 1, 0, 2);
 
             aLoc.gridx = 0;
             aLoc.gridy = 0;
@@ -142,7 +140,7 @@ public class AttackerSelectPanel extends UnitSelectPanel{
             //heatImage.setBorder(BorderFactory.createLineBorder(Color.GREEN));// DEBUG
 
             // tell UnitManger a new unit has been selected
-            this.unitSelectButton.addActionListener(s->
+            this.unitSelectButton.addActionListener(s ->
             {
                 UnitManager.changeSelectedAttacker(unit.getID());
             });
@@ -166,9 +164,9 @@ public class AttackerSelectPanel extends UnitSelectPanel{
         /**
          * Updates all UI elements to reflect any changes to the unit
          */
-        public void updateGraphics(){
+        public void updateGraphics() {
             nameLabel.setText(unit.getName() + " " + unit.getVariant());
-            sideLabel.setText("Red");
+            sideLabel.setText(unit.getFaction());
             idLabel.setText(String.valueOf(unit.getID()));
             damageLabel.setText("  Attack Strength "
                     + unit.getShortDmg() + "/"
@@ -177,21 +175,25 @@ public class AttackerSelectPanel extends UnitSelectPanel{
             switch (unit.getType()) {
                 // TODO add other unit types
                 default:
-                    iconLabel.setIcon(ImageManager.getInfIcon());
+                    if(unit.getFaction().equals("Red"))
+                        iconLabel.setIcon(ImageManager.getInfIcon());
+                    else iconLabel.setIcon(ImageManager.getInfIconB());
                     break;
                 case 'm':
-                    iconLabel.setIcon(ImageManager.getMechIcon());
+                    if(unit.getFaction().equals("Red"))
+                        iconLabel.setIcon(ImageManager.getMechIcon());
+                    else iconLabel.setIcon(ImageManager.getMechIconB());
                     break;
             }
             wepSysHitsImage.setIcon(new ImageIcon(
-                    ImageManager.getCounterImage(4, 4- unit.getWepHits())));
+                    ImageManager.getCounterImage(4, 4 - unit.getWepHits())));
             tarSysHitsImage.setIcon(new ImageIcon(
-                    ImageManager.getCounterImage(4, 4- unit.getFCHits())));
+                    ImageManager.getCounterImage(4, 4 - unit.getFCHits())));
             heatImage.setIcon(new ImageIcon(
-                    ImageManager.getCounterImage(4, 4- unit.getHeatCur())));
+                    ImageManager.getCounterImage(4, 4 - unit.getHeatCur())));
 
             // shade every other line
-            if(unit.getID()%2 == 0){
+            if (unit.getID() % 2 == 0) {
                 this.setBackground(Color.LIGHT_GRAY);
                 unitSelectButton.setBackground(Color.LIGHT_GRAY);
                 this.setOpaque(true);
@@ -199,11 +201,11 @@ public class AttackerSelectPanel extends UnitSelectPanel{
 
             // pick fonts
             Font panelFont;
-            if(unit.isDestroyed()) panelFont = destroyedFont;
+            if (unit.isDestroyed()) panelFont = destroyedFont;
             else if (unit.didAttackThisRound()) panelFont = turnTakenFont;
             else panelFont = readyFont;
             // apply font
-            for(JComponent component : components){
+            for (JComponent component : components) {
                 component.setFont(panelFont);
             }
 
@@ -223,7 +225,7 @@ public class AttackerSelectPanel extends UnitSelectPanel{
          * Sets the radio button for this unit.
          * @param sel if the unit should be selected.
          */
-        public void setSelected(boolean sel){
+        public void setSelected(boolean sel) {
             unitSelectButton.setSelected(sel);
             // tell UnitManger a new unit has been selected
             UnitManager.changeSelectedAttacker(unit.getID());
@@ -233,7 +235,7 @@ public class AttackerSelectPanel extends UnitSelectPanel{
          * Returns if this panel is selected.
          * @return true if the unit this panel represents is the selected unit
          */
-        public boolean isSelected(){
+        public boolean isSelected() {
             return unitSelectButton.isSelected();
         }
     }

@@ -8,13 +8,13 @@ import StrikeMaster.Units.Unit;
  */
 public class UnitFactory {
 
-    public static Unit buidUnit(UnitData data, int id){
+    public static Unit buidUnit(UnitData data, String faction, int id){
         Unit builtUnit = null;
         //System.out.println(data.getClass()); // DEBUG
         switch (data.getType() ){
             case 'm':
                 // TODO ID will have to be unique
-                builtUnit = new Mech(data, id, "Test Faction");
+                builtUnit = new Mech(data, id, faction);
                 break;
         }
 

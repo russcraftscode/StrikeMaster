@@ -171,7 +171,7 @@ public class TargetSelectPanel extends UnitSelectPanel {
         public void updateGraphics() {
             nameLabel.setText(unit.getName() + " " + unit.getVariant());
 
-            sideLabel.setText("Red");
+            sideLabel.setText(unit.getFaction());
 
             idLabel.setText(String.valueOf(unit.getID()));
 
@@ -180,10 +180,14 @@ public class TargetSelectPanel extends UnitSelectPanel {
             switch (unit.getType()) {
                 // TODO add other unit types
                 default:
-                    iconLabel.setIcon(ImageManager.getInfIcon());
+                    if(unit.getFaction().equals("Red"))
+                        iconLabel.setIcon(ImageManager.getInfIcon());
+                    else iconLabel.setIcon(ImageManager.getInfIconB());
                     break;
                 case 'm':
-                    iconLabel.setIcon(ImageManager.getMechIcon());
+                    if(unit.getFaction().equals("Red"))
+                        iconLabel.setIcon(ImageManager.getMechIcon());
+                    else iconLabel.setIcon(ImageManager.getMechIconB());
                     break;
             }
 

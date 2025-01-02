@@ -18,8 +18,10 @@ public class ImageManager {
     private static ImageManager instance;
 
     private static BufferedImage mechIcon;
+    private static BufferedImage mechIconB;
     private static BufferedImage armorIcon;
     private static BufferedImage infIcon;
+    private static BufferedImage infIconB;
     private static BufferedImage artyIcon;
     private static BufferedImage vtolIcon;
 
@@ -115,8 +117,15 @@ public static ImageIcon getMechIcon(){
         return new ImageIcon(mechIcon);
 }
 
+    public static ImageIcon getMechIconB(){
+        return new ImageIcon(mechIconB);
+    }
+
     public static ImageIcon getInfIcon(){
         return new ImageIcon(infIcon);
+    }
+    public static ImageIcon getInfIconB(){
+        return new ImageIcon(infIconB);
     }
 
 
@@ -298,7 +307,9 @@ public static ImageIcon getMechIcon(){
         ClassLoader classLoader = ImageManager.class.getClassLoader();
 
         mechIcon = ImageIO.read(classLoader.getResourceAsStream("simpleMechV3.png"));
-        infIcon = ImageIO.read(classLoader.getResourceAsStream("simpleInf.png"));
+        mechIconB = ImageIO.read(classLoader.getResourceAsStream("simpleMechV3b.png"));
+        infIcon = ImageIO.read(classLoader.getResourceAsStream("simpleInfb.png"));
+        infIconB = ImageIO.read(classLoader.getResourceAsStream("simpleInf.png"));
         armorIcon = ImageIO.read(classLoader.getResourceAsStream("simpleArmorInf.png"));
         artyIcon = ImageIO.read(classLoader.getResourceAsStream("simpleArty.png"));
         vtolIcon = ImageIO.read(classLoader.getResourceAsStream("simpleVtol.png"));

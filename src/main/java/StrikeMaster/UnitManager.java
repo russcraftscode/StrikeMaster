@@ -19,6 +19,7 @@ public class UnitManager extends Observable {
 
     private static int attackerId = 0;
     private static int targetId = 0;
+    private static int moveId = 0;
     // TODO determine unit selection is necessary during move phase
     //private static int moveId = 0;
     private static int latestIdNum = 0;
@@ -46,14 +47,16 @@ public class UnitManager extends Observable {
             throw new RuntimeException(e);
         }
 
-        units.add(UnitFactory.buidUnit(unitLibrary.getUnitData("AWS-9M"), latestIdNum++));
-        units.add(UnitFactory.buidUnit(unitLibrary.getUnitData("AS7-D"), latestIdNum++));
-        units.add(UnitFactory.buidUnit(unitLibrary.getUnitData("ASN-21"), latestIdNum++));
-        /*units.add(UnitFactory.buidUnit(unitLibrary.getUnitData("DRG-1N"), latestIdNum++));
-        units.add(UnitFactory.buidUnit(unitLibrary.getUnitData("KGC-0000"), latestIdNum++));
-        units.add(UnitFactory.buidUnit(unitLibrary.getUnitData("MAD-3R"), latestIdNum++));
-        units.add(UnitFactory.buidUnit(unitLibrary.getUnitData("RFL-3N"), latestIdNum++));
-        units.add(UnitFactory.buidUnit(unitLibrary.getUnitData("SHD-2H"), latestIdNum++));
+        units.add(UnitFactory.buidUnit(unitLibrary.getUnitData("AWS-9M"), "Red", latestIdNum++));
+        units.add(UnitFactory.buidUnit(unitLibrary.getUnitData("AS7-D"),"Red", latestIdNum++));
+        units.add(UnitFactory.buidUnit(unitLibrary.getUnitData("ASN-21"),"Blu", latestIdNum++));
+        units.add(UnitFactory.buidUnit(unitLibrary.getUnitData("DRG-1N"), "Blu",latestIdNum++));
+        units.add(UnitFactory.buidUnit(unitLibrary.getUnitData("KGC-0000"), "Blu", latestIdNum++));
+        units.add(UnitFactory.buidUnit(unitLibrary.getUnitData("MAD-3R"), "Blu",latestIdNum++));
+        units.add(UnitFactory.buidUnit(unitLibrary.getUnitData("RFL-3N"), "Red",latestIdNum++));
+        units.add(UnitFactory.buidUnit(unitLibrary.getUnitData("SHD-2H"), "Blu",latestIdNum++));
+        units.add(UnitFactory.buidUnit(unitLibrary.getUnitData("CPLT-C1"),"Red", latestIdNum++));
+        /*units.add(UnitFactory.buidUnit(unitLibrary.getUnitData("WSP-1A"), latestIdNum++));
         units.add(UnitFactory.buidUnit(unitLibrary.getUnitData("TDR-5S"), latestIdNum++));
         units.add(UnitFactory.buidUnit(unitLibrary.getUnitData("UM-R60"), latestIdNum++));
         units.add(UnitFactory.buidUnit(unitLibrary.getUnitData("VLK-QA"), latestIdNum++));
@@ -76,9 +79,9 @@ public class UnitManager extends Observable {
         units.add(UnitFactory.buidUnit(unitLibrary.getUnitData("JR7-D"), latestIdNum++));*/
 
         // mark every unit as having moved for prototyping attack panel purposes.
-        for (Unit unit : units){
-            unit.setMovedThisRound(true);
-        }
+       // for (Unit unit : units){
+        //    unit.setMovedThisRound(true);
+        //}
         // end prototyping
     }
 
@@ -154,17 +157,39 @@ public class UnitManager extends Observable {
     }
 
     /**
-     * @return the ID of the currently selected attacking unit
+     * @return the ID of the currently selected targeted unit
      */
     public static int getSelectedTargetId(){
         return targetId;
     }
 
     /**
-     * @return the currently selected attacking unit
+     * @return the currently selected targeted unit
      */
     public static Unit getSelectedTarget(){
         return units.get(targetId);
+    }
+
+    /**
+     * @param id the ID number of the newly selected unit
+     */
+    public static void changeSelectedMoveUnit(int id){
+        moveId = id;
+        UnitManager.getInstance().updatedUnit();
+    }
+
+    /**
+     * @return the ID of the currently selected targeted unit
+     */
+    public static int getSelectedMoveUnitId(){
+        return moveId;
+    }
+
+    /**
+     * @return the currently selected moving unit
+     */
+    public static Unit getSelectedMoveUnit(){
+        return units.get(moveId);
     }
 
     /**

@@ -56,6 +56,7 @@ public class AppWindow extends JFrame {
         this.add(phasePanel, mainLoc);
         mainLoc.gridx++;
         mainLoc.weightx = .9;
+        mainLoc.weighty = .9;
         mainLoc.anchor = GridBagConstraints.EAST;
         mainLoc.fill = GridBagConstraints.BOTH;
         this.add(combatPanel, mainLoc);
