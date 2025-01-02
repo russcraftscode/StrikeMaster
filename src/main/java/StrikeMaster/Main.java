@@ -3,8 +3,17 @@ package StrikeMaster;
 
 import StrikeMaster.UI.AppWindow;
 
+import javax.swing.*;
+
 public class Main {
     public static void main(String[] args) {
+
+        // make the ui look like windows, even when on mac
+        try{
+            UIManager.setLookAndFeel(UIManager.getCrossPlatformLookAndFeelClassName());
+        }catch(Exception e){
+            e.printStackTrace();
+        }
 
         // Initialize singletons
         UnitManager unitManager = UnitManager.getInstance();

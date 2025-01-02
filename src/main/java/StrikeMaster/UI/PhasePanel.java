@@ -1,5 +1,6 @@
 package StrikeMaster.UI;
 
+import StrikeMaster.MsgManager;
 import StrikeMaster.PhaseName;
 import StrikeMaster.UnitManager;
 
@@ -77,7 +78,9 @@ public class PhasePanel extends JPanel {
                             AlertPopup.AlertType.ERROR);
                     return;
                 }
+                MsgManager.postMsg("------ Damage Resolution Report -------");
                 UnitManager.endRound();
+                MsgManager.postMsg("******** End of Round ********\n");
                 break;
         }
         // if in right phase then switch to new phase
