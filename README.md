@@ -16,8 +16,8 @@ You will still need to have all of your game materials and know how to play. Thi
 
 ## Features
 
-- **Dice Rolling**: Dice rolls can be handled automatically. Alternatively, **StrikeMaster** can calculate the target number and the use can roll dice and tell the program if the roll succeeded. *WIP: not implemented*  
-- **Combat Calculations**: Handles attack resolution, damage calculation, and other in-game mechanics. ***WIP**: not implemented*  
+- **Dice Rolling**: Dice rolls can be handled automatically. Alternatively, **StrikeMaster** can calculate the target number and the use can roll dice and tell the program if the roll succeeded.   
+- **Combat Calculations**: Handles attack resolution, damage calculation, and other in-game mechanics.   
 - **Unit Card Management**:
   - Load unit cards.
   - Track damage and damage effects.
