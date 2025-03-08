@@ -68,13 +68,15 @@ public class Mech extends Unit {
         if (this.getDmg( range ) != '*') damageValue =
                 Character.getNumericValue(this.getDmg(range));
         if ( attackRoll == 12) { // if thru-armor critical
-            target.hit(new Attack(damageValue, Attack.DamageType.REGULAR, true, rearHit));
+            Attack newAttack = new Attack(damageValue, Attack.DamageType.REGULAR, true, rearHit);
+            target.hit(newAttack);
             attackReport += " and hit " + target.getFaction() + "'s "
-                    + target.getName() + " for " + damageValue + " damage with critical damage.";
+                    + target.getName() + " for " + newAttack.getTotalDamage() + " damage with critical damage.";
         }else{ // no thru-armor critical
-            target.hit(new Attack(damageValue, Attack.DamageType.REGULAR, false, rearHit));
+            Attack newAttack = new Attack(damageValue, Attack.DamageType.REGULAR, false, rearHit);
+            target.hit(newAttack);
             attackReport += " and hit " + target.getFaction() + "'s "
-                    + target.getName() + " for " + damageValue + " damage.";
+                    + target.getName() + " for " + newAttack.getTotalDamage() + " damage.";
         }
         //System.out.println(attackReport);// DEBUG
         return attackReport;
@@ -130,9 +132,8 @@ public class Mech extends Unit {
         String damageReport = faction + "'s " + name + " " + variant + " took ";
         for (Attack hit : hits) {
             // TODO add handling of different damage types here in later release
-            if(hit.rearHit) takeDamage(hit.baseDamage+1); // rear hit +1 damage
-            else takeDamage(hit.baseDamage);
-            totalDamageThisTurn += hit.baseDamage;
+            takeDamage(hit.getTotalDamage());
+            totalDamageThisTurn += hit.getTotalDamage();
         }
         damageReport = damageReport + totalDamageThisTurn + " points of damage";
         String critcialHitsReport = "";
