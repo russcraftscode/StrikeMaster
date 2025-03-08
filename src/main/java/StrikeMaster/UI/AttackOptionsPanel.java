@@ -242,6 +242,7 @@ public class AttackOptionsPanel extends JPanel implements Observer {
                             (int) this.overHeatBox.getSelectedItem(),
                             getSelectedRange(),
                             toHitFinal,
+                            this.indirectFire,
                             this.rearArmor);
                     MsgManager.postMsg(attackReport);
                 }

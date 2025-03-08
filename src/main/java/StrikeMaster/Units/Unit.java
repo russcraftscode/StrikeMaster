@@ -216,7 +216,7 @@ public abstract class Unit {
      * @param toHit the required roll to hit the target
      * @return a report on the attack
      */
-    public abstract String makeAttack( Unit target, int overheat, char range, int toHit, boolean rearHit);
+    public abstract String makeAttack( Unit target, int overheat, char range, int toHit, boolean indirect, boolean rearHit);
 
     public char getType() {
         return 'x';

@@ -44,7 +44,7 @@ public class Mech extends Unit {
      * @param toHit the required roll to hit the target
      * @return report of the attack
      */
-    public String makeAttack(Unit target, int overheat, char range, int toHit, boolean rearHit) {
+    public String makeAttack(Unit target, int overheat, char range, int toHit, boolean indirect, boolean rearHit) {
         // apply effects of firing weapons
         this.heatCur += overheat;
         this.firedWepThisRound = true;
@@ -73,6 +73,21 @@ public class Mech extends Unit {
             System.out.println("damage value " + damageValue); // DEBUG
             damageValue += overheat;
             System.out.println("damage value " + damageValue); // DEBUG
+        }
+        // if attack is indirect use only indirect damage
+        if(indirect){
+            damageValue = 0;
+            // TODO handle IF0* (min damage indirect) attacks
+            // TODO consider reworking special abilities to be more flexable with IF values
+            if(specialAbilities.contains("IF1")) damageValue = 1;
+            if(specialAbilities.contains("IF2")) damageValue = 2;
+            if(specialAbilities.contains("IF3")) damageValue = 3;
+            if(specialAbilities.contains("IF4")) damageValue = 4;
+            if(specialAbilities.contains("IF5")) damageValue = 5;
+            if(specialAbilities.contains("IF6")) damageValue = 6;
+            if(specialAbilities.contains("IF7")) damageValue = 7;
+            if(specialAbilities.contains("IF8")) damageValue = 8;
+            if(specialAbilities.contains("IF9")) damageValue = 9;
         }
         if ( attackRoll == 12) { // if thru-armor critical
             Attack newAttack = new Attack(damageValue, Attack.DamageType.REGULAR, true, rearHit);
