@@ -137,13 +137,11 @@ public class Mech extends Unit {
         }
         damageReport = damageReport + totalDamageThisTurn + " points of damage";
         String critcialHitsReport = "";
-        //if (criticalHits > 0) damageReport = damageReport + " and took critical hits to ";
         for (int i = 0; i < criticalHits; i++) {
             String critReport = resolveCritical();
             // do not report on non-critical hits
             if(!critReport.equals("no critical hit")) {
-                //damageReport = damageReport + resolveCritical();
-                critcialHitsReport = critcialHitsReport + resolveCritical();
+                critcialHitsReport = critcialHitsReport + critReport;
                 // add a comma if there is another critical report coming
                 if (i != criticalHits - 1) critcialHitsReport = critcialHitsReport + ", ";
             }

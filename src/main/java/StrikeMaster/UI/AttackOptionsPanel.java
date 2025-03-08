@@ -234,20 +234,26 @@ public class AttackOptionsPanel extends JPanel implements Observer {
 
         // add logic to buttons
         fireButton.addActionListener(f -> {
-            if( UnitManager.getSelectedAttacker() != null && UnitManager.getSelectedTarget() != null) {
-                String attackReport =  UnitManager.getSelectedAttacker().makeAttack(UnitManager.getSelectedTarget(),
-                        (int) this.overHeatBox.getSelectedItem(),
-                        getSelectedRange(),
-                        toHitFinal,
-                        this.rearArmor);
-                MsgManager.postMsg( attackReport);
+            if (UnitManager.getSelectedAttacker() != null && UnitManager.getSelectedTarget() != null) {
+                // don't allow attack if unit is not eligible to fire
+                if (UnitManager.getSelectedAttacker().isFireComplete()) {
+                    MsgManager.postMsg(UnitManager.getSelectedAttacker().getName() + " is not able to fire right now");
+                } else {
+                    // make attack and generate report
+                    String attackReport = UnitManager.getSelectedAttacker().makeAttack(UnitManager.getSelectedTarget(),
+                            (int) this.overHeatBox.getSelectedItem(),
+                            getSelectedRange(),
+                            toHitFinal,
+                            this.rearArmor);
+                    MsgManager.postMsg(attackReport);
+                }
             }
             UnitManager.getInstance().updatedUnit();
         });
     }
 
 
-    private char getSelectedRange(){
+    private char getSelectedRange() {
         char attackRange;
         if (rangeValue == 0) return 's';
         if (rangeValue == 1) return 'm';
