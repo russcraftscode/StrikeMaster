@@ -20,7 +20,7 @@ public abstract class Unit {
     protected int jumpMax;
     protected ArrayList<String> specialAbilities;
     protected int size;
-    protected int overheat;
+    protected int overheatMax;
     protected int TMMMax;
     protected char shortDmg;
     protected char medDmg;
@@ -270,8 +270,8 @@ public abstract class Unit {
         return size;
     }
 
-    public int getOverheat() {
-        return overheat;
+    public int getOverheatMax() {
+        return overheatMax;
     }
 
     public int getTMMMax() {

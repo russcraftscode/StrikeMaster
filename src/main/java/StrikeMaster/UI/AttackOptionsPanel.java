@@ -1,9 +1,7 @@
 package StrikeMaster.UI;
 
 import StrikeMaster.MsgManager;
-import StrikeMaster.UnitFactory;
 import StrikeMaster.UnitManager;
-import StrikeMaster.Units.Unit;
 
 import javax.swing.*;
 import javax.swing.border.BevelBorder;
@@ -138,7 +136,7 @@ public class AttackOptionsPanel extends JPanel implements Observer {
         overHeatBox.removeAllItems();
         overHeatBox.addItem(0);
         if (UnitManager.getSelectedAttacker() != null) {
-            for (int i = 1; i <= UnitManager.getSelectedAttacker().getOverheat(); i++) {
+            for (int i = 1; i <= UnitManager.getSelectedAttacker().getOverheatMax(); i++) {
                 overHeatBox.addItem(i);
             }
         }

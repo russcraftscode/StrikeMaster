@@ -39,7 +39,7 @@ public class MechTest {
         assertEquals('3', testUnit.getDmg('l'));
         assertEquals('0', testUnit.getExtDmg());
         assertEquals(8, testUnit.getMoveMax());
-        assertEquals(1, testUnit.getOverheat());
+        assertEquals(1, testUnit.getOverheatMax());
         assertEquals(4, testUnit.getSize());
     }
 

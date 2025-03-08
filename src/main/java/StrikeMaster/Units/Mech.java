@@ -19,7 +19,7 @@ public class Mech extends Unit {
         this.structureMax = data.getStructureMax();
         this.moveMax = data.getMoveMax();
         this.size = data.getSize();
-        this.overheat = data.getOverheat();
+        this.overheatMax = data.getOverheat();
         this.TMMMax = data.getTmmMax();
         this.shortDmg = data.getShortDmg();
         this.medDmg = data.getMedDmg();
@@ -46,7 +46,7 @@ public class Mech extends Unit {
      */
     public String makeAttack(Unit target, int overheat, char range, int toHit, boolean rearHit) {
         // apply effects of firing weapons
-        this.overheat += overheat;
+        this.heatCur += overheat;
         this.firedWepThisRound = true;
         this.fireComplete = true; // used to determine if the unit can make an attack
 
@@ -65,8 +65,15 @@ public class Mech extends Unit {
         // TODO make allowances for target's AMS or other defences here
         // TODO add minimum damage functionality in later release
         int damageValue = 0;
-        if (this.getDmg( range ) != '*') damageValue =
-                Character.getNumericValue(this.getDmg(range));
+        // get the base damage
+        if (getDmg( range ) != '*') damageValue = Character.getNumericValue(this.getDmg(range));
+        // apply overheat damage only if short/med  range or has overheat long ability
+        System.out.println("range " + range); // DEBUG
+        if (range == 's' || range == 'm' || specialAbilities.contains("OVL") ){
+            System.out.println("damage value " + damageValue); // DEBUG
+            damageValue += overheat;
+            System.out.println("damage value " + damageValue); // DEBUG
+        }
         if ( attackRoll == 12) { // if thru-armor critical
             Attack newAttack = new Attack(damageValue, Attack.DamageType.REGULAR, true, rearHit);
             target.hit(newAttack);
@@ -271,7 +278,7 @@ public class Mech extends Unit {
         myString = myString + " Type: Mech  Size: " + String.valueOf(this.size) + "  Role: " + "_____" + "  PV: " +
                 String.valueOf(this.PV) + "\n";
         myString = myString + " TMM: " + String.valueOf(this.TMMCur) + "  Move/Jump: " + String.valueOf(this.moveCur) +
-                "/" + String.valueOf(this.jumpCur) + "  Overheat : " + String.valueOf(this.overheat) + "\n";
+                "/" + String.valueOf(this.jumpCur) + "  Overheat : " + String.valueOf(this.overheatMax) + "\n";
         myString = myString +
                 " Damage Short: " + this.getDmg('s') + "  Medium: " + this.getDmg('m') +
                 "  Long: " + this.getDmg('l') + "  Extreme: " + this.getDmg('e') + "\n";
@@ -333,6 +340,7 @@ public class Mech extends Unit {
      */
     public void resolveHeat() {
 
+
     }
 
     /**
@@ -345,6 +353,20 @@ public class Mech extends Unit {
         criticalHits = 0;
 
         if(!destroyed){
+
+            // resolve heat
+            // if no weapons fired heat is dissipated
+            if(!this.firedWepThisRound) {
+                heatCur = 0;
+            } else {
+                // if there is an engine hit then weapons fire raises heat by 1
+                if (engHits > 0 && firedWepThisRound) heatCur++;
+                // if in water then dissipate 1 unit of heat
+                if (inWater && heatCur > 0) heatCur--;
+                // shutdown if too hot
+                if (heatCur >= 4) shutdown = true;
+            }
+
             movedThisRound = false;
             sprinted = false;
             moveComplete = false;
@@ -370,6 +392,10 @@ public class Mech extends Unit {
             }
             if (jumpCur < 1) jumpCur = 0;
 
+            if(shutdown) {
+                immobile = true;
+                fireComplete = true;
+            }
             if(immobile){
                 moveCur = 0;
                 jumpCur =  0;
