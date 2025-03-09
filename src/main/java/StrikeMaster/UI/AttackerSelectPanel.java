@@ -202,7 +202,7 @@ public class AttackerSelectPanel extends UnitSelectPanel {
             // pick fonts
             Font panelFont;
             if (unit.isDestroyed()) panelFont = destroyedFont;
-            else if (unit.didAttackThisRound()) panelFont = turnTakenFont;
+            else if (unit.didAttackThisRound() || unit.isFireComplete()) panelFont = turnTakenFont;
             else panelFont = readyFont;
             // apply font
             for (JComponent component : components) {

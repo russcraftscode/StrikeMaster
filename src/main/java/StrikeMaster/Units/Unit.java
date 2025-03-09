@@ -126,7 +126,6 @@ public abstract class Unit {
     protected void takeDamage(int amountOfDamage) {
         boolean wentCrit = false;
         // if the damage overcomes the armor
-        System.out.println(amountOfDamage + " " + armorCur + "/" + structureCur);// DEBUG
         if (amountOfDamage > armorCur) {
             // apply damage left over after armor to internal structure
             structureCur -= amountOfDamage - armorCur;

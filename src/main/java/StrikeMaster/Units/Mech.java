@@ -2,6 +2,7 @@ package StrikeMaster.Units;
 
 import StrikeMaster.Attack;
 import StrikeMaster.Dice;
+import StrikeMaster.MsgManager;
 import StrikeMaster.UnitData;
 
 public class Mech extends Unit {
@@ -58,7 +59,6 @@ public class Mech extends Unit {
         // resolve if the attack hit
         if (attackRoll < toHit){ // a miss
             attackReport += " and missed.";
-            System.out.println(attackReport);// DEBUG
             return attackReport;
         }
         // determine the damage
@@ -68,11 +68,8 @@ public class Mech extends Unit {
         // get the base damage
         if (getDmg( range ) != '*') damageValue = Character.getNumericValue(this.getDmg(range));
         // apply overheat damage only if short/med  range or has overheat long ability
-        System.out.println("range " + range); // DEBUG
         if (range == 's' || range == 'm' || specialAbilities.contains("OVL") ){
-            System.out.println("damage value " + damageValue); // DEBUG
             damageValue += overheat;
-            System.out.println("damage value " + damageValue); // DEBUG
         }
         // if attack is indirect use only indirect damage
         if(indirect){
@@ -100,7 +97,6 @@ public class Mech extends Unit {
             attackReport += " and hit " + target.getFaction() + "'s "
                     + target.getName() + " for " + newAttack.getTotalDamage() + " damage.";
         }
-        //System.out.println(attackReport);// DEBUG
         return attackReport;
     }
 
@@ -379,7 +375,17 @@ public class Mech extends Unit {
                 // if in water then dissipate 1 unit of heat
                 if (inWater && heatCur > 0) heatCur--;
                 // shutdown if too hot
-                if (heatCur >= 4) shutdown = true;
+                if (heatCur >= 4) {
+                    MsgManager.postMsg(this.faction + "'s " + this.name + " overheated to "
+                            + this.heatCur + " and has shutdown.");
+                    shutdown = true;
+                }
+            }
+            // if heat has reduced back to zero then startup
+            if (heatCur == 0 && shutdown) {
+                MsgManager.postMsg(this.faction + "'s " + this.name
+                        + " has cooled down to safe levels and has restarted");
+                shutdown = false;
             }
 
             movedThisRound = false;
