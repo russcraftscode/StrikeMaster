@@ -15,9 +15,6 @@ public class AttackOptionsPanel extends JPanel implements Observer {
     private JPanel situationalPanel;
     private JPanel rangePanel;
 
-    //private Unit UnitManager.getSelectedAttacker();
-    //private Unit UnitManager.getSelectedTarget();
-
     private GridBagConstraints gloc;
 
     private int attackerSkill = 0; // value of the attacker skill
@@ -45,6 +42,13 @@ public class AttackOptionsPanel extends JPanel implements Observer {
     private final JLabel heatModNumber = new JLabel();
     private final JLabel attackerDamModNumber = new JLabel();
     private final JLabel toHitNumber = new JLabel();
+
+    private JCheckBox indirectCheckBox;
+    private JCheckBox partialCheckBox;
+    private JCheckBox woodsCheckBox;
+    private JCheckBox rearArmorCheckBox;
+    private JCheckBox aftArcCheckBox;
+
 
     private final JComboBox<Integer> overHeatBox = new JComboBox();
 
@@ -98,8 +102,6 @@ public class AttackOptionsPanel extends JPanel implements Observer {
         heatMod = 0;
         attackerDamMod = 0;
 
-        // TODO calculate the remaining modifiers
-
         // calculate the values from the selected units
         if (UnitManager.getSelectedAttacker() != null) { // if no unit selected then just use default values
             attackerSkill = UnitManager.getSelectedAttacker().getSkill();
@@ -110,6 +112,17 @@ public class AttackOptionsPanel extends JPanel implements Observer {
 
         if (UnitManager.getSelectedTarget() != null) { // if no unit selected then just use default values
             targetMoveMod = UnitManager.getSelectedTarget().getTMM();
+        }
+
+        // inactivate options that are not relevant
+        if(UnitManager.getSelectedAttacker().getIndirect() == 0)  {
+            // if unit has no indirect ability then set to false and do not let user click checkbox
+            indirectCheckBox.setEnabled(false);
+            indirectFire = false;
+        } else{
+            // if unit HAS indirect ability then enable checkbox
+            indirectCheckBox.setEnabled(true);
+            indirectCheckBox.setSelected(this.indirectFire);
         }
 
         // calculate situational mods
@@ -342,7 +355,8 @@ public class AttackOptionsPanel extends JPanel implements Observer {
         situationalPanel.setLayout(new BoxLayout(situationalPanel, BoxLayout.Y_AXIS));
         situationalPanel.setBorder(BorderFactory.createBevelBorder(BevelBorder.RAISED));
 
-        JCheckBox indirectCheckBox = new JCheckBox("Indirect Fire");
+        //JCheckBox indirectCheckBox = new JCheckBox("Indirect Fire");
+        indirectCheckBox = new JCheckBox("Indirect Fire");
         indirectCheckBox.setSelected(this.indirectFire);
         indirectCheckBox.addItemListener(e -> {
             this.indirectFire = (e.getStateChange() == ItemEvent.SELECTED);
@@ -350,7 +364,8 @@ public class AttackOptionsPanel extends JPanel implements Observer {
         });
         situationalPanel.add(indirectCheckBox);
 
-        JCheckBox partialCheckBox = new JCheckBox("Partial Cover");
+        //JCheckBox partialCheckBox = new JCheckBox("Partial Cover");
+        partialCheckBox = new JCheckBox("Partial Cover");
         partialCheckBox.setSelected(this.partialCover);
         partialCheckBox.addItemListener(e -> {
             this.partialCover = (e.getStateChange() == ItemEvent.SELECTED);
@@ -358,7 +373,8 @@ public class AttackOptionsPanel extends JPanel implements Observer {
         });
         situationalPanel.add(partialCheckBox);
 
-        JCheckBox woodsCheckBox = new JCheckBox("Woods");
+        //JCheckBox woodsCheckBox = new JCheckBox("Woods");
+        woodsCheckBox = new JCheckBox("Woods");
         woodsCheckBox.setSelected(this.woods);
         woodsCheckBox.addItemListener(e -> {
             this.woods = (e.getStateChange() == ItemEvent.SELECTED);
@@ -366,7 +382,8 @@ public class AttackOptionsPanel extends JPanel implements Observer {
         });
         situationalPanel.add(woodsCheckBox);
 
-        JCheckBox rearArmorCheckBox = new JCheckBox("Rear Armor");
+        // JCheckBox rearArmorCheckBox = new JCheckBox("Rear Armor");
+        rearArmorCheckBox = new JCheckBox("Rear Armor");
         rearArmorCheckBox.setSelected(this.rearArmor);
         rearArmorCheckBox.addItemListener(e -> {
             this.rearArmor = (e.getStateChange() == ItemEvent.SELECTED);
@@ -374,7 +391,8 @@ public class AttackOptionsPanel extends JPanel implements Observer {
         });
         situationalPanel.add(rearArmorCheckBox);
 
-        JCheckBox aftArcCheckBox = new JCheckBox("Aft Firing Arc");
+        //JCheckBox aftArcCheckBox = new JCheckBox("Aft Firing Arc");
+        aftArcCheckBox = new JCheckBox("Aft Firing Arc");
         aftArcCheckBox.setSelected(this.aftArc);
         aftArcCheckBox.addItemListener(e -> {
             this.aftArc = (e.getStateChange() == ItemEvent.SELECTED);

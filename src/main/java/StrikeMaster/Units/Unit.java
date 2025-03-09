@@ -206,6 +206,11 @@ public abstract class Unit {
     //public abstract void fireWeapons(int overheat);
 
     /**
+     * @return the value of an indirect attack from this unit. 0 if it lacks the ability
+     */
+    public abstract int getIndirect();
+
+    /**
      * Handles making an attack on another unit. Calculates if the attack hits,
      * applies effects of making an attack on the attacker, passes damage information
      * to the target.
