@@ -23,7 +23,7 @@ public class MechTest {
             throw new RuntimeException(e);
         }
 
-        Unit testUnit = UnitFactory.buidUnit(unitLibrary.getUnitData("AWS-9M"), 0);
+        Unit testUnit = UnitFactory.buidUnit(unitLibrary.getUnitData("AWS-9M"), "test faction", 0);
 
         // test ID info
         assertEquals(0, testUnit.getID()); // test id number
@@ -54,7 +54,7 @@ public class MechTest {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        Unit testUnit = UnitFactory.buidUnit(unitLibrary.getUnitData("AWS-9M"), 0);
+        Unit testUnit = UnitFactory.buidUnit(unitLibrary.getUnitData("AWS-9M"), "test faction",0);
         // test armor reduction
         int beforeHitArmor = testUnit.getArmorCur();
         int beforeHitStructure = testUnit.getStructureCur();
@@ -106,7 +106,7 @@ public class MechTest {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        Unit testUnit = UnitFactory.buidUnit(unitLibrary.getUnitData("AWS-9M"), 0);
+        Unit testUnit = UnitFactory.buidUnit(unitLibrary.getUnitData("AWS-9M"), "test faction",0);
         // test armor reduction
         int beforeHitArmor = testUnit.getArmorCur();
         int beforeHitStructure = testUnit.getStructureCur();
@@ -119,7 +119,7 @@ public class MechTest {
         assertFalse(testUnit.isDestroyed());
 
         // reset the unit
-        testUnit = UnitFactory.buidUnit(unitLibrary.getUnitData("AWS-9M"), 0);
+        testUnit = UnitFactory.buidUnit(unitLibrary.getUnitData("AWS-9M"), "test faction",0);
 
         // test last armor point hit
         testUnit.setArmorCur(1);
@@ -133,7 +133,7 @@ public class MechTest {
         //assertFalse(testUnit.isDestroyed());
 
         // reset the unit
-        testUnit = UnitFactory.buidUnit(unitLibrary.getUnitData("AWS-9M"), 0);
+        testUnit = UnitFactory.buidUnit(unitLibrary.getUnitData("AWS-9M"), "test faction",0);
 
         // test hit with zero armor and full structure
         testUnit.setArmorCur(0);
@@ -148,7 +148,7 @@ public class MechTest {
 
 
         // reset the unit
-        testUnit = UnitFactory.buidUnit(unitLibrary.getUnitData("AWS-9M"), 0);
+        testUnit = UnitFactory.buidUnit(unitLibrary.getUnitData("AWS-9M"), "test faction",0);
 
         // test destroying unit
         testUnit.setArmorCur(0);
@@ -164,7 +164,7 @@ public class MechTest {
         assertTrue(testUnit.isDestroyed());
 
         // reset the unit
-        testUnit = UnitFactory.buidUnit(unitLibrary.getUnitData("AWS-9M"), 0);
+        testUnit = UnitFactory.buidUnit(unitLibrary.getUnitData("AWS-9M"), "test faction",0);
 
         // test destroying unit from a fresh state
         beforeHitArmor = testUnit.getArmorCur();
@@ -192,7 +192,7 @@ public class MechTest {
         }
 
         // make a mech without ammo
-        Unit testUnit = UnitFactory.buidUnit(unitLibrary.getUnitData("AWS-8Q"), 0);
+        Unit testUnit = UnitFactory.buidUnit(unitLibrary.getUnitData("AWS-8Q"), "test faction", 0);
 
         // fail to blow it up
         assertFalse(testUnit.isDestroyed());
@@ -202,7 +202,7 @@ public class MechTest {
         assertFalse(testUnit.isImmobile());
 
         // make a mech with ammo
-        testUnit = UnitFactory.buidUnit(unitLibrary.getUnitData("AS7-D"), 0);
+        testUnit = UnitFactory.buidUnit(unitLibrary.getUnitData("AS7-D"), "test faction",0);
 
         // fail to blow it up
         assertFalse(testUnit.isDestroyed());
@@ -226,7 +226,7 @@ public class MechTest {
         }
 
         // make a mech to test
-        Unit testUnit = UnitFactory.buidUnit(unitLibrary.getUnitData("AWS-8Q"), 0);
+        Unit testUnit = UnitFactory.buidUnit(unitLibrary.getUnitData("AWS-8Q"), "test faction",0);
 
         // fail to blow it up
         assertEquals(0, testUnit.getFCHits());
@@ -256,7 +256,7 @@ public class MechTest {
         }
 
         // make a mech with more than 4 damage
-        Unit testUnit = UnitFactory.buidUnit(unitLibrary.getUnitData("ANH-1X"), 0);
+        Unit testUnit = UnitFactory.buidUnit(unitLibrary.getUnitData("ANH-1X"), "test faction",0);
         int beforeSDamage = Character.getNumericValue(testUnit.getDmg('s'));
         int beforeMDamage = Character.getNumericValue(testUnit.getDmg('m'));
         int beforeLDamage = Character.getNumericValue(testUnit.getDmg('l'));
@@ -323,7 +323,7 @@ public class MechTest {
         }
 
         // make a mech to test
-        Unit testUnit = UnitFactory.buidUnit(unitLibrary.getUnitData("AS7-D"), 0);
+        Unit testUnit = UnitFactory.buidUnit(unitLibrary.getUnitData("AS7-D"), "test faction",0);
         // should start with no engine hits
         assertEquals(0, testUnit.getEngHits());
         // after 1 hit the mech should not be destroyed but have 1 engin hit marked
