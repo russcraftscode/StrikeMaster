@@ -11,7 +11,8 @@ public class Dice {
      */
     public static int roll2d6(){
         Random rand = new Random();
-        return rand.nextInt(1,6) + rand.nextInt(1,7);
+        // roll 2 dice that each range from 1 to 6
+        return rand.nextInt(6)+1 + rand.nextInt(6)+1;
     }
 
     /**
